@@ -6,7 +6,7 @@
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
-    "hasInformation2": false,
+    "hasLine": false,
     "hasNext": false,
     "hasCarNumber": true,
     "hasCarNumberFull": false,
@@ -20,7 +20,7 @@
     "nextModeDistinction": true,
     "typeDistinction": false,
     "informationDistinction": false,
-    "information2Distinction": false,
+    "lineDistinction": false,
     "carNumberDistinction": false,
 
     "typeSwitching": true,
