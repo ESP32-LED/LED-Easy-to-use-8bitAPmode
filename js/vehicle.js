@@ -40,10 +40,10 @@ function createVehicleButtons() {
             initVehicles();
             setExplanation();
             if (config.setSwitchingTime) {
-                document.getElementById("jaTime").value = config.jaTime;
-                document.getElementById("enTime").value = config.enTime;
-                document.getElementById("infoTime").value = config.infoTime;
-                document.getElementById("carNumberTime").value = config.carNumberTime;
+                document.querySelector("#jaTime input").value = config.jaTime;
+                document.querySelector("#enTime input").value = config.enTime;
+                document.querySelector("#infoTime input").value = config.infoTime;
+                document.querySelector("#carNumberTime input").value = config.carNumberTime;
             }
             if (config.hasReferenceSite) {
                 setReferenceSite();
