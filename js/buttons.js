@@ -851,6 +851,182 @@ function createInformationButtons() {
     }
 }
 
+function createInformation2Buttons() {
+
+    const container = document.getElementById("information2Buttons");
+    container.innerHTML = "";
+
+    const information2Category = getCategory("information2");
+    if (!information2Category) return;
+
+    const normalBtn = document.createElement("button");
+    container.classList.remove("groupedButtons", "normalButtons");
+
+    if (config.information2Distinction) {
+        container.classList.add("groupedButtons");
+    } else {
+        container.classList.add("normalButtons");
+    }
+
+    normalBtn.textContent = "案内2なし";
+
+    normalBtn.addEventListener ("click", () => {
+        setSelected(container, normalBtn);
+        information2Id = null;
+        const information2Label = document.getElementById("information2");
+        information2Label.textContent = "案内2:なし"
+        frame = 0;
+        if (config.setSwitchingTime) {
+            setTimeSetting();
+        }
+        startRenderLoop();
+    });
+
+    container.appendChild(normalBtn);
+
+    if (config.information2Distinction) {
+
+        information2Category.groups.forEach(group => {
+
+            // ===== 無表示グループ =====
+            if (group.name === "無表示") {
+
+                group.items.forEach(info => {
+
+                    const btn = document.createElement("button");
+
+                    const label =
+                        info.view?.full?.ja?.name ??
+                        info.view?.full?.en?.name ??
+                        info.view?.normal?.ja?.name ??
+                        info.view?.normal?.en?.name ??
+                        info.view?.small?.ja?.name ??
+                        info.view?.small?.en?.name ??
+                        info.name ??
+                        "no-name";
+
+                    btn.textContent = label;
+
+                    btn.addEventListener("click", () => {
+                        setSelected(container, btn);
+                        information2Id = info.id;
+                        const information2Label = document.getElementById("information2");
+                        const information2Name = getName("information2", information2Id)
+                        information2Label.textContent = "案内2:" + information2Name
+                        frame = 0;
+                        if (config.setSwitchingTime) {
+                            setTimeSetting();
+                        }
+                        startRenderLoop();
+                    });
+
+                    container.appendChild(btn);
+                });
+
+                return;
+            }
+
+            // ===== 路線グループ =====
+
+            const header = document.createElement("div");
+            header.className = "groupHeader";
+            header.textContent = "▸ " + group.name;
+
+            const groupContainer = document.createElement("div");
+            groupContainer.className = "groupButtons";
+            groupContainer.hidden = true;
+
+            header.addEventListener("click", () => {
+
+                groupContainer.hidden = !groupContainer.hidden;
+
+                header.textContent =
+                    (groupContainer.hidden ? "▸ " : "▾ ") + group.name;
+
+            });
+
+            container.appendChild(header);
+            container.appendChild(groupContainer);
+
+            group.items.forEach(info => {
+
+                const btn = document.createElement("button");
+
+                const label =
+                    info.view?.full?.ja?.name ??
+                    info.view?.full?.en?.name ??
+                    info.view?.normal?.ja?.name ??
+                    info.view?.normal?.en?.name ??
+                    info.view?.small?.ja?.name ??
+                    info.view?.small?.en?.name ??
+                    info.name ??
+                    "no-name";
+
+                btn.textContent = label;
+
+                if (label.length > 6) {
+                    btn.style.fontSize = "10px";
+                }
+
+                btn.addEventListener("click", () => {
+                    setSelected(container, btn);
+                    information2Id = info.id;
+                    const information2Label = document.getElementById("information2");
+                    const information2Name = getName("information2", information2Id)
+                    information2Label.textContent = "案内2:" + information2Name
+                    frame = 0;
+                    if (config.setSwitchingTime) {
+                        setTimeSetting();
+                    }
+                    startRenderLoop();
+                });
+
+            groupContainer.appendChild(btn);
+
+            });
+
+        });
+    } else {
+        const container = document.getElementById("information2Buttons");
+
+        const category = getCategory("information2");
+
+        category?.items.forEach(info => {
+
+            const btn = document.createElement("button");
+            const label =
+                info.view?.full?.ja?.name ??
+                info.view?.full?.en?.name ??
+                info.view?.normal?.ja?.name ??
+                info.view?.normal?.en?.name ??
+                info.view?.small?.ja?.name ??
+                info.view?.small?.en?.name ??
+                info.name ??
+                "no-name";
+                btn.textContent = label;
+
+            if (label.length > 6) {
+                btn.style.fontSize = "10px";
+            }
+
+            btn.addEventListener ("click", () => { 
+                setSelected(container, btn);
+                information2Id = info.id;
+                const information2Label = document.getElementById("information2");
+                const information2Name = getName("information2", information2Id)
+                information2Label.textContent = "案内2:" + information2Name
+                frame = 0;
+                if (config.setSwitchingTime) {
+                    setTimeSetting();
+                }
+                startRenderLoop();
+            });
+
+            container.appendChild(btn);
+        });
+    }
+}
+
 function createLineButtons() {
 
     const container = document.getElementById("lineButtons");
@@ -1107,14 +1283,12 @@ function setTimeSetting() {
         document.getElementById("enTime").hidden = true;
     } else {
         if (typeId != null) {
-            console.log(000);
             if (config.languageSwitching) {
                 document.getElementById("jaTime").hidden = false;
                 document.getElementById("enTime").hidden = false;
             }
         }
         if (destinationId != null) {
-            console.log(111);
             if(config.destinationLanguageSwitching) {
                 document.getElementById("jaTime").hidden = false;
                 document.getElementById("enTime").hidden = false;
