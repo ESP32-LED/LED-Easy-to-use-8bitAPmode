@@ -259,12 +259,12 @@ function drawInformation(info, matrix) {
     drawImage(data, typewidth, yOffset, matrix);
 }
 
-function drawInformation2(info, matrix) {
+function drawline(info, matrix) {
 
     let usedNormal = false;
     let typewidth;
 
-    const view = isInformation2FullScreen(info)
+    const view = islineFullScreen(info)
         ? "full"
         : "normal";
 
@@ -601,7 +601,7 @@ function isInformationFullScreen(info) {
     return false;
 }
 
-function isInformation2FullScreen(info) {
+function islineFullScreen(info) {
 
     if(!info) return false;
 
