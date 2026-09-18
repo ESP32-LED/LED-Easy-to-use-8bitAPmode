@@ -560,7 +560,7 @@ function initSimulator() {
     destinationLabel.textContent = "行先:なし"
     const informationLabel = document.getElementById("information");
     informationLabel.textContent = "案内:なし"
-    const information2Label = document.getElementById("information");
+    const information2Label = document.getElementById("information2");
     information2Label.textContent = "案内2:なし"
     const lineLabel = document.getElementById("line");
     lineLabel.textContent = "路線名:なし"
