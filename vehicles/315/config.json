@@ -6,6 +6,7 @@
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
+    "hasInformation2": false,
     "hasLine": false,
     "hasNext": true,
     "hasCarNumber": true,
