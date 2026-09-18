@@ -713,16 +713,16 @@ tittle.addEventListener("click", () => {
 
 function setExplanation() {
     document.getElementById("explanation").hidden = false;
-    const explanation = document.getElementById("explanation");
+    const explanationLabel = document.getElementById("explanationLabel");
     const label = document.createElement("label");
     label.textContent = config.explanation;
-    explanation.appendChild(label)
+    explanationLabel.appendChild(label)
 }
 
 function clearExplanation() {
-    const explanation = document.getElementById("explanation");
+    const explanationLabel = document.getElementById("explanationLabel");
 
-    explanation.innerHTML = "";
+    explanationLabel.innerHTML = "";
 }
 
 function setReferenceSite() {

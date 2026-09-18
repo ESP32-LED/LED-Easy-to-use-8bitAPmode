@@ -70,6 +70,16 @@
         "site": "vehicles/EV-E301/site.json"
     },
     {
+        "id": "HB-E210",
+        "name": "HB-E210系",
+        "config": "vehicles/HB-E210/config.json",
+        "led": "vehicles/HB-E210/led.json",
+        "icons": [
+            "vehicles/HB-E210/icons/icon1.png"
+        ],
+        "site": "vehicles/HB-E210/site.json"
+    },
+    {
         "id": "E26",
         "name": "E26系",
         "config": "vehicles/E26/config.json",
@@ -81,14 +91,14 @@
         "site": "vehicles/E26/site.json"
     },
     {
-        "id": "HB-E210",
-        "name": "HB-E210系",
-        "config": "vehicles/HB-E210/config.json",
-        "led": "vehicles/HB-E210/led.json",
+        "id": "E993",
+        "name": "E993系",
+        "config": "vehicles/E993/config.json",
+        "led": "vehicles/E993/led.json",
         "icons": [
-            "vehicles/HB-E210/icons/icon1.png"
+            "vehicles/E993/icons/icon1.png"
         ],
-        "site": "vehicles/HB-E210/site.json"
+        "site": "vehicles/E993/site.json"
     },
     {
         "id": "225・227",
