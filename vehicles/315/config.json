@@ -1,0 +1,48 @@
+{
+    "name": "315系",
+
+    "hasType": true,
+    "hasDestination": true,
+    "hasInformation": true,
+    "hasInformation2": false,
+    "hasNext": true,
+    "hasCarNumber": true,
+    "hasCarNumberFull": false,
+    "hasCarNumberSmall": true,
+    "hasCarNumberNormal": false,
+    "carNumber": "left",
+    "informationPosition": "next",
+    "destinationPosition": "normal",
+
+    "destinationDistinction": true,
+    "nextModeDistinction": true,
+    "typeDistinction": false,
+    "informationDistinction": false,
+    "information2Distinction": false,
+    "carNumberDistinction": false,
+
+    "typeSwitching": false,
+
+    "sceneInterval": 3000,
+    "languageSwitching": true,
+    "carNumberLanguageSwitching": true,
+    "destinationLanguageSwitching": true,
+    "informationLanguageSwitching": true,
+    "ledWidth": 176,
+    "ledHeight": 32,
+    "pixelSize": 7,
+    "ledSize": 5.5,
+    "ledGap": 1.5,
+
+    "enAhead": false,
+    "informationAhead": false,
+
+    "setSwitchingTime": false,
+
+    "next_normal": true,
+    "nextPosition": 16,
+
+    "hasReferenceSite": false,
+
+    "ledShape": "circle"
+}

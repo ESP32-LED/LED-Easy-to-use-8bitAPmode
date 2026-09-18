@@ -1,0 +1,48 @@
+{
+    "name": "225系・227系など",
+
+    "hasType": true,
+    "hasDestination": true,
+    "hasInformation": true,
+    "hasInformation2": false,
+    "hasNext": false,
+    "hasCarNumber": true,
+    "hasCarNumberFull": false,
+    "hasCarNumberSmall": true,
+    "hasCarNumberNormal": false,
+    "carNumber": "right",
+    "informationPosition": "next",
+    "destinationPosition": "normal",
+
+    "destinationDistinction": true,
+    "nextModeDistinction": true,
+    "typeDistinction": false,
+    "informationDistinction": false,
+    "information2Distinction": false,
+    "carNumberDistinction": false,
+
+    "typeSwitching": true,
+
+    "sceneInterval": 3000,
+    "languageSwitching": false,
+    "carNumberLanguageSwitching": false,
+    "destinationLanguageSwitching": true,
+    "informationLanguageSwitching": true,
+    "ledWidth": 160,
+    "ledHeight": 32,
+    "pixelSize": 7,
+    "ledSize": 4.8,
+    "ledGap": 2.2,
+
+    "enAhead": false,
+    "informationAhead": false,
+
+    "setSwitchingTime": false,
+
+    "next_normal": false,
+    "nextPosition": 18,
+
+    "hasReferenceSite": true,
+
+    "ledShape": "circle"
+}

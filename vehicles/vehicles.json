@@ -1,0 +1,147 @@
+[
+    {
+        "id": "E131-200",
+        "name": "E131系200番台",
+        "config": "vehicles/E131-200/config.json",
+        "led": "vehicles/E131-200/led.json",
+        "icons": [
+            "vehicles/E131-200/icons/icon1.png"
+        ],
+        "site": "vehicles/E131-200/site.json"
+    },
+    {
+        "id": "mari_E233",
+        "name": "マリE233系",
+        "config": "vehicles/mari_E233/config.json",
+        "led": "vehicles/mari_E233/led.json",
+        "icons": [
+            "vehicles/mari_E233/icons/icon1.png"
+        ],
+        "site": "vehicles/mari_E233/site.json"
+    },
+    {
+        "id": "EV-E301",
+        "name": "EV-E301系",
+        "config": "vehicles/EV-E301/config.json",
+        "led": "vehicles/EV-E301/led.json",
+        "icons": [
+            "vehicles/EV-E301/icons/icon1.png"
+        ],
+        "site": "vehicles/EV-E301/site.json"
+    },
+    {
+        "id": "E26",
+        "name": "E26系",
+        "config": "vehicles/E26/config.json",
+        "led": "vehicles/E26/led.json",
+        "icons": [
+            "vehicles/E26/icons/icon1.png",
+            "vehicles/E26/icons/icon2.png"
+        ],
+        "site": "vehicles/E26/site.json"
+    },
+    {
+        "id": "HB-E210",
+        "name": "HB-E210系",
+        "config": "vehicles/HB-E210/config.json",
+        "led": "vehicles/HB-E210/led.json",
+        "icons": [
+            "vehicles/HB-E210/icons/icon1.png"
+        ],
+        "site": "vehicles/HB-E210/site.json"
+    },
+    {
+        "id": "225・227",
+        "name": "225系・227系など",
+        "config": "vehicles/225・227/config.json",
+        "led": "vehicles/225・227/led.json",
+        "icons": [
+            "vehicles/225・227/icons/icon1.png",
+            "vehicles/225・227/icons/icon2.png",
+            "vehicles/225・227/icons/icon3.png",
+            "vehicles/225・227/icons/icon4.png",
+            "vehicles/225・227/icons/icon5.png",
+            "vehicles/225・227/icons/icon6.png",
+            "vehicles/225・227/icons/icon7.png",
+            "vehicles/225・227/icons/icon8.png",
+            "vehicles/225・227/icons/icon9.png",
+            "vehicles/225・227/icons/icon10.png",
+            "vehicles/225・227/icons/icon11.png"
+        ],
+        "site": "vehicles/225・227/site.json"
+    },
+    {
+        "id": "315",
+        "name": "315系",
+        "config": "vehicles/315/config.json",
+        "led": "vehicles/315/led.json",
+        "icons": [
+            "vehicles/315/icons/icon1.png",
+            "vehicles/315/icons/icon2.png"
+        ],
+        "site": "vehicles/315/site.json"
+    },
+    {
+        "id": "2700",
+        "name": "2700系",
+        "config": "vehicles/2700/config.json",
+        "led": "vehicles/2700/led.json",
+        "icons": [
+            "vehicles/2700/icons/icon1.png"
+        ],
+        "site": "vehicles/2700/site.json"
+    },
+    {
+        "id": "2020",
+        "name": "東急2020系",
+        "config": "vehicles/2020/config.json",
+        "led": "vehicles/2020/led.json",
+        "icons": [
+            "vehicles/2020/icons/icon1.png"
+        ],
+        "site": "vehicles/2020/site.json"
+    },
+    {
+        "id": "3000",
+        "name": "京成3000形・北総7500形など",
+        "config": "vehicles/3000/config.json",
+        "led": "vehicles/3000/led.json",
+        "icons": [
+            "vehicles/3000/icons/icon1.png",
+            "vehicles/3000/icons/icon2.png",
+            "vehicles/3000/icons/icon3.png"
+        ],
+        "site": "vehicles/3000/site.json"
+    },
+    {
+        "id": "AB900",
+        "name": "AB900系",
+        "config": "vehicles/AB900/config.json",
+        "led": "vehicles/AB900/led.json",
+        "icons": [
+            "vehicles/AB900/icons/icon1.png"
+        ],
+        "site": "vehicles/AB900/site.json"
+    },
+    {
+        "id": "IGR7000",
+        "name": "IGR7000系・青い森701系",
+        "config": "vehicles/IGR7000/config.json",
+        "led": "vehicles/IGR7000/led.json",
+        "icons": [
+            "vehicles/IGR7000/icons/icon1.png",
+            "vehicles/IGR7000/icons/icon2.png"
+        ],
+        "site": "vehicles/IGR7000/site.json"
+    },
+    {
+        "id": "703",
+        "name": "青い森703系",
+        "config": "vehicles/703/config.json",
+        "led": "vehicles/703/led.json",
+        "icons": [
+            "vehicles/703/icons/icon1.png"
+        ],
+        "site": "vehicles/703/site.json"
+    }
+]

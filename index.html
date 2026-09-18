@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>LED方向幕シミュレーター</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+		<div id="loading" hidden>
+			<span>Loading</span><span class="loadingDots"></span>
+		</div>
+
+    	<header id="tittle">
+        	<h1>LED方向幕シミュレーター</h1>
+    	</header>
+
+		<div id="vehicleSelector">
+			<label id="vehicle">車両を選択</label>
+			<div id="vehicleSelect" class="selectGroup"></div>
+
+			<!-- 追加したLED設定UI -->
+			<div id="ledSettings" style="margin-top: 20px; padding: 15px; background: #fcfcfc; border: 1px solid #000; border-radius: 8px;">
+				<h3 style="margin-top: 0;">LED設定</h3>
+				<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+					<label>
+						LEDの物理幅
+						<input type="number" id="hardwareWidth" value="160" min="64" max="256" style="width: 100%; padding: 6px; box-sizing: border-box;" onchange="if(typeof triggerAutoTransfer === 'function') triggerAutoTransfer()">
+					</label>
+					<label>
+						LED全体の明るさ: <span id="val-hw-bright">12</span>
+						<input type="range" id="hwBrightness" min="1" max="50" step="1" value="12" style="width: 100%;" oninput="document.getElementById('val-hw-bright').innerText=this.value; if(typeof triggerAutoTransfer === 'function') triggerAutoTransfer();">
+					</label>
+					<label>
+						色の明るさ (Software): <span id="val-brightness">1.0</span>
+						<input type="range" id="softBrightness" min="0.1" max="2.0" step="0.1" value="1.0" style="width: 100%;" oninput="document.getElementById('val-brightness').innerText=this.value; if(typeof triggerAutoTransfer === 'function') triggerAutoTransfer();">
+					</label>
+					<label>
+						ガンマ補正: <span id="val-gamma">1.5</span>
+						<input type="range" id="gammaCorrection" min="0.1" max="3.0" step="0.1" value="1.5" style="width: 100%;" oninput="document.getElementById('val-gamma').innerText=this.value; if(typeof triggerAutoTransfer === 'function') triggerAutoTransfer();">
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div id="simulator" hidden>
+			<div class="container">
+				<aside id="sidebar">
+					<div id="setTime">
+						<div id="jaTime" class="timeSetting" hidden>
+							<span>日本語:</span>
+							<div class="numberInput">
+								<button type="button" class="minus">−</button>
+								<input type="number" value="3" min="0.1" step="0.1">
+								<button type="button" class="plus">＋</button>
+							</div>
+							<span>秒</span>
+						</div>
+						<div id="enTime" class="timeSetting" hidden>
+							<span>英語:</span>
+							<div class="numberInput">
+								<button type="button" class="minus">−</button>
+								<input type="number" value="2" min="0.1" step="0.1">
+								<button type="button" class="plus">＋</button>
+							</div>
+							<span>秒</span>
+						</div>
+						<div id="infoTime" class="timeSetting" hidden>
+							<span>案内:</span>
+							<div class="numberInput">
+								<button type="button" class="minus">−</button>
+								<input type="number" value="2" min="0.1" step="0.1">
+								<button type="button" class="plus">＋</button>
+							</div>
+							<span>秒</span>
+						</div>
+						<div id="carNumberTime" class="timeSetting" hidden>
+							<span>号車:</span>
+							<div class="numberInput">
+								<button type="button" class="minus">−</button>
+								<input type="number" value="2" min="0.1" step="0.1">
+								<button type="button" class="plus">＋</button>
+							</div>
+							<span>秒</span>
+						</div>
+					</div>
+					
+					<div id="buttonGroup">
+						<div id="typeGroup">
+							<label id="type" class="displayLabel">種別:なし</label>
+							<div id="typeButtons" class="buttonGroup"></div>
+						</div>
+						<div id="destinationGroup">
+							<label id="destination" class="displayLabel">行先:なし</label>
+							<div id="destinationButtons" class="buttonGroup"></div>
+						</div>
+						<div id="informationGroup">
+							<label id="information" class="displayLabel">案内:なし</label>
+							<div id="informationButtons" class="buttonGroup"></div>
+						</div>
+						<div id="information2Group">
+							<label id="information2" class="displayLabel">路線名:なし</label>
+							<div id="information2Buttons" class="buttonGroup"></div>
+						</div>
+						<div id="nextModeGroup">
+							<label id="nextMode" class="displayLabel">次駅:なし</label>
+							<div id="nextModeButtons" class="buttonGroup"></div>
+						</div>
+						<div id="carNumberGroup">
+							<label id="carNumber" class="displayLabel">号車:なし</label>
+							<div id="carNumberButtons" class="buttonGroup"></div>
+						</div>
+					</div>
+					
+					<div id="referenceSite" hidden>
+						<h2>参考サイト</h2>
+						<label>一部の再現ドットは、以下のサイトに掲載されている再現画像を参考にドット打ちさせていただきました。</label>
+						<div id="referenceSiteLink"></div>
+					</div>
+					
+					<div id="esp32Setting">
+						<h2>Wi-Fi設定</h2>
+						<label>
+							ESP32 IPアドレス
+							<input type="text" id="esp32Ip" value="192.168.4.1">
+						</label>
+
+						<button id="transferButton">
+							ESP32へWi-Fi転送
+						</button>
+						<p id="transferStatus"></p>
+					</div>
+
+					<button id="vehicleSelectButton">車両選択に戻る</button>
+				</aside>
+
+				<div id="resizer"></div>
+
+				<main>
+					<div class="ledFrame">
+						<canvas id="led" width="895" height="223"></canvas>
+					</div>
+				</main>
+        	</div>
+		</div>
+
+        <footer id="status">
+        </footer>
+
+	<script src="js/state.js"></script>
+	<script src="js/constants.js"></script>
+	<script src="js/dom.js"></script>
+	<script src="js/json.js"></script>
+	<script src="js/buttons.js"></script>
+	<script src="js/display.js"></script>
+	<script src="js/render.js"></script>
+	<script src="js/vehicle.js"></script>
+    <script src="js/script.js"></script>
+	<script src="js/transfer.js"></script>
+    </body>
+</html>
