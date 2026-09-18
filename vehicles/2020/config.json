@@ -40,6 +40,10 @@
     "informationAhead": false,
 
     "setSwitchingTime": true,
+    "jaTime": 3,
+    "enTime": 2,
+    "infoTime": 2,
+    "carNumberTime": 2,
 
     "next_normal": false,
     "nextPosition": 16,
