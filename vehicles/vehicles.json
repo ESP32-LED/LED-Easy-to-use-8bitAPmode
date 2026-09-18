@@ -190,7 +190,8 @@
         "config": "vehicles/1000・2000/config.json",
         "led": "vehicles/1000・2000/led.json",
         "icons": [
-            "vehicles/1000・2000/icons/icon1.png"
+            "vehicles/1000・2000/icons/icon1.png",
+            "vehicles/1000・2000/icons/icon2.png"
         ],
         "site": "vehicles/1000・2000/site.json"
     }
