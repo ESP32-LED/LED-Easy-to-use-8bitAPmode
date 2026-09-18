@@ -1106,9 +1106,17 @@ function setTimeSetting() {
         document.getElementById("jaTime").hidden = true;
         document.getElementById("enTime").hidden = true;
     } else {
-        if (config.languageSwitching || config.destinationLanguageSwitching) {
-            document.getElementById("jaTime").hidden = false;
-            document.getElementById("enTime").hidden = false;
+        if (typeId != null) {
+            if (config.languageSwitching) {
+                document.getElementById("jaTime").hidden = false;
+                document.getElementById("enTime").hidden = false;
+            }
+        }
+        if (destinationId != null) {
+            if(config.destinationLanguageSwitching) {
+                document.getElementById("jaTime").hidden = false;
+                document.getElementById("enTime").hidden = false;
+            }
         }
     }
     if (informationId === null) {
