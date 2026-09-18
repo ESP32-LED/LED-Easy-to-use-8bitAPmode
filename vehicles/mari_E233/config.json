@@ -1,12 +1,12 @@
 {
-    "name": "E131系200番台",
+    "name": "マリE233系",
 
     "explanation": "a",
 
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
-    "hasInformation2": true,
+    "hasLine": true,
     "hasNext": true,
     "hasCarNumber": false,
     "hasCarNumberFull": false,
@@ -20,7 +20,7 @@
     "nextModeDistinction": true,
     "typeDistinction": false,
     "informationDistinction": false,
-    "information2Distinction": false,
+    "lineDistinction": false,
     "carNumberDistinction": false,
 
     "typeSwitching": false,
