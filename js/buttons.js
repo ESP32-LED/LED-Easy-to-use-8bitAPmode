@@ -1106,8 +1106,10 @@ function setTimeSetting() {
         document.getElementById("jaTime").hidden = true;
         document.getElementById("enTime").hidden = true;
     } else {
-        document.getElementById("jaTime").hidden = false;
-        document.getElementById("enTime").hidden = false;
+        if (config.languageSwitching || config.destinationLanguageSwitching) {
+            document.getElementById("jaTime").hidden = false;
+            document.getElementById("enTime").hidden = false;
+        }
     }
     if (informationId === null) {
         document.getElementById("infoTime").hidden = true;
