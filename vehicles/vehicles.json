@@ -20,6 +20,36 @@
         "site": "vehicles/E131-500/site.json"
     },
     {
+        "id": "E131-600",
+        "name": "E131系600番台",
+        "config": "vehicles/E131-600/config.json",
+        "led": "vehicles/E131-600/led.json",
+        "icons": [
+            "vehicles/E131-600/icons/icon1.png"
+        ],
+        "site": "vehicles/E131-600/site.json"
+    },
+    {
+        "id": "E233-0",
+        "name": "E233系0番台",
+        "config": "vehicles/E233-0/config.json",
+        "led": "vehicles/E233-0/led.json",
+        "icons": [
+            "vehicles/E233-0/icons/icon1.png"
+        ],
+        "site": "vehicles/E233-0/site.json"
+    },
+    {
+        "id": "E233-1000",
+        "name": "E233系1000番台",
+        "config": "vehicles/E233-1000/config.json",
+        "led": "vehicles/E233-1000/led.json",
+        "icons": [
+            "vehicles/E233-1000/icons/icon1.png"
+        ],
+        "site": "vehicles/E233-1000/site.json"
+    },
+    {
         "id": "mari_E233",
         "name": "マリE233系",
         "config": "vehicles/mari_E233/config.json",
