@@ -1,11 +1,11 @@
 {
-    "name": "E131系200番台",
+    "name": "E233系0番台",
 
     "explanation": "a",
 
     "hasType": true,
     "hasDestination": true,
-    "hasInformation": false,
+    "hasInformation": true,
     "hasInformation2": false,
     "hasNext": true,
     "hasCarNumber": false,
