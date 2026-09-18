@@ -83,7 +83,7 @@ function setupVehicleUI() {
     } else {
         document.getElementById("informationGroup").hidden = true;
     }
-    if (config.hasline) {
+    if (config.hasLine) {
         document.getElementById("lineGroup").hidden = false;
         createlineButtons();
     } else {
