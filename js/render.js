@@ -69,7 +69,7 @@ function createDisplayMatrix () {
             }
             if(informationMode === "line") {
                 if (lineId != null) {
-                    drawline(line,matrix);
+                    drawLine(line,matrix);
                 }
             }
             if(informationMode === "carNumber") {
@@ -118,7 +118,7 @@ function createDisplayMatrix () {
             }
             if(informationMode === "line") {
                 if (lineId != null) {
-                    drawline(line,matrix);
+                    drawLine(line,matrix);
                 }
             }
             if(informationMode === "information_next") {
