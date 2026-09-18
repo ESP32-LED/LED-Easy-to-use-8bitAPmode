@@ -674,7 +674,9 @@ const tittle = document.getElementById("tittle");
 tittle.addEventListener("click", () => {
     initSimulator();
     clearReferenceSite();
+    clearExplanation();
     document.getElementById("referenceSite").hidden = true;
+    document.getElementById("explanation").hidden = true;
     document.getElementById("jaTime").hidden = true;
     document.getElementById("enTime").hidden = true;
     document.getElementById("infoTime").hidden = true;
@@ -682,6 +684,20 @@ tittle.addEventListener("click", () => {
     document.getElementById("simulator").hidden = true;
     document.getElementById("vehicleSelector").hidden = false;
 })
+
+function setExplanation() {
+    document.getElementById("explanation").hidden = false;
+    const explanation = document.getElementById("explanation");
+    const label = document.createElement("label");
+    label.textContent = config.explanation;
+    explanation.appendChild(label)
+}
+
+function clearExplanation() {
+    const explanation = document.getElementById("explanation");
+
+    explanation.innerHTML = "";
+}
 
 function setReferenceSite() {
     document.getElementById("referenceSite").hidden = false;
