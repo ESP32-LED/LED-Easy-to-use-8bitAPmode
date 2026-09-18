@@ -85,7 +85,7 @@ function setupVehicleUI() {
     }
     if (config.hasLine) {
         document.getElementById("lineGroup").hidden = false;
-        createlineButtons();
+        createLineButtons();
     } else {
         document.getElementById("lineGroup").hidden = true;
     }
