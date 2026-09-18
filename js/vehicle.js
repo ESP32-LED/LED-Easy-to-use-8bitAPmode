@@ -39,6 +39,11 @@ function createVehicleButtons() {
             await startVehicle();
             initVehicles();
             setExplanation();
+            if (config.setSwitchingTime) {
+                document.getElementById("jaTime").value = config.jaTime;
+                document.getElementById("enTime").value = config.enTime;
+                document.getElementById("infoTime").value = config.infoTime;
+                document.getElementById("carNumberTime").value = config.carNumberTime;
             if (config.hasReferenceSite) {
                 setReferenceSite();
             } else {
