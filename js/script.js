@@ -83,11 +83,11 @@ function setupVehicleUI() {
     } else {
         document.getElementById("informationGroup").hidden = true;
     }
-    if (config.hasInformation2) {
-        document.getElementById("information2Group").hidden = false;
-        createInformation2Buttons();
+    if (config.hasline) {
+        document.getElementById("lineGroup").hidden = false;
+        createlineButtons();
     } else {
-        document.getElementById("information2Group").hidden = true;
+        document.getElementById("lineGroup").hidden = true;
     }
     if (config.hasNext) {
         document.getElementById("nextModeGroup").hidden = false;
@@ -380,17 +380,17 @@ function buildSceneList() {
         }
     }
 
-    if (information2Id != null) {
+    if (lineId != null) {
         if (nextId != null) {
             sceneList.push({
                 lang: "ja",
-                information: "information2",
+                information: "line",
                 next: true
             });
         } else {
             sceneList.push({
                 lang: "ja",
-                information: "information2",
+                information: "line",
                 next: false
             });
         }
@@ -522,7 +522,7 @@ function initSimulator() {
     document.getElementById("typeButtons").innerHTML = "";
     document.getElementById("destinationButtons").innerHTML = "";
     document.getElementById("informationButtons").innerHTML = "";
-    document.getElementById("information2Buttons").innerHTML = "";
+    document.getElementById("lineButtons").innerHTML = "";
     document.getElementById("nextModeButtons").innerHTML = "";
     document.getElementById("carNumberButtons").innerHTML = "";
     if (transferController) {
@@ -537,8 +537,8 @@ function initSimulator() {
     destinationLabel.textContent = "行先:なし"
     const informationLabel = document.getElementById("information");
     informationLabel.textContent = "案内:なし"
-    const information2Label = document.getElementById("information2");
-    information2Label.textContent = "案内2:なし"
+    const lineLabel = document.getElementById("line");
+    lineLabel.textContent = "案内2:なし"
     const nextLabel = document.getElementById("nextMode");
     nextLabel.textContent = "次駅:なし"
     const carNumberLabel = document.getElementById("carNumber");
@@ -547,7 +547,7 @@ function initSimulator() {
     typeId = null;
     destinationId = null;
     informationId = null;
-    information2Id = null;
+    lineId = null;
     carNumberId = null;
     nextId = null;
     sceneList = [];
