@@ -52,7 +52,7 @@
     },
     {
         "id": "225・227",
-        "name": "225系・227系など",
+        "name": "JR西日本一体型フルカラーLED",
         "config": "vehicles/225・227/config.json",
         "led": "vehicles/225・227/led.json",
         "icons": [
