@@ -44,6 +44,7 @@ function createVehicleButtons() {
                 document.getElementById("enTime").value = config.enTime;
                 document.getElementById("infoTime").value = config.infoTime;
                 document.getElementById("carNumberTime").value = config.carNumberTime;
+            }
             if (config.hasReferenceSite) {
                 setReferenceSite();
             } else {
