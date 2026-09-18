@@ -1,6 +1,8 @@
 {
     "name": "JR西日本一体型フルカラーLED",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,

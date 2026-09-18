@@ -1,6 +1,8 @@
 {
     "name": "IGR7000系・青い森701系",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": false,

@@ -10,6 +10,16 @@
         "site": "vehicles/E131-200/site.json"
     },
     {
+        "id": "E131-500",
+        "name": "E131系500番台",
+        "config": "vehicles/E131-500/config.json",
+        "led": "vehicles/E131-500/led.json",
+        "icons": [
+            "vehicles/E131-500/icons/icon1.png"
+        ],
+        "site": "vehicles/E131-500/site.json"
+    },
+    {
         "id": "mari_E233",
         "name": "マリE233系",
         "config": "vehicles/mari_E233/config.json",

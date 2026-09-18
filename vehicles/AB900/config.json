@@ -1,6 +1,8 @@
 {
     "name": "AB900系",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": false,

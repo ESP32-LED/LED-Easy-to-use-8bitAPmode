@@ -1,6 +1,8 @@
 {
     "name": "315系",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,

@@ -1,6 +1,8 @@
 {
     "name": "2700系",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,

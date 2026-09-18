@@ -1,6 +1,8 @@
 {
     "name": "京成3000形・北総7500形など",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,

@@ -1,6 +1,8 @@
 {
     "name": "青い森703系",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": false,

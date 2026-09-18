@@ -1,6 +1,8 @@
 {
     "name": "E131系200番台",
 
+    "explanation": "a",
+
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
