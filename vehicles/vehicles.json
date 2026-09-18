@@ -183,5 +183,15 @@
             "vehicles/703/icons/icon1.png"
         ],
         "site": "vehicles/703/site.json"
+    },
+    {
+        "id": "1000・2000",
+        "name": "江ノ電1000・2000形",
+        "config": "vehicles/1000・2000/config.json",
+        "led": "vehicles/1000・2000/led.json",
+        "icons": [
+            "vehicles/1000・2000/icons/icon1.png"
+        ],
+        "site": "vehicles/1000・2000/site.json"
     }
 ]
