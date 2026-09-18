@@ -851,7 +851,7 @@ function createInformationButtons() {
     }
 }
 
-function createlineButtons() {
+function createLineButtons() {
 
     const container = document.getElementById("lineButtons");
     container.innerHTML = "";
