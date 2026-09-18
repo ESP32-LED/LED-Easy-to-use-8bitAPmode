@@ -851,18 +851,18 @@ function createInformationButtons() {
     }
 }
 
-function createInformation2Buttons() {
+function createlineButtons() {
 
-    const container = document.getElementById("information2Buttons");
+    const container = document.getElementById("lineButtons");
     container.innerHTML = "";
 
-    const informationCategory = getCategory("information2");
+    const informationCategory = getCategory("line");
     if (!informationCategory) return;
 
     const normalBtn = document.createElement("button");
     container.classList.remove("groupedButtons", "normalButtons");
 
-    if (config.information2Distinction) {
+    if (config.lineDistinction) {
         container.classList.add("groupedButtons");
     } else {
         container.classList.add("normalButtons");
@@ -872,9 +872,9 @@ function createInformation2Buttons() {
 
     normalBtn.addEventListener ("click", () => {
         setSelected(container, normalBtn);
-        information2Id = null;
-        const information2Label = document.getElementById("information2");
-        information2Label.textContent = "路線名:なし"
+        lineId = null;
+        const lineLabel = document.getElementById("line");
+        lineLabel.textContent = "路線名:なし"
         frame = 0;
         if (config.setSwitchingTime) {
             setTimeSetting();
@@ -884,7 +884,7 @@ function createInformation2Buttons() {
 
     container.appendChild(normalBtn);
 
-    if (config.information2Distinction) {
+    if (config.lineDistinction) {
 
         informationCategory.groups.forEach(group => {
 
@@ -909,10 +909,10 @@ function createInformation2Buttons() {
 
                     btn.addEventListener("click", () => {
                         setSelected(container, btn);
-                        information2Id = info.id;
-                        const information2Label = document.getElementById("information2");
-                        const information2Name = getName("information2", information2Id)
-                        information2Label.textContent = "路線名:" + information2Name
+                        lineId = info.id;
+                        const lineLabel = document.getElementById("line");
+                        const lineName = getName("line", lineId)
+                        lineLabel.textContent = "路線名:" + lineName
                         frame = 0;
                         if (config.setSwitchingTime) {
                             setTimeSetting();
@@ -970,10 +970,10 @@ function createInformation2Buttons() {
 
                 btn.addEventListener("click", () => {
                     setSelected(container, btn);
-                    information2Id = info.id;
-                    const information2Label = document.getElementById("information2");
-                    const information2Name = getName("information2", information2Id)
-                    information2Label.textContent = "路線名:" + information2Name
+                    lineId = info.id;
+                    const lineLabel = document.getElementById("line");
+                    const lineName = getName("line", lineId)
+                    lineLabel.textContent = "路線名:" + lineName
                     frame = 0;
                     if (config.setSwitchingTime) {
                         setTimeSetting();
@@ -987,9 +987,9 @@ function createInformation2Buttons() {
 
         });
     } else {
-        const container = document.getElementById("information2Buttons");
+        const container = document.getElementById("lineButtons");
 
-        const category = getCategory("information2");
+        const category = getCategory("line");
 
         category?.items.forEach(info => {
 
@@ -1012,10 +1012,10 @@ function createInformation2Buttons() {
 
             btn.addEventListener ("click", () => {
                 setSelected(container, btn);
-                information2Id = info.id;
-                const information2Label = document.getElementById("information2");
-                const information2Name = getName("information2", information2Id)
-                information2Label.textContent = "路線名:" + information2Name
+                lineId = info.id;
+                const lineLabel = document.getElementById("line");
+                const lineName = getName("line", lineId)
+                lineLabel.textContent = "路線名:" + lineName
                 frame = 0;
                 if (config.setSwitchingTime) {
                     setTimeSetting();
