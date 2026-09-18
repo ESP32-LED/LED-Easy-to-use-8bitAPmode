@@ -39,7 +39,7 @@
     "enAhead": false,
     "informationAhead": false,
 
-    "setSwitchingTime": false,
+    "setSwitchingTime": true,
 
     "next_normal": false,
     "nextPosition": 16,
