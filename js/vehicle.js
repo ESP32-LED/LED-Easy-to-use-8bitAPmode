@@ -38,6 +38,7 @@ function createVehicleButtons() {
             await loadConfig();
             await startVehicle();
             initVehicles();
+            setExplanation();
             if (config.hasReferenceSite) {
                 setReferenceSite();
             } else {
