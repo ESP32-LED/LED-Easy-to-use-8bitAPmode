@@ -1107,12 +1107,14 @@ function setTimeSetting() {
         document.getElementById("enTime").hidden = true;
     } else {
         if (typeId != null) {
+            console.log(000);
             if (config.languageSwitching) {
                 document.getElementById("jaTime").hidden = false;
                 document.getElementById("enTime").hidden = false;
             }
         }
         if (destinationId != null) {
+            console.log(111);
             if(config.destinationLanguageSwitching) {
                 document.getElementById("jaTime").hidden = false;
                 document.getElementById("enTime").hidden = false;
