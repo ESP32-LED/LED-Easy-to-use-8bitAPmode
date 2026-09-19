@@ -112,6 +112,8 @@ function setupVehicleUI() {
     } else {
         document.getElementById("scroll").hidden = true;
     }
+    const scrollText = document.getElementById("scrollText");
+    scrollText.value = config.scrollLabel;
 
     setVehicleSelectButton();
     resizeButtonText();
