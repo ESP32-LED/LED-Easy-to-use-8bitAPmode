@@ -146,7 +146,7 @@
             "id": "information",
             "name": "案内",
             "items": [
-　　　　　　　{
+　　　　　　　  {
                     "id": "null_destination",
                     "view": {
                         "normal": {
