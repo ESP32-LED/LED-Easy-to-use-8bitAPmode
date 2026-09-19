@@ -353,6 +353,12 @@ function drawInformationSmall(info, matrix) {
     const view = isInformationFullScreen(info)
         ? "full_small"
         : "small";
+    if (informationMode === "information_small1") {
+        view = "small1"
+    }
+    if (informationMode === "information_small2") {
+        view = "small2"
+    }
 
     let data =
         info.view?.[view]?.[lang]

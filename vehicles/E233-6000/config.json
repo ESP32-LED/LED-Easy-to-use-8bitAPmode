@@ -19,8 +19,8 @@
     "informationPosition": "normal",
     "destinationPosition": "normal",
 
-    "destinationDistinction": false,
-    "nextModeDistinction": false,
+    "destinationDistinction": true,
+    "nextModeDistinction": true,
     "typeDistinction": false,
     "informationDistinction": false,
     "information2Distinction": false,
