@@ -350,7 +350,7 @@ function drawInformationSmall(info, matrix) {
     let usedSmall = false;
     let typewidth;
 
-    const view = isInformationFullScreen(info)
+    let view = isInformationFullScreen(info)
         ? "full_small"
         : "small";
     if (informationMode === "information_small1") {
