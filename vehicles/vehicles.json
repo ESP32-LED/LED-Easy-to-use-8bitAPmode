@@ -204,5 +204,15 @@
             "vehicles/1000・2000/icons/icon2.png"
         ],
         "site": "vehicles/1000・2000/site.json"
+    },
+    {
+        "id": "HU300",
+        "name": "宇都宮LRT HU300形",
+        "config": "vehicles/HU300/config.json",
+        "led": "vehicles/HU300/led.json",
+        "icons": [
+            "vehicles/HU300/icons/icon1.png"
+        ],
+        "site": "vehicles/HU300/site.json"
     }
 ]
