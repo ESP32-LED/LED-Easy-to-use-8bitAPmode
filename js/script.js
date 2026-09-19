@@ -107,6 +107,11 @@ function setupVehicleUI() {
     } else {
         document.getElementById("carNumberGroup").hidden = true;
     }
+    if (config.hasScroll) {
+        document.getElementById("scroll").hidden = false;
+    } else {
+        document.getElementById("scroll").hidden = true;
+    }
 
     setVehicleSelectButton();
     resizeButtonText();
