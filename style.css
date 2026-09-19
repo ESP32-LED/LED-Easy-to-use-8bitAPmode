@@ -412,6 +412,11 @@ input[type="number"]::-webkit-outer-spin-button {
     background-color: #fcfcfc;
     border: 1px solid #000000;
     border-radius: 8px;
+    max-height: 500px;
+}
+
+#explanationLabel {
+    font-family: "BIZ UDMincho", "Yu Mincho", "游明朝", serif;
 }
 
 @keyframes loadingDots {
