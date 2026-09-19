@@ -50,6 +50,16 @@
         "site": "vehicles/E233-1000/site.json"
     },
     {
+        "id": "E233-8500",
+        "name": "E233系8500番台",
+        "config": "vehicles/E233-8500/config.json",
+        "led": "vehicles/E233-8500/led.json",
+        "icons": [
+            "vehicles/E233-8500/icons/icon1.png"
+        ],
+        "site": "vehicles/E233-8500/site.json"
+    },
+    {
         "id": "mari_E233",
         "name": "マリE233系",
         "config": "vehicles/mari_E233/config.json",
