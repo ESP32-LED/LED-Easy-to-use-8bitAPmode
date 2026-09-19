@@ -110,6 +110,17 @@
         "site": "vehicles/HB-E210/site.json"
     },
     {
+        "id": "HB-E300",
+        "name": "HB-E300系 リゾートしらかみ",
+        "config": "vehicles/HB-E300/config.json",
+        "led": "vehicles/HB-E300/led.json",
+        "icons": [
+            "vehicles/HB-E300/icons/icon1.png"
+            "vehicles/HB-E300/icons/icon2.png"
+        ],
+        "site": "vehicles/HB-E300/site.json"
+    },
+    {
         "id": "E26",
         "name": "E26系",
         "config": "vehicles/E26/config.json",
