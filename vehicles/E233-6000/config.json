@@ -1,5 +1,5 @@
 {
-    "name": "EV-E301系",
+    "name": "E233系6000番台",
 
     "explanation": "a",
 
@@ -8,9 +8,9 @@
     "hasInformation": true,
     "hasInformation2": false,
     "hasLine": false,
-    "hasNext": false,
-    "hasScroll": false,
-    "scrollLabel": null,
+    "hasNext": true,
+    "hasScroll": true,
+    "scrollLabel": "停車駅：相原、終点　八王子です。",
     "hasCarNumber": false,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,
@@ -48,7 +48,7 @@
     "next_normal": false,
     "nextPosition": 16,
 
-    "hasReferenceSite": true,
+    "hasReferenceSite": false,
 
     "ledShape": "circle"
 }

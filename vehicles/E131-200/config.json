@@ -9,6 +9,8 @@
     "hasInformation2": false,
     "hasLine": false,
     "hasNext": true,
+    "hasScroll": true,
+    "scrollLabel": "停車駅：明科、終点　長野です。",
     "hasCarNumber": false,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,

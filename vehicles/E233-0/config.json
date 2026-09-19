@@ -9,6 +9,8 @@
     "hasInformation2": false,
     "hasLine": false,
     "hasNext": true,
+    "hasScroll": true,
+    "scrollLabel": "この電車の停車駅は、白丸、奥多摩駅に停まります。",
     "hasCarNumber": false,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,

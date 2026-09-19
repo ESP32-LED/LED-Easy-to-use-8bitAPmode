@@ -9,6 +9,8 @@
     "hasInformation2": false,
     "hasLine": false,
     "hasNext": true,
+    "hasScroll": false,
+    "scrollLabel": null,
     "hasCarNumber": true,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,
