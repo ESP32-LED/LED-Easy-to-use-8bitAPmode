@@ -111,7 +111,6 @@ function frameToUint8Array(frame, hw) {
 
 async function transferToESP32() {
     const status = document.getElementById("transferStatus");
-    const button = document.getElementById("transferButton");
     const ipInput = document.getElementById("esp32Ip");
     const ip = ipInput ? ipInput.value.trim() : "192.168.4.1";
 
@@ -119,8 +118,6 @@ async function transferToESP32() {
         transferController.abort();
     }
     transferController = new AbortController();
-
-    if(button) button.disabled = true;
 
     try {
         if(status) status.textContent = "データ作成中...";
@@ -159,7 +156,6 @@ async function transferToESP32() {
         if(status) status.textContent = "転送失敗: " + error.message;
 
     } finally {
-        if(button) button.disabled = false;
         transferController = null;
     }
 }
@@ -259,9 +255,4 @@ function gcd(a, b) {
 
 function lcm(a, b) {
     return a / gcd(a, b) * b;
-}
-
-const transferButton = document.getElementById("transferButton");
-if (transferButton) {
-    transferButton.onclick = transferToESP32;
 }
