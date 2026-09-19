@@ -850,6 +850,9 @@ function createScrollMatrix() {
 }
  
 function drawScroll() {
+    if (!typeId) {
+        return;
+    }
     const type = getItem("type", typeId)
     if (
         !scrollCheck.checked ||
