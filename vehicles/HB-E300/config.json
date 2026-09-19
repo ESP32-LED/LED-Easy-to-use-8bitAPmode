@@ -46,5 +46,5 @@
 
     "hasReferenceSite": true,
 
-    "ledShape": "circle"
+    "ledShape": "rectangle"
 }
