@@ -373,6 +373,10 @@ input[type="number"]::-webkit-outer-spin-button {
     border-radius: 4px;
 }
 
+#scroll[hidden] {
+    display: none;
+}
+
 #startScrollBtn[hidden] {
     display: none;
 }
