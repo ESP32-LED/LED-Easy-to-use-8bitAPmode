@@ -757,3 +757,14 @@ function showLoading() {
 function hideLoading() {
     document.getElementById("loading").hidden = true;
 }
+
+const scrollCheck = document.getElementById("scrollCheck");
+const scrollText = document.getElementById("scrollText");
+
+scrollCheck.addEventListener("change", () => {
+    if (scrollCheck.checked) {
+        scrollText.hidden = false;
+    } else {
+        scrollText.hidden = true;
+    }
+});
