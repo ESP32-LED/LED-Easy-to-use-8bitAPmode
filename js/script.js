@@ -586,7 +586,6 @@ function initSimulator() {
         transferController = null;
     }
     document.getElementById("transferStatus").textContent = "";
-    document.getElementById("transferButton").disabled = false;
     document.getElementById("typeButtons").innerHTML = "";
     document.getElementById("destinationButtons").innerHTML = "";
     document.getElementById("informationButtons").innerHTML = "";
