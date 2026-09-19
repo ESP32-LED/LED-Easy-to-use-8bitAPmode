@@ -7,7 +7,8 @@
         "icons": [
             "vehicles/E131-200/icons/icon1.png"
         ],
-        "site": "vehicles/E131-200/site.json"
+        "site": "vehicles/E131-200/site.json",
+        "font": "vehicles/E131-200/font.json"
     },
     {
         "id": "E131-500",
@@ -27,7 +28,8 @@
         "icons": [
             "vehicles/E131-600/icons/icon1.png"
         ],
-        "site": "vehicles/E131-600/site.json"
+        "site": "vehicles/E131-600/site.json",
+        "font": "vehicles/E131-600/font.json"
     },
     {
         "id": "E233-0",
@@ -37,7 +39,8 @@
         "icons": [
             "vehicles/E233-0/icons/icon1.png"
         ],
-        "site": "vehicles/E233-0/site.json"
+        "site": "vehicles/E233-0/site.json",
+        "font": "vehicles/E233-0/font.json"
     },
     {
         "id": "E233-1000",
@@ -47,7 +50,8 @@
         "icons": [
             "vehicles/E233-1000/icons/icon1.png"
         ],
-        "site": "vehicles/E233-1000/site.json"
+        "site": "vehicles/E233-1000/site.json",
+        "font": "vehicles/E233-1000/font.json"
     },
     {
         "id": "E233-6000",
@@ -57,7 +61,8 @@
         "icons": [
             "vehicles/E233-6000/icons/icon1.png"
         ],
-        "site": "vehicles/E233-6000/site.json"
+        "site": "vehicles/E233-6000/site.json",
+        "font": "vehicles/E233-6000/font.json"
     },
     {
         "id": "E233-8000",
@@ -67,7 +72,8 @@
         "icons": [
             "vehicles/E233-8000/icons/icon1.png"
         ],
-        "site": "vehicles/E233-8000/site.json"
+        "site": "vehicles/E233-8000/site.json",
+        "font": "vehicles/E233-8000/font.json"
     },
     {
         "id": "E233-8500",
@@ -77,7 +83,8 @@
         "icons": [
             "vehicles/E233-8500/icons/icon1.png"
         ],
-        "site": "vehicles/E233-8500/site.json"
+        "site": "vehicles/E233-8500/site.json",
+        "font": "vehicles/E233-8500/font.json"
     },
     {
         "id": "mari_E233",
