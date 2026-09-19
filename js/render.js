@@ -51,21 +51,121 @@ function createDisplayMatrix () {
     const fullDestination = isDestinationFullScreen(dest);
     const fullInformation = isInformationFullScreen(info);
     if (!fullType) {
-        if(showNext){
+        if (scrollId === null) {
+            if(showNext){
+                if(informationMode === "destination"){
+                    if (destinationId != null) {
+                        drawDestinationSmall(dest,matrix);
+                    }
+                }
+                if(informationMode === "information") {
+                    if(info.view?.small) {
+                        if (informationId != null) {
+                            drawInformationSmall(info,matrix);
+                        }
+                    }else{
+                        if (informationId != null) {
+                            drawInformation(info, matrix);
+                        }
+                    }
+                }
+                if(informationMode === "information2") {
+                    if (information2Id != null) {
+                        drawInformation2(info2, matrix);
+                    }
+                }
+                if(informationMode === "line") {
+                    if (lineId != null) {
+                        drawLine(line,matrix);
+                    }
+                }
+                if(informationMode === "carNumber") {
+                    if (carNumberId != null) {
+                        drawCarNumber(carNumber, matrix);
+                    }
+                }
+                if(informationMode === "information_next") {
+                    if (destinationId != null) {
+                        drawDestinationSmall(dest,matrix);
+                    }
+                    if (informationId != null) {
+                        drawInformation(info, matrix);
+                    }
+                }
+                if(informationMode === "carNumber_destination") {
+                    if (carNumberId != null) {
+                        drawCarNumber(carNumber, matrix);
+                    }
+                }
+                if(informationMode === "destination_next") {
+                    if (destinationId != null) {
+                        drawDestination(dest,matrix);
+                    }
+                }
+                if(next){
+                    if(informationMode === "destination"){
+                        drawNext(next,matrix)      
+                    }
+                    if(informationMode === "information"){
+                        if(info.view?.small) {
+                            drawNext(next,matrix)
+                        }
+                    }
+                }
+            }else{
+                if(informationMode === "destination") {
+                    if (destinationId != null) {
+                        drawDestination(dest,matrix);
+                    }
+                }
+                if(informationMode === "information") {
+                    if (informationId != null) {
+                        drawInformation(info,matrix);
+                    }
+                }
+                if(informationMode === "information2") {
+                    if (information2Id != null) {
+                        drawInformation2(info2, matrix);
+                    }
+                }
+                if(informationMode === "line") {
+                    if (lineId != null) {
+                        drawLine(line,matrix);
+                    }
+                }
+                if(informationMode === "carNumber") {
+                    if (carNumberId != null) {
+                        drawCarNumber(carNumber, matrix);
+                    }
+                }
+                if(informationMode === "information_next") {
+                    if (destinationId != null) {
+                        drawDestinationSmall(dest,matrix);
+                    }
+                    if (informationId != null) {
+                        drawInformation(info, matrix);
+                    }
+                }
+                if(informationMode === "carNumber_destination") {
+                    if (carNumberId != null) {
+                        drawCarNumber(carNumber, matrix);
+                    }
+                }
+                if(informationMode === "destination_next") {
+                    if (destinationId != null) {
+                        drawDestination(dest,matrix);
+                    }
+                }
+            }
+        } else {
             if(informationMode === "destination"){
                 if (destinationId != null) {
                     drawDestinationSmall(dest,matrix);
                 }
             }
             if(informationMode === "information") {
-                if(info.view?.small) {
-                    if (informationId != null) {
-                        drawInformationSmall(info,matrix);
-                    }
-                }else{
-                    if (informationId != null) {
-                        drawInformation(info, matrix);
-                    }
+                if (informationId != null) {
+                    drawInformationSmall(info,matrix);
                 }
             }
             if(informationMode === "information2") {
@@ -73,86 +173,19 @@ function createDisplayMatrix () {
                     drawInformation2(info2, matrix);
                 }
             }
-            if(informationMode === "line") {
-                if (lineId != null) {
-                    drawLine(line,matrix);
-                }
-            }
-            if(informationMode === "carNumber") {
-                if (carNumberId != null) {
-                    drawCarNumber(carNumber, matrix);
-                }
-            }
-            if(informationMode === "information_next") {
-                if (destinationId != null) {
-                    drawDestinationSmall(dest,matrix);
-                }
+            if(informationMode === "information_small1") {
                 if (informationId != null) {
-                    drawInformation(info, matrix);
+                    drawInformationSmall(info,matrix);
                 }
             }
-            if(informationMode === "carNumber_destination") {
-                if (carNumberId != null) {
-                    drawCarNumber(carNumber, matrix);
-                }
-            }
-            if(informationMode === "destination_next") {
-                if (destinationId != null) {
-                    drawDestination(dest,matrix);
-                }
-            }
-            if(next){
-                if(informationMode === "destination"){
-                    drawNext(next,matrix)      
-                }
-                if(informationMode === "information"){
-                    if(info.view?.small) {
-                        drawNext(next,matrix)
-                    }
-                }
-            }
-        }else{
-            if(informationMode === "destination") {
-                if (destinationId != null) {
-                    drawDestination(dest,matrix);
-                }
-            }
-            if(informationMode === "information") {
+            if(informationMode === "information_small2") {
                 if (informationId != null) {
-                    drawInformation(info,matrix);
-                }
-            }
-            if(informationMode === "information2") {
-                if (information2Id != null) {
-                    drawInformation2(info2, matrix);
+                    drawInformationSmall(info,matrix);
                 }
             }
             if(informationMode === "line") {
                 if (lineId != null) {
                     drawLine(line,matrix);
-                }
-            }
-            if(informationMode === "information_next") {
-                if (destinationId != null) {
-                    drawDestinationSmall(dest,matrix);
-                }
-                if (informationId != null) {
-                    drawInformation(info, matrix);
-                }
-            }
-            if(informationMode === "carNumber") {
-                if (carNumberId != null) {
-                    drawCarNumber(carNumber,matrix);
-                }
-            }
-            if(informationMode === "carNumber_destination") {
-                if (carNumberId != null) {
-                    drawCarNumber(carNumber, matrix);
-                }
-            }
-            if(informationMode === "destination_next") {
-                if (destinationId != null) {
-                    drawDestination(dest,matrix);
                 }
             }
         }

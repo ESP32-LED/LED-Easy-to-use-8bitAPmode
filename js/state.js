@@ -7,6 +7,7 @@ let informationId = null;
 let information2Id = null;
 let lineId = null;
 let carNumberId = null;
+let scrollId = null;
 
 let displayMode = "normal";
 let informationMode = "destination";
@@ -28,4 +29,15 @@ let sizeLed = document.getElementById("led");
 let currentMatrix = null;
 
 let langIndex = 0;
+
+let scrollX = 128;
+let scrollTextMatrix = [];
+let scrollTimer = null;
+
+let scrollMatrix = null;
+
+let clickStartScrollBtn = false;
+
+let scrollGeneration = 0;
+
 const langs = ["ja", "en"];

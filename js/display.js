@@ -56,7 +56,7 @@ function drawType(type, matrix) {
             ?? type.view?.normal?.[typeLang]
             ?? type.view?.normal?.ja;
     } else {
-        if (nextId != null) {
+        if (nextId != null || scrollId != null) {
             data =
                 type.view?.[view]?.[typeLang]
                 ?? type.view?.[view]?.ja
@@ -357,7 +357,7 @@ function drawInformationSmall(info, matrix) {
     let data =
         info.view?.[view]?.[lang]
         ?? info.view?.[view]?.ja;
-        if (view === "small") {
+        if (view === "small" || view === "small1" || view === "small2") {
             usedSmall = true;
         }
 
@@ -757,4 +757,231 @@ function hasTypeInformation() {
     if (!type) return;
     return !!type.view?.normal?.information
         || !!type.view?.full?.information;
+}
+ 
+function textToMatrix16(char) {
+    const data = fontData[char];
+
+    // 登録されていない文字 → 16×16の全消灯
+    if (!data) {
+        return Array.from({ length: 16 }, () =>
+            Array(16).fill(false)
+        );
+    }
+
+    const matrix = [];
+
+    for (let y = 0; y < 16; y++) {
+        matrix.push(
+            data
+                .slice(y * 16, y * 16 + 16)
+                .map(value => value === 1)
+        );
+    }
+
+    return matrix;
+}
+ 
+let previousScrollDots = [];
+
+function createScrollMatrix() {
+    scrollTextMatrix = [];
+    previousScrollDots = [];
+
+    const text = scrollText.value;
+
+    // 各文字を16×16に変換
+    for (const char of text) {
+        scrollTextMatrix.push(textToMatrix16(char));
+    }
+
+    // 文字全体の幅
+    scrollTextWidth = scrollTextMatrix.length * 16;
+
+    /*
+     * スクロール文字専用Canvas
+     *
+     * 横幅 = 文字全体
+     * 縦幅 = 16行分
+     */
+    scrollTextCanvas.width = scrollTextWidth * pitch;
+    scrollTextCanvas.height = 16 * pitch;
+
+    // 一旦透明にする
+    scrollTextCtx.clearRect(
+        0,
+        0,
+        scrollTextCanvas.width,
+        scrollTextCanvas.height
+    );
+
+    /*
+     * 文字をCanvasへ一度だけ描画
+     */
+    for (let charIndex = 0; charIndex < scrollTextMatrix.length; charIndex++) {
+        const charMatrix = scrollTextMatrix[charIndex];
+
+        const charX = charIndex * 16;
+
+        for (let py = 0; py < 16; py++) {
+            for (let px = 0; px < 16; px++) {
+
+                if (!charMatrix[py][px]) {
+                    continue;
+                }
+
+                const x = charX + px;
+                const y = py;
+
+                drawLEDCircle(scrollTextCtx, x, y, {
+                    r: 255,
+                    g: 242,
+                    b: 0
+                });
+            }
+        }
+    }
+}
+ 
+function drawScroll() {
+    if (
+        !scrollCheck.checked ||
+        clickStartScrollBtn === false ||
+        scrollId === null
+    ) {
+        clearInterval(scrollTimer);
+        scrollTimer = null;
+        return;
+    }
+
+    /*
+     * Canvas上でのスクロール領域
+     */
+    const areaPixelLeft = areaLeft * pitch;
+    const areaPixelTop = areaTop * pitch;
+    const areaPixelWidth = (areaRight - areaLeft) * pitch;
+    const areaPixelHeight = (areaBottom - areaTop) * pitch;
+
+
+    /*
+     * まずスクロール領域だけ
+     * 元の通常表示に戻す
+     *
+     * これで前の文字の残像が消える
+     */
+    ctx.drawImage(
+        cacheCanvas,
+
+        areaPixelLeft,
+        areaPixelTop,
+        areaPixelWidth,
+        areaPixelHeight,
+
+        areaPixelLeft,
+        areaPixelTop,
+        areaPixelWidth,
+        areaPixelHeight
+    );
+
+
+    /*
+     * スクロール領域から
+     * はみ出さないようにクリップ
+     */
+    ctx.save();
+
+    ctx.beginPath();
+
+    ctx.rect(
+        areaPixelLeft,
+        areaPixelTop,
+        areaPixelWidth,
+        areaPixelHeight
+    );
+
+    ctx.clip();
+
+
+    /*
+     * 完成済みの文字画像を表示
+     *
+     * scrollX はLED単位
+     */
+    ctx.drawImage(
+        scrollTextCanvas,
+        scrollX * pitch,
+        areaPixelTop
+    );
+
+
+    ctx.restore();
+
+
+    /*
+     * 1LED分左へ
+     */
+    scrollX--;
+
+
+    /*
+     * 全部左へ消えたら
+     * 右端から再スタート
+     */
+    if (scrollX * pitch + scrollTextWidth * pitch < areaPixelLeft) {
+        scrollX = areaRight;
+    }
+}
+ 
+function startScroll() {
+    scrollId = true;
+    startRenderLoop();
+    const scrollCheck = document.getElementById("scrollCheck");
+
+    if (!scrollCheck.checked || clickStartScrollBtn === false) {
+        stopScroll();
+        return;
+    }
+
+    const type = getItem(typeId, "type");
+
+    if (isTypeFullScreen(type)) {
+        return;
+    }
+
+    // 古いスクロールを無効化
+    scrollGeneration++;
+
+    const generation = scrollGeneration;
+
+    // 念のため現在のタイマーも停止
+    if (scrollTimer !== null) {
+        clearInterval(scrollTimer);
+        scrollTimer = null;
+    }
+
+    createScrollMatrix();
+
+    scrollX = areaRight;
+
+    scrollTimer = setInterval(() => {
+        // 古い世代のタイマーなら何もしない
+        if (generation !== scrollGeneration) {
+            return;
+        }
+
+        drawScroll();
+    }, 20);
+}
+
+function stopScroll() {
+    // 現在までのスクロールを全部「古い世代」にする
+    scrollGeneration++;
+
+    if (scrollTimer !== null) {
+        clearInterval(scrollTimer);
+        scrollTimer = null;
+    }
+
+    scrollId = null;
+    clickStartScrollBtn = false;
 }

@@ -36,6 +36,9 @@ function createVehicleButtons() {
             document.getElementById("vehicleSelector").hidden = true;
             document.getElementById("simulator").hidden = false;
             await loadConfig();
+            if (config.hasScroll) {
+                await loadFont();
+            }
             await startVehicle();
             initVehicles();
             setExplanation();

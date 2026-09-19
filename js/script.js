@@ -1,5 +1,11 @@
 async function startVehicle() {
 
+    clearInterval(scrollTimer);
+    scrollTimer = null;
+
+    clickStartScrollBtn = false;
+    scrollId = null;
+
     showLoading();
     
     try { 
@@ -61,6 +67,10 @@ async function loadLed() {
         console.error("JSONが壊れてる");
         return;
     }
+}
+async function loadFont() {
+    const response = await fetch(selectedVehicle.font);
+    fontData = await response.json();
 }
 
 function setupVehicleUI() {
@@ -296,7 +306,7 @@ function buildSceneList() {
             }
         }
     } else {
-        if (nextId != null) {
+        if (nextId != null || scrollId != null) {
             sceneList.push({
                 lang: "en",
                 information: "destination",
@@ -343,33 +353,56 @@ function buildSceneList() {
 
     if (informationId != null) {
         if (config.informationPosition === "normal") {
-            if (nextId != null) {
-                sceneList.push({
-                    lang: "ja",
-                    information: "information",
-                    next: true
-                });
-                if (config.informationLanguageSwitching) {
+            if (scrollId === null) {
+                if (nextId != null) {
                     sceneList.push({
-                        lang: "en",
+                        lang: "ja",
                         information: "information",
                         next: true
                     });
-                }
-            } else {
-                sceneList.push({
-                    lang: "ja",
-                    information: "information",
-                    next: false
-                });
-                if (config.informationLanguageSwitching) {
-                    if (hasEnglishInformation()) {
+                    if (config.informationLanguageSwitching) {
                         sceneList.push({
                             lang: "en",
                             information: "information",
-                            next: false
+                            next: true
                         });
                     }
+                } else {
+                    sceneList.push({
+                        lang: "ja",
+                        information: "information",
+                        next: false
+                    });
+                    if (config.informationLanguageSwitching) {
+                        if (hasEnglishInformation()) {
+                            sceneList.push({
+                                lang: "en",
+                                information: "information",
+                                next: false
+                            });
+                        }
+                    }
+                }
+            } else {
+                const info = getItem ("information", informationId);
+                const hasInformationSmall1 = !!info.view.small1
+                if (!hasInformationSmall1) {
+                    sceneList.push({
+                        lang: "ja",
+                        information: "information",
+                        next: false
+                    });
+                } else {
+                    sceneList.push({
+                        lang: "ja",
+                        information: "information_small1",
+                        next: false
+                    });
+                    sceneList.push({
+                        lang: "ja",
+                        information: "information_small2",
+                        next: false
+                    });
                 }
             }
         }
@@ -708,6 +741,8 @@ tittle.addEventListener("click", () => {
     initSimulator();
     clearReferenceSite();
     clearExplanation();
+    document.getElementById("scrollText").hidden = true;
+    document.getElementById("startScrollBtn").hidden = true;
     document.getElementById("referenceSite").hidden = true;
     document.getElementById("explanation").hidden = true;
     document.getElementById("jaTime").hidden = true;
@@ -716,6 +751,11 @@ tittle.addEventListener("click", () => {
     document.getElementById("carNumberTime").hidden = true;
     document.getElementById("simulator").hidden = true;
     document.getElementById("vehicleSelector").hidden = false;
+    document.getElementById("scrollCheck").checked = false;
+    scrollId = null;
+    scrollTimer = null;
+    clickStartScrollBtn = false;
+    stopScroll();
 })
 
 function setExplanation() {
@@ -767,11 +807,16 @@ function hideLoading() {
 
 const scrollCheck = document.getElementById("scrollCheck");
 const scrollText = document.getElementById("scrollText");
+const startScrollBtn = document.getElementById("startScrollBtn")
 
 scrollCheck.addEventListener("change", () => {
     if (scrollCheck.checked) {
         scrollText.hidden = false;
+        startScrollBtn.hidden = false;
     } else {
         scrollText.hidden = true;
+        startScrollBtn.hidden = true;
+        scrollId = null;
+        clearInterval(scrollTimer);
     }
 });
