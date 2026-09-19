@@ -121,6 +121,16 @@
         "site": "vehicles/HB-E300/site.json"
     },
     {
+        "id": "101",
+        "name": "キハ101形 左沢線",
+        "config": "vehicles/101/config.json",
+        "led": "vehicles/101/led.json",
+        "icons": [
+            "vehicles/101/icons/icon1.png"
+        ],
+        "site": "vehicles/101/site.json"
+    },
+    {
         "id": "E26",
         "name": "E26系",
         "config": "vehicles/E26/config.json",
