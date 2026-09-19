@@ -1316,7 +1316,7 @@ function setTimeSetting() {
 
 startScrollBtn.addEventListener("click", () => {
     const type = getItem ("type", typeId);
-    if (isTypeFullScreen(type)) {
+    if (!isTypeFullScreen(type)) {
         startRenderLoop();
         clickStartScrollBtn = true;
         startScroll();
