@@ -27,9 +27,9 @@
     "typeSwitching": false,
 
     "sceneInterval": 3000,
-    "languageSwitching": false,
+    "languageSwitching": true,
     "carNumberLanguageSwitching": false,
-    "destinationLanguageSwitching": false,
+    "destinationLanguageSwitching": true,
     "informationLanguageSwitching": false,
     "ledWidth": 96,
     "ledHeight": 32,
