@@ -274,4 +274,16 @@
         ],
         "site": "vehicles/HU300/site.json"
     }
+    {
+        "id": "20100",
+        "name": "アルピコ交通 20100形",
+        "config": "vehicles/20100/config.json",
+        "led": "vehicles/20100/led.json",
+        "icons": [
+            "vehicles/20100/icons/icon1.png",
+            "vehicles/20100/icons/icon2.png",
+            "vehicles/20100/icons/icon3.png"
+        ],
+        "site": "vehicles/20100/site.json"
+    }
 ]
