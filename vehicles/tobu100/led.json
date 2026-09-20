@@ -59,7 +59,7 @@
                 {
                     "id": "contact",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "特急連絡",
                                 "width": 64,
@@ -78,7 +78,7 @@
                 {
                     "id": "kegon",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "特急けごん",
                                 "width": 64,
@@ -97,7 +97,7 @@
                 {
                     "id": "kinu",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "特急きぬ",
                                 "width": 64,
@@ -116,7 +116,7 @@
                 {
                     "id": "liner",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "特急スカイツリーライナー",
                                 "width": 64,
@@ -135,7 +135,7 @@
                 {
                     "id": "kinugawa",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "特急スペーシアきぬがわ",
                                 "width": 64,
@@ -154,7 +154,7 @@
                 {
                     "id": "nikko",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "特急スペーシア日光",
                                 "width": 64,
@@ -179,7 +179,7 @@
                 {
                     "id": "asakusa",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "浅草",
                                 "width": 96,
@@ -192,7 +192,7 @@
                 {
                     "id": "kitasenju",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "北千住",
                                 "width": 96,
@@ -205,7 +205,7 @@
                 {
                     "id": "kasukabe",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "春日部",
                                 "width": 96,
@@ -218,7 +218,7 @@
                 {
                     "id": "shintochigi",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "新栃木",
                                 "width": 96,
@@ -231,7 +231,7 @@
                 {
                     "id": "shimoimaichi",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "下今市",
                                 "width": 96,
@@ -244,7 +244,7 @@
                 {
                     "id": "nikko",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "東武日光",
                                 "width": 96,
@@ -257,7 +257,7 @@
                 {
                     "id": "kinugawaonsen",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "鬼怒川温泉",
                                 "width": 96,
@@ -270,7 +270,7 @@
                 {
                     "id": "kinugawakoen",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "鬼怒川公園",
                                 "width": 96,
@@ -283,7 +283,7 @@
                 {
                     "id": "shinfujiwara",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "新藤原",
                                 "width": 96,
@@ -296,7 +296,7 @@
                 {
                     "id": "omiya",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "大宮",
                                 "width": 96,
@@ -309,7 +309,7 @@
                 {
                     "id": "ikebukuro",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "池袋",
                                 "width": 96,
@@ -322,7 +322,7 @@
                 {
                     "id": "shinjuku",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "新宿",
                                 "width": 96,
@@ -335,7 +335,7 @@
                 {
                     "id": "shinagawa",
                     "view": {
-                        "full": {
+                        "normal": {
                             "ja": {
                                 "name": "品川",
                                 "width": 96,
