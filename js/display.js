@@ -1033,7 +1033,7 @@ function startScroll() {
                 scrollAnimationId =
                     requestAnimationFrame(animateScroll);
 
-            }, 1000);
+            }, 500);
         }
 
         return;
