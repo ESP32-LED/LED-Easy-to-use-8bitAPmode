@@ -239,6 +239,16 @@
         "site": "vehicles/3000/site.json"
     },
     {
+        "id": "tx3000",
+        "name": "首都圏新都市鉄道　TX-3000系",
+        "config": "vehicles/tx3000/config.json",
+        "led": "vehicles/tx3000/led.json",
+        "icons": [
+            "vehicles/tx3000/icons/icon1.png"
+        ],
+        "site": "vehicles/tx3000/site.json"
+    },
+    {
         "id": "AB900",
         "name": "AB900系",
         "config": "vehicles/AB900/config.json",
