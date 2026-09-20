@@ -201,6 +201,22 @@
         "site": "vehicles/2700/site.json"
     },
     {
+        "id": "tobu100",
+        "name": "東武100系 特急スペーシア",
+        "config": "vehicles/tobu100/config.json",
+        "led": "vehicles/tobu100/led.json",
+        "icons": [
+            "vehicles/tobu100/icons/icon1.png",
+            "vehicles/tobu100/icons/icon2.png",
+            "vehicles/tobu100/icons/icon3.png",
+            "vehicles/tobu100/icons/icon4.png",
+            "vehicles/tobu100/icons/icon5.png",
+            "vehicles/tobu100/icons/icon6.png",
+            "vehicles/tobu100/icons/icon7.png"
+        ],
+        "site": "vehicles/tobu100/site.json"
+    },
+    {
         "id": "2020",
         "name": "東急2020系",
         "config": "vehicles/2020/config.json",
