@@ -40,4 +40,6 @@ let clickStartScrollBtn = false;
 
 let scrollGeneration = 0;
 
+let scrollWaiting = false;
+
 const langs = ["ja", "en"];
