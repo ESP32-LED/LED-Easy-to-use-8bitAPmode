@@ -973,67 +973,79 @@ function startScroll() {
 
     function animateScroll(now) {
 
-        // 古い世代なら終了
-        if (generation !== scrollGeneration) {
-            return;
-        }
-
-        // 停止条件
-        if (
-            !scrollCheck.checked ||
-            clickStartScrollBtn === false ||
-            scrollId === null
-        ) {
-            stopScroll();
-            return;
-        }
-
-        // 初回
-        if (lastScrollTime === null) {
-            lastScrollTime = now;
-        }
-
-        // 前回からの経過時間
-        const deltaTime = now - lastScrollTime;
-        lastScrollTime = now;
-
-        // 100px/秒で左へ移動
-        scrollPixelX -= scrollSpeed * deltaTime / 1000;
-
-        // 描画
-        drawScroll();
-
-        // 文字が全部左へ消えたら右端から再スタート
-        if (
-            scrollPixelX + scrollTextWidth * pitch <
-            areaLeft * pitch
-        ) {
-            if (!scrollWaiting) {
-                scrollWaiting = true;
-        
-                setTimeout(() => {
-                    if (
-                        generation !== scrollGeneration ||
-                        !scrollCheck.checked ||
-                        clickStartScrollBtn === false ||
-                        scrollId === null
-                    ) {
-                        return;
-                    }
-        
-                    scrollPixelX = areaRight * pitch;
-                    lastScrollTime = null;
-                    scrollWaiting = false;
-        
-                }, 1000);
-            }
-        
-            return;
-        }
-
-        // 次のフレーム
-        scrollAnimationId = requestAnimationFrame(animateScroll);
+    // 古い世代なら終了
+    if (generation !== scrollGeneration) {
+        return;
     }
+
+    // 停止条件
+    if (
+        !scrollCheck.checked ||
+        clickStartScrollBtn === false ||
+        scrollId === null
+    ) {
+        stopScroll();
+        return;
+    }
+
+    // 初回
+    if (lastScrollTime === null) {
+        lastScrollTime = now;
+    }
+
+    // 経過時間
+    const deltaTime = now - lastScrollTime;
+    lastScrollTime = now;
+
+    // 左へ移動
+    scrollPixelX -= scrollSpeed * deltaTime / 1000;
+
+    // 文字が全部左へ消えた
+    if (
+        scrollPixelX + scrollTextWidth * pitch <
+        areaLeft * pitch
+    ) {
+        if (!scrollWaiting) {
+
+            scrollWaiting = true;
+
+            setTimeout(() => {
+
+                // 停止されていたら終了
+                if (
+                    generation !== scrollGeneration ||
+                    !scrollCheck.checked ||
+                    clickStartScrollBtn === false ||
+                    scrollId === null
+                ) {
+                    scrollWaiting = false;
+                    return;
+                }
+
+                // 次の周回を右端から開始
+                scrollPixelX = areaRight * pitch;
+
+                lastScrollTime = null;
+
+                scrollWaiting = false;
+
+                // 再開
+                scrollAnimationId =
+                    requestAnimationFrame(animateScroll);
+
+            }, 1000);
+        }
+
+        return;
+    }
+
+    // 描画
+    drawScroll();
+
+    // 次のフレーム
+    scrollAnimationId =
+        requestAnimationFrame(animateScroll);
+}
 
     // アニメーション開始
     scrollAnimationId = requestAnimationFrame(animateScroll);
