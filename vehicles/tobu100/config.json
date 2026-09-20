@@ -1,0 +1,53 @@
+{
+    "name": "東武100系　スペーシア",
+
+    "explanation": "東武100系電車は、東武鉄道が1990年から運用している特急形電車で、「スペーシア」の愛称で親しまれています。主に浅草や新宿と日光・鬼怒川方面を結ぶ看板特急として活躍しており、個室席やビュッフェといった豪華な設備が特徴です。2006年からはJR東日本への直通運転にも対応しており、車体カラーの変更やリニューアルを行いながら、現在も運行されています。",
+
+
+    "hasType": true,
+    "hasDestination": true,
+    "hasInformation": false,
+    "hasInformation2": false,
+    "hasNext": false,
+    "hasCarNumber": false,
+    "hasCarNumberFull": false,
+    "hasCarNumberSmall": false,
+    "hasCarNumberNormal": false,
+    "carNumber": null,
+    "informationPosition": "normal",
+    "destinationPosition": "normal",
+
+    "destinationDistinction": false,
+    "nextModeDistinction": false,
+    "typeDistinction": false,
+    "informationDistinction": false,
+    "information2Distinction": false,
+    "carNumberDistinction": false,
+
+    "typeSwitching": false,
+
+    "sceneInterval": 3000,
+    "languageSwitching": true,
+    "carNumberLanguageSwitching": false,
+    "destinationLanguageSwitching": false,
+    "informationLanguageSwitching": false,
+    "ledWidth": 160,
+    "ledHeight": 32,
+    "pixelSize": 8.8,
+    "ledSize": 6.5,
+    "ledGap": 2.3,
+
+    "enAhead": false,
+    "informationAhead": false,
+
+    "setSwitchingTime": true,
+    "jaTime": 6,
+    "enTime": 3,
+
+    "next_normal": false,
+    "nextPosition": 16,
+
+    "hasReferenceSite": true,
+
+    "ledShape": "circle"
+}
