@@ -1008,7 +1008,27 @@ function startScroll() {
             scrollPixelX + scrollTextWidth * pitch <
             areaLeft * pitch
         ) {
-            scrollPixelX = areaRight * pitch;
+            if (!scrollWaiting) {
+                scrollWaiting = true;
+        
+                setTimeout(() => {
+                    if (
+                        generation !== scrollGeneration ||
+                        !scrollCheck.checked ||
+                        clickStartScrollBtn === false ||
+                        scrollId === null
+                    ) {
+                        return;
+                    }
+        
+                    scrollPixelX = areaRight * pitch;
+                    lastScrollTime = null;
+                    scrollWaiting = false;
+        
+                }, 1000);
+            }
+        
+            return;
         }
 
         // 次のフレーム
