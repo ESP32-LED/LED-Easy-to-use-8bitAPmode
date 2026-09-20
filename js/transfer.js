@@ -15,10 +15,66 @@ function triggerAutoTransfer() {
 // 画面全体のクリックや入力で自動転送を発火させる
 document.addEventListener('click', (e) => {
     // 表示を切り替えるボタンや設定がクリックされた時に自動転送
-    if (e.target.tagName === 'BUTTON' || e.target.closest('.buttonGroup') || e.target.closest('.selectGroup') || e.target.closest('.numberInput')) {
+    if (e.target.tagName === 'BUTTON' || e.target.closest('.buttonGroup') || e.target.closest('.selectGroup') || e.target.closest('.numberInput') || e.target.closest('#scroll-settings')) {
         triggerAutoTransfer();
     }
 });
+
+// スクロール用テキストからRGB565の画像データを生成する
+function createESP32ScrollData(br, gam) {
+    const textInput = document.getElementById('scroll-text-input');
+    const text = textInput ? textInput.value : "";
+    
+    if (!text) {
+        return { tw: 0, sbuf: new Uint8Array(0) };
+    }
+
+    const colorInput = document.getElementById('scroll-color');
+    const color = colorInput ? colorInput.value : "#ffff00";
+    
+    const tcv = document.createElement('canvas');
+    const tctx = tcv.getContext('2d');
+    
+    tctx.font = "16px 'KagurazakaCustom', monospace, sans-serif";
+    const tw = Math.ceil(tctx.measureText(text).width) + 2;
+    
+    tcv.width = tw;
+    tcv.height = 16;
+    tctx.fillStyle = "black";
+    tctx.fillRect(0, 0, tw, 16);
+    
+    tctx.fillStyle = color;
+    tctx.font = "16px 'KagurazakaCustom', monospace, sans-serif";
+    tctx.textBaseline = "top";
+    tctx.fillText(text, 0, 0);
+    
+    const tdata = tctx.getImageData(0, 0, tw, 16).data;
+    const sbuf = new Uint8Array(tw * 16 * 2);
+    let sp = 0;
+    
+    for(let x = 0; x < tw; x++){
+        for(let y = 0; y < 16; y++){
+            let idx = (y * tw + x) * 4;
+            let r_raw = tdata[idx];
+            let g_raw = tdata[idx+1];
+            let b_raw = tdata[idx+2];
+            
+            if (r_raw > 5 || g_raw > 5 || b_raw > 5) {
+                let r = Math.min(255, Math.pow(r_raw / 255, gam) * br * 255);
+                let g = Math.min(255, Math.pow(g_raw / 255, gam) * br * 255);
+                let b = Math.min(255, Math.pow(b_raw / 255, gam) * br * 255);
+                
+                let rgb565 = ((Math.floor(r) >> 3) << 11) | ((Math.floor(g) >> 2) << 5) | (Math.floor(b) >> 3);
+                sbuf[sp++] = rgb565 & 0xFF;
+                sbuf[sp++] = (rgb565 >> 8) & 0xFF;
+            } else {
+                sbuf[sp++] = 0; sbuf[sp++] = 0;
+            }
+        }
+    }
+    
+    return { tw, sbuf };
+}
 
 function createESP32Packet() { 
     buildSceneList(); 
@@ -36,11 +92,30 @@ function createESP32Packet() {
     const pw = config.ledWidth;
     const margin = Math.max(0, hw - pw); // 右詰めするための余白
 
-    const header = createESP32Header(sceneCount, hw, margin); 
+    // 明るさとガンマ設定を取得 (スクロールデータでも共有)
+    const brInput = document.getElementById('softBrightness');
+    const gamInput = document.getElementById('gammaCorrection');
+    const br = brInput ? parseFloat(brInput.value) || 1.0 : 1.0;
+    const gam = gamInput ? parseFloat(gamInput.value) || 1.5 : 1.5;
+
+    // スクロール速度の取得
+    const speedInput = document.getElementById('scroll-speed');
+    const scrollSpeed = speedInput ? parseInt(speedInput.value) : 10;
+
+    // スクロールデータの作成
+    const scrollData = createESP32ScrollData(br, gam);
+    
+    // オフセット（通常は 種別幅 + 余白）
+    const xOff = 80 + margin;
+
+    const header = createESP32Header(sceneCount, hw, margin, scrollData.tw, scrollSpeed, xOff); 
     const sceneData = createAllESP32Scenes(sceneCount, hw, margin); 
-    const packet = new Uint8Array(header.length + sceneData.length); 
+    
+    const packet = new Uint8Array(header.length + scrollData.sbuf.length + sceneData.length); 
     packet.set(header, 0); 
-    packet.set(sceneData, header.length); 
+    packet.set(scrollData.sbuf, header.length); 
+    packet.set(sceneData, header.length + scrollData.sbuf.length); 
+    
     return packet; 
 }
 
@@ -189,7 +264,7 @@ function createAllESP32Scenes(sceneCount, hw, margin) {
     return allData;
 }
 
-function createESP32Header(sceneCount, hw, margin) {
+function createESP32Header(sceneCount, hw, margin, scrollWidth, scrollSpeed, xOff) {
     const header = new Uint8Array(20);
     let times;
 
@@ -214,25 +289,22 @@ function createESP32Header(sceneCount, hw, margin) {
         });
 
     } else {
-        times = [3000, 3000, 3000, 3000];
+        times = [3000, 3000, 3000, 3000, 3000];
     }
 
     header[0] = 0xAA;
     header[1] = 0x56;
     header[2] = sceneCount & 0xFF;
-    header[3] = 0;
-    header[4] = 0;
-    header[5] = 0;
-    header[6] = 80 + margin; // 参考仕様に沿ったオフセット（必要に応じて調整可能）
+    header[3] = scrollSpeed & 0xFF;           // スクロール速度
+    header[4] = scrollWidth & 0xFF;           // スクロール幅 下位バイト
+    header[5] = (scrollWidth >> 8) & 0xFF;    // スクロール幅 上位バイト
+    header[6] = xOff & 0xFF;                  // スクロールオフセット位置
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
         const time = times[i] ?? 3000;
         header[7 + i * 2] = time & 0xFF;
         header[8 + i * 2] = (time >> 8) & 0xFF;
     }
-
-    header[15] = 0;
-    header[16] = 0;
 
     const hwBrightInput = document.getElementById('hwBrightness');
     const hwBright = hwBrightInput ? parseInt(hwBrightInput.value) || 12 : 12;
