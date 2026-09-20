@@ -787,8 +787,15 @@ function textToMatrix16(char) {
 
     return matrix;
 }
- 
+
 let previousScrollDots = [];
+
+let scrollPixelX = 0;
+let scrollAnimationId = null;
+let lastScrollTime = null;
+
+// スクロール速度（1秒あたりのピクセル数）
+const scrollSpeed = 400;
 
 function createScrollMatrix() {
     scrollTextMatrix = [];
@@ -851,34 +858,29 @@ function createScrollMatrix() {
  
 function drawScroll() {
     if (!typeId) {
+        stopScroll();
         return;
     }
-    const type = getItem("type", typeId)
+
+    const type = getItem("type", typeId);
+
     if (
         !scrollCheck.checked ||
         clickStartScrollBtn === false ||
         scrollId === null ||
         isTypeFullScreen(type) === true
     ) {
-        clearInterval(scrollTimer);
-        scrollTimer = null;
+        stopScroll();
         return;
     }
 
-    /*
-     * Canvas上でのスクロール領域
-     */
     const areaPixelLeft = areaLeft * pitch;
     const areaPixelTop = areaTop * pitch;
     const areaPixelWidth = (areaRight - areaLeft) * pitch;
     const areaPixelHeight = (areaBottom - areaTop) * pitch;
 
-
     /*
-     * まずスクロール領域だけ
-     * 元の通常表示に戻す
-     *
-     * これで前の文字の残像が消える
+     * スクロール領域だけ通常表示に戻す
      */
     ctx.drawImage(
         cacheCanvas,
@@ -894,10 +896,9 @@ function drawScroll() {
         areaPixelHeight
     );
 
-
     /*
      * スクロール領域から
-     * はみ出さないようにクリップ
+     * はみ出さないようにする
      */
     ctx.save();
 
@@ -912,40 +913,21 @@ function drawScroll() {
 
     ctx.clip();
 
-
     /*
      * 完成済みの文字画像を表示
      *
-     * scrollX はLED単位
+     * scrollPixelX は実際のピクセル位置
      */
     ctx.drawImage(
         scrollTextCanvas,
-        scrollX * pitch,
+        scrollPixelX,
         areaPixelTop
     );
 
-
     ctx.restore();
-
-
-    /*
-     * 1LED分左へ
-     */
-    scrollX--;
-
-
-    /*
-     * 全部左へ消えたら
-     * 右端から再スタート
-     */
-    if (scrollX * pitch + scrollTextWidth * pitch < areaPixelLeft) {
-        scrollX = areaRight;
-    }
 }
  
 function startScroll() {
-    scrollId = true;
-    startRenderLoop();
     const scrollCheck = document.getElementById("scrollCheck");
 
     if (!scrollCheck.checked || clickStartScrollBtn === false) {
@@ -953,9 +935,13 @@ function startScroll() {
         return;
     }
 
-    const type = getItem(typeId, "type");
+    if (!typeId) {
+        return;
+    }
 
-    if (isTypeFullScreen(type)) {
+    const type = getItem("type", typeId);
+
+    if (!type || isTypeFullScreen(type)) {
         return;
     }
 
@@ -964,30 +950,91 @@ function startScroll() {
 
     const generation = scrollGeneration;
 
-    // 念のため現在のタイマーも停止
-    if (scrollTimer !== null) {
-        clearInterval(scrollTimer);
-        scrollTimer = null;
+    // 古いアニメーションを停止
+    if (scrollAnimationId !== null) {
+        cancelAnimationFrame(scrollAnimationId);
+        scrollAnimationId = null;
     }
 
+    // スクロール用文字画像を作成
     createScrollMatrix();
 
-    scrollX = areaRight;
+    // 右端から開始
+    scrollPixelX = areaRight * pitch;
 
-    scrollTimer = setInterval(() => {
-        // 古い世代のタイマーなら何もしない
+    // 時間計測をリセット
+    lastScrollTime = null;
+
+    // スクロール中
+    scrollId = true;
+
+    // スクロール表示をすぐ反映
+    render();
+
+    function animateScroll(now) {
+
+        // 古い世代なら終了
         if (generation !== scrollGeneration) {
             return;
         }
 
+        // 停止条件
+        if (
+            !scrollCheck.checked ||
+            clickStartScrollBtn === false ||
+            scrollId === null
+        ) {
+            stopScroll();
+            return;
+        }
+
+        // 初回
+        if (lastScrollTime === null) {
+            lastScrollTime = now;
+        }
+
+        // 前回からの経過時間
+        const deltaTime = now - lastScrollTime;
+        lastScrollTime = now;
+
+        // 100px/秒で左へ移動
+        scrollPixelX -= scrollSpeed * deltaTime / 1000;
+
+        // 描画
         drawScroll();
-    }, 20);
+
+        // 文字が全部左へ消えたら右端から再スタート
+        if (
+            scrollPixelX + scrollTextWidth * pitch <
+            areaLeft * pitch
+        ) {
+            scrollPixelX = areaRight * pitch;
+        }
+
+        // 次のフレーム
+        scrollAnimationId = requestAnimationFrame(animateScroll);
+    }
+
+    // アニメーション開始
+    scrollAnimationId = requestAnimationFrame(animateScroll);
 }
 
 function stopScroll() {
     // 現在までのスクロールを全部「古い世代」にする
     scrollGeneration++;
 
+    /*
+     * requestAnimationFrameを停止
+     */
+    if (scrollAnimationId !== null) {
+        cancelAnimationFrame(scrollAnimationId);
+        scrollAnimationId = null;
+    }
+
+    /*
+     * 古いsetIntervalが残っている可能性もあるので
+     * 念のため停止
+     */
     if (scrollTimer !== null) {
         clearInterval(scrollTimer);
         scrollTimer = null;
@@ -995,4 +1042,5 @@ function stopScroll() {
 
     scrollId = null;
     clickStartScrollBtn = false;
+    lastScrollTime = null;
 }
