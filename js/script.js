@@ -403,7 +403,7 @@ function buildSceneList() {
                 }
             } else {
                 const info = getItem ("information", informationId);
-                const hasInformationSmall1 = !!info.view.small1
+                const hasInformationSmall1 = !!info.view.small1 || !!info.view.full_small1;
                 if (!hasInformationSmall1) {
                     sceneList.push({
                         lang: "ja",
