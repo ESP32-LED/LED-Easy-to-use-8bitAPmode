@@ -282,7 +282,7 @@
     },
     {
         "id": "sr1",
-        "name": "しなの鉄道　SR-1系",
+        "name": "しなの鉄道　SR1系",
         "config": "vehicles/sr1/config.json",
         "led": "vehicles/sr1/led.json",
         "icons": [
