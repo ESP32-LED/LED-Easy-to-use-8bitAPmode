@@ -330,6 +330,7 @@ function createCarNumberButtons() {
 }
 
 function createDestinationButtons() {
+    console.log(config.destinationDistinction);
 
     const container = document.getElementById("destinationButtons");
     container.innerHTML = "";
