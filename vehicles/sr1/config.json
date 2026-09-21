@@ -27,7 +27,7 @@
     "typeSwitching": false,
 
     "sceneInterval": 3000,
-    "languageSwitching": true,
+    "languageSwitching": false,
     "carNumberLanguageSwitching": false,
     "destinationLanguageSwitching": false,
     "informationLanguageSwitching": false,
