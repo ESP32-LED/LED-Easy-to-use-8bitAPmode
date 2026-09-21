@@ -42,4 +42,9 @@ let scrollGeneration = 0;
 
 let scrollWaiting = false;
 
+let areaLeft = 48;
+let areaRight = 128;
+let areaTop = 16;
+let areaBottom = 32;
+
 const langs = ["ja", "en"];
