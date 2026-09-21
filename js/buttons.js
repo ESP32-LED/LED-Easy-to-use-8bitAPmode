@@ -554,6 +554,8 @@ function createNextModeButtons() {
                     const label =
                         item.view?.normal?.ja?.name ??
                         item.view?.normal?.en?.name ??
+                        item.view?.full?.ja?.name ??
+                        item.view?.full?.ja?.name ??
                         item.name ??
                         "no-name";
 
@@ -607,6 +609,8 @@ function createNextModeButtons() {
                 const label =
                     item.view?.normal?.ja?.name ??
                     item.view?.normal?.en?.name ??
+                    item.view?.full?.ja?.name ??
+                    item.view?.full?.ja?.name ??
                     item.name ??
                     "no-name";
 
@@ -647,6 +651,8 @@ function createNextModeButtons() {
             const label =
                 item.view?.normal?.ja?.name ??
                 item.view?.normal?.en?.name ??
+                item.view?.full?.ja?.name ??
+                item.view?.full?.ja?.name ??
                 item.name ??
                 "no-name";
             btn.textContent = label;
@@ -787,6 +793,10 @@ function createInformationButtons() {
                     info.view?.small1?.en?.name ??
                     info.view?.small2?.ja?.name ??
                     info.view?.small2?.en?.name ??
+                    info.view?.full_small1?.ja?.name ??
+                    info.view?.full_small1?.en?.name ??
+                    info.view?.full_small2?.ja?.name ??
+                    info.view?.full_small2?.en?.name ??
                     info.name ??
                     "no-name";
 
@@ -833,6 +843,10 @@ function createInformationButtons() {
                 info.view?.small1?.en?.name ??
                 info.view?.small2?.ja?.name ??
                 info.view?.small2?.en?.name ??
+                info.view?.full_small1?.ja?.name ??
+                info.view?.full_small1?.en?.name ??
+                info.view?.full_small2?.ja?.name ??
+                info.view?.full_small2?.en?.name ??
                 info.name ??
                 "no-name";
                 btn.textContent = label;
