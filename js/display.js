@@ -357,10 +357,14 @@ function drawInformationSmall(info, matrix) {
         ? "full_small"
         : "small";
     if (informationMode === "information_small1") {
-        view = "small1"
+        view = isInformationFullScreen(info)
+            ? "full_small1"
+            : "small1";
     }
     if (informationMode === "information_small2") {
-        view = "small2"
+        view = isInformationFullScreen(info)
+            ? "full_small1"
+            : "small1";
     }
 
     let data =
