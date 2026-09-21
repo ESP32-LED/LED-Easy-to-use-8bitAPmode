@@ -968,6 +968,7 @@ function startScroll() {
     let type;
     let isTypeFull;
     areaLeft = 48;
+    areaRight = config.ledWidth;
     if (typeId != null) {
         type = getItem("type", typeId);
         isTypeFull = isTypeFullScreen(type);
