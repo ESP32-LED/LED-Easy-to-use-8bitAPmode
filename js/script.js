@@ -266,7 +266,7 @@ function buildSceneList() {
                     next: true
                 });
             } else {
-                if (config.destinationLanguageSwitching) {
+                if (!config.destinationLanguageSwitching) {
                     if (informationId === null) {
                         sceneList.push({
                             lang: "en",
