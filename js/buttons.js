@@ -1250,6 +1250,9 @@ function getName(items, itemId) {
         item.view?.normal?.ja?.name ??
         item.view?.small?.ja?.name ??
         item.view?.full?.ja?.name ??
+        item.view?.small1?.ja?.name ??
+        item.view?.small2?.ja?.name ??
+        item.view?.full_small?.ja?.name ??
         ""
     );
 }
