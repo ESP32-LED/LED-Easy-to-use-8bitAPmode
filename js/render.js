@@ -258,13 +258,6 @@ function drawLEDRectangle(targetCtx, x, y, color) {
 }
 
 function drawImage(displayData, startX, startY, matrix) {
-    console.log("displayData:", displayData);
-    console.log("displayData.data:", displayData?.data);
-    console.log("displayData.width:", displayData?.width);
-    console.log("displayData.height:", displayData?.height);
-    console.log("startX:", startX);
-    console.log("startY:", startY);
-    console.log("matrix:", matrix);
     const data = displayData.data;
     let index = 0;
 
