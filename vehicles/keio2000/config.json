@@ -42,9 +42,11 @@
     "enAhead": false,
     "informationAhead": false,
 
-    "setSwitchingTime": true,
-    "jaTime": 6,
+    "setSwitchingTime": false,
+    "jaTime": 3,
     "enTime": 3,
+    "infoTime": 3,
+    "carNumberTime": 3,
 
     "next_normal": false,
     "nextPosition": 16,
