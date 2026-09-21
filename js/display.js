@@ -377,6 +377,7 @@ function drawInformationSmall(info, matrix) {
             ?? info.view?.small?.ja;
         usedSmall = true;
     }
+    console.log(usedSmall, view)
 
     if (!data) return;
     const type = getItem("type", typeId)
