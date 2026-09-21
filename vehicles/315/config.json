@@ -18,6 +18,8 @@
     "carNumber": "left",
     "informationPosition": "next",
     "destinationPosition": "normal",
+    "hasNextFullScreen": false,
+    "hasScrollFullScreen": false,
 
     "destinationDistinction": true,
     "nextModeDistinction": true,

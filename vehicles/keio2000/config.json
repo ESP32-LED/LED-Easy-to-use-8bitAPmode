@@ -16,6 +16,8 @@
     "carNumber": null,
     "informationPosition": "normal",
     "destinationPosition": "normal",
+    "hasNextFullScreen": true,
+    "hasScrollFullScreen": false,
 
     "destinationDistinction": true,
     "nextModeDistinction": true,

@@ -860,18 +860,35 @@ function createScrollMatrix() {
 }
  
 function drawScroll() {
-    if (!typeId) {
+    if (!typeId && !destinationId) {
         stopScroll();
         return;
     }
 
-    const type = getItem("type", typeId);
+    let type;
+    let isTypeFullScreen;
+    areaLeft = 48;
+    if (typeId != null) {
+        type = getItem("type", typeId);
+        isTypeFullScreen = isTypeFullScreen(type);
+    } else {
+        isTypeFullScreen = false;
+        if (config.hasScrollFullScreen) {
+            areaLeft = -1;
+        } else {
+            areaLeft = 48
+        }
+    }
+
+    if (config.hasNextFullScreen) {
+        areaLeft = -1;
+    }
 
     if (
         !scrollCheck.checked ||
         clickStartScrollBtn === false ||
         scrollId === null ||
-        isTypeFullScreen(type) === true
+        isTypeFullScreen === true
     ) {
         stopScroll();
         return;
@@ -942,9 +959,26 @@ function startScroll() {
         return;
     }
 
-    const type = getItem("type", typeId);
+    let type;
+    let isTypeFullScreen;
+    areaLeft = 48;
+    if (typeId != null) {
+        type = getItem("type", typeId);
+        isTypeFullScreen = isTypeFullScreen(type);
+    } else {
+        isTypeFullScreen = false;
+        if (config.hasScrollFullScreen) {
+            areaLeft = -1;
+        } else {
+            areaLeft =  48;
+        }
+    }
 
-    if (!type || isTypeFullScreen(type)) {
+    if (config.hasNextFullScreen) {
+        areaLeft = -1;
+    }
+
+    if (isTypeFullScreen === true) {
         return;
     }
 
