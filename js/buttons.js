@@ -784,6 +784,10 @@ function createInformationButtons() {
                     info.view?.normal?.en?.name ??
                     info.view?.small?.ja?.name ??
                     info.view?.small?.en?.name ??
+                    info.view?.small1?.ja?.name ??
+                    info.view?.small1?.en?.name ??
+                    info.view?.small2?.ja?.name ??
+                    info.view?.small2?.en?.name ??
                     info.name ??
                     "no-name";
 
@@ -826,6 +830,10 @@ function createInformationButtons() {
                 info.view?.normal?.en?.name ??
                 info.view?.small?.ja?.name ??
                 info.view?.small?.en?.name ??
+                info.view?.small1?.ja?.name ??
+                info.view?.small1?.en?.name ??
+                info.view?.small2?.ja?.name ??
+                info.view?.small2?.en?.name ??
                 info.name ??
                 "no-name";
                 btn.textContent = label;
