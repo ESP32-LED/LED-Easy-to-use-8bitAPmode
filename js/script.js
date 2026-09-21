@@ -266,16 +266,24 @@ function buildSceneList() {
                     next: true
                 });
             } else {
-                if (informationId === null) {
-                    sceneList.push({
-                        lang: "en",
-                        information: "destination",
-                        next: false
-                    });
+                if (config.destinationLanguageSwitching) {
+                    if (informationId === null) {
+                        sceneList.push({
+                            lang: "en",
+                            information: "destination",
+                            next: false
+                        });
+                    } else {
+                        sceneList.push({
+                            lang: "en",
+                            information: "information",
+                            next: false
+                        });
+                    }
                 } else {
                     sceneList.push({
                         lang: "en",
-                        information: "information",
+                        information: "destination",
                         next: false
                     });
                 }
