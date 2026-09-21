@@ -36,6 +36,9 @@ function drawCarNumber(carNumber, matrix) {
 }
 
 function drawType(type, matrix) {
+    console.log("① drawType に入った");
+    console.log("type =", type);
+
     let usedNormal = true;
     let carNumberWidth;
     let typeLang = lang;
