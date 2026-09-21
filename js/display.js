@@ -938,7 +938,7 @@ function startScroll() {
         return;
     }
 
-    if (!typeId) {
+    if (!typeId && !destinationId) {
         return;
     }
 
