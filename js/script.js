@@ -376,18 +376,20 @@ function buildSceneList() {
                         });
                     }
                 } else {
-                    sceneList.push({
-                        lang: "ja",
-                        information: "information",
-                        next: false
-                    });
-                    if (config.informationLanguageSwitching) {
-                        if (hasEnglishInformation()) {
-                            sceneList.push({
-                                lang: "en",
-                                information: "information",
-                                next: false
-                            });
+                    if (!config.languageSwitching) {
+                        sceneList.push({
+                            lang: "ja",
+                            information: "information",
+                            next: false
+                        });
+                        if (config.informationLanguageSwitching) {
+                            if (hasEnglishInformation()) {
+                                sceneList.push({
+                                    lang: "en",
+                                    information: "information",
+                                    next: false
+                                });
+                            }
                         }
                     }
                 }
