@@ -266,11 +266,19 @@ function buildSceneList() {
                     next: true
                 });
             } else {
-                sceneList.push({
-                    lang: "en",
-                    information: "destination",
-                    next: false
-                });
+                if (informationId === null) {
+                    sceneList.push({
+                        lang: "en",
+                        information: "destination",
+                        next: false
+                    });
+                } else {
+                    sceneList.push({
+                        lang: "en",
+                        information: "information",
+                        next: false
+                    });
+                }
             }
         }
         if (typeId === null) {
