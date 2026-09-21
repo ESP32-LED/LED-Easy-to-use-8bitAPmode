@@ -1315,7 +1315,7 @@ function setTimeSetting() {
 }
 
 startScrollBtn.addEventListener("click", () => {
-    if (!typeId) {
+    if (!typeId && !destinationId) {
         return;
     }
     const type = getItem ("type", typeId);
