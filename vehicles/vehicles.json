@@ -54,6 +54,17 @@
         "font": "vehicles/E233-1000/font.json"
     },
     {
+        "id": "E233-5000",
+        "name": "E233系5000番台",
+        "config": "vehicles/E233-5000/config.json",
+        "led": "vehicles/E233-5000/led.json",
+        "icons": [
+            "vehicles/E233-5000/icons/icon1.png"
+        ],
+        "site": "vehicles/E233-5000/site.json",
+        "font": "vehicles/E233-5000/font.json"
+    },
+    {
         "id": "E233-6000",
         "name": "E233系6000番台",
         "config": "vehicles/E233-6000/config.json",
