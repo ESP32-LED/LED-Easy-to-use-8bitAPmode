@@ -8,7 +8,7 @@
             "vehicles/E131-200/icons/icon1.png"
         ],
         "site": "vehicles/E131-200/site.json",
-        "font": "vehicles/E131-200/font.json"
+        "font": "fonts/font_E131.json"
     },
     {
         "id": "E131-500",
@@ -29,7 +29,7 @@
             "vehicles/E131-600/icons/icon1.png"
         ],
         "site": "vehicles/E131-600/site.json",
-        "font": "vehicles/E131-600/font.json"
+        "font": "fonts/font_E131.json"
     },
     {
         "id": "e131-1000",
@@ -50,7 +50,7 @@
             "vehicles/E233-0/icons/icon1.png"
         ],
         "site": "vehicles/E233-0/site.json",
-        "font": "vehicles/E233-0/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "E233-1000",
@@ -61,7 +61,7 @@
             "vehicles/E233-1000/icons/icon1.png"
         ],
         "site": "vehicles/E233-1000/site.json",
-        "font": "vehicles/E233-1000/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "E233-5000",
@@ -72,7 +72,7 @@
             "vehicles/E233-5000/icons/icon1.png"
         ],
         "site": "vehicles/E233-5000/site.json",
-        "font": "vehicles/E233-5000/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "E233-6000",
@@ -83,7 +83,7 @@
             "vehicles/E233-6000/icons/icon1.png"
         ],
         "site": "vehicles/E233-6000/site.json",
-        "font": "vehicles/E233-6000/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "E233-8000",
@@ -94,7 +94,7 @@
             "vehicles/E233-8000/icons/icon1.png"
         ],
         "site": "vehicles/E233-8000/site.json",
-        "font": "vehicles/E233-8000/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "E233-8500",
@@ -105,7 +105,7 @@
             "vehicles/E233-8500/icons/icon1.png"
         ],
         "site": "vehicles/E233-8500/site.json",
-        "font": "vehicles/E233-8500/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "mari_E233",
@@ -256,7 +256,7 @@
             "vehicles/keio2000/icons/icon1.png"
         ],
         "site": "vehicles/keio2000/site.json",
-        "font": "vehicles/E233-1000/font.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "3000",
