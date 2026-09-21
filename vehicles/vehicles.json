@@ -227,6 +227,16 @@
         "site": "vehicles/2020/site.json"
     },
     {
+        "id": "keio2000",
+        "name": "京王2000系",
+        "config": "vehicles/keio2000/config.json",
+        "led": "vehicles/keio2000/led.json",
+        "icons": [
+            "vehicles/keio2000/icons/icon1.png"
+        ],
+        "site": "vehicles/keio2000/site.json"
+    },
+    {
         "id": "3000",
         "name": "京成3000形・北総7500形など",
         "config": "vehicles/3000/config.json",
