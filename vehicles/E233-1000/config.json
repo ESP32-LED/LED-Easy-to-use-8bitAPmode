@@ -1,5 +1,5 @@
 {
-    "name": "E233系5000番台",
+    "name": "E233系1000番台",
 
     "explanation": "a",
 
@@ -10,7 +10,7 @@
     "hasLine": false,
     "hasNext": true,
     "hasScroll": true,
-    "scrollLabel": "この電車の停車駅は、新木場、八丁堀駅に停まります。",
+    "scrollLabel": "この電車の停車駅は、港南台、本郷台駅に停まります。",
     "hasCarNumber": false,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,
@@ -21,8 +21,8 @@
     "hasNextFullScreen": false,
     "hasScrollFullScreen": false,
 
-    "destinationDistinction": true,
-    "nextModeDistinction": true,
+    "destinationDistinction": false,
+    "nextModeDistinction": false,
     "typeDistinction": false,
     "informationDistinction": false,
     "information2Distinction": false,
