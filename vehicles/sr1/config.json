@@ -24,7 +24,7 @@
     "information2Distinction": false,
     "carNumberDistinction": false,
 
-    "typeSwitching": false,
+    "typeSwitching": true,
 
     "sceneInterval": 3000,
     "languageSwitching": true,
@@ -40,9 +40,7 @@
     "enAhead": false,
     "informationAhead": false,
 
-    "setSwitchingTime": true,
-    "jaTime": 6,
-    "enTime": 3,
+    "setSwitchingTime": false,
 
     "next_normal": false,
     "nextPosition": 16,
