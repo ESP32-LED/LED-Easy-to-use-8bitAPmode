@@ -1267,6 +1267,8 @@ function getName(items, itemId) {
         item.view?.small1?.ja?.name ??
         item.view?.small2?.ja?.name ??
         item.view?.full_small?.ja?.name ??
+        item.view?.full_small1?.ja?.name ??
+        item.view?.full_small2?.ja?.name ??
         ""
     );
 }
