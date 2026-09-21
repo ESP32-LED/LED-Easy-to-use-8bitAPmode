@@ -389,9 +389,12 @@ function drawNext(next, matrix) {
     let usedNormal = false;
     let typewidth;
 
-    const view = isNextFullScreen(next)
+    let view = isNextFullScreen(next)
         ? "full"
         : "normal"
+    if (config.hasNextFullScreen) {
+        view = "full"
+    }
 
     let data =
         next?.view?.[view]?.[lang]
