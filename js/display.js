@@ -652,7 +652,7 @@ function isInformationFullScreen(info) {
     if(!info) return false;
 
     const hasNormal = !!info.view.normal;
-    const hasFull = !!info.view.full;
+    const hasFull = !!info.view.full || !!info.view.full_small || !!info.view.full_small1 || !!info.view.full_small2;
 
     if(hasFull && !hasNormal){
         return true;
