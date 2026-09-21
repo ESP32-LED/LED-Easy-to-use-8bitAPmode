@@ -384,7 +384,7 @@ function buildSceneList() {
                         });
                     }
                 } else {
-                    if (!config.languageSwitching) {
+                    if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
                         sceneList.push({
                             lang: "ja",
                             information: "information",
