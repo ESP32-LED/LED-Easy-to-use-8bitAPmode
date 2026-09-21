@@ -255,7 +255,8 @@
         "icons": [
             "vehicles/keio2000/icons/icon1.png"
         ],
-        "site": "vehicles/keio2000/site.json"
+        "site": "vehicles/keio2000/site.json",
+        "font": "vehicles/E233-1000/font.json"
     },
     {
         "id": "3000",
