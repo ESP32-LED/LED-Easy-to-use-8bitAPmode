@@ -395,6 +395,7 @@ function drawNext(next, matrix) {
     if (config.hasNextFullScreen) {
         view = "full"
     }
+    console.log(view);
 
     let data =
         next?.view?.[view]?.[lang]
