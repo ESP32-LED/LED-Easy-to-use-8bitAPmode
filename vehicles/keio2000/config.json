@@ -19,8 +19,8 @@
     "hasNextFullScreen": true,
     "hasScrollFullScreen": false,
 
-    "destinationDistinction": true,
-    "nextModeDistinction": true,
+    "destinationDistinction": false,
+    "nextModeDistinction": false,
     "typeDistinction": false,
     "informationDistinction": false,
     "information2Distinction": false,
