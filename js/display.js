@@ -866,13 +866,13 @@ function drawScroll() {
     }
 
     let type;
-    let isTypeFullScreen;
+    let isTypeFull;
     areaLeft = 48;
     if (typeId != null) {
         type = getItem("type", typeId);
-        isTypeFullScreen = isTypeFullScreen(type);
+        isTypeFull = isTypeFullScreen(type);
     } else {
-        isTypeFullScreen = false;
+        isTypeFull = false;
         if (config.hasScrollFullScreen) {
             areaLeft = -1;
         } else {
@@ -888,7 +888,7 @@ function drawScroll() {
         !scrollCheck.checked ||
         clickStartScrollBtn === false ||
         scrollId === null ||
-        isTypeFullScreen === true
+        isTypeFull === true
     ) {
         stopScroll();
         return;
@@ -960,13 +960,13 @@ function startScroll() {
     }
 
     let type;
-    let isTypeFullScreen;
+    let isTypeFull;
     areaLeft = 48;
     if (typeId != null) {
         type = getItem("type", typeId);
-        isTypeFullScreen = isTypeFullScreen(type);
+        isTypeFull = isTypeFullScreen(type);
     } else {
-        isTypeFullScreen = false;
+        isTypeFull = false;
         if (config.hasScrollFullScreen) {
             areaLeft = -1;
         } else {
@@ -978,7 +978,7 @@ function startScroll() {
         areaLeft = -1;
     }
 
-    if (isTypeFullScreen === true) {
+    if (isTypeFull === true) {
         return;
     }
 
