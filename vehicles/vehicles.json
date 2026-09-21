@@ -32,6 +32,16 @@
         "font": "vehicles/E131-600/font.json"
     },
     {
+        "id": "e131-1000",
+        "name": "E131系1000番台",
+        "config": "vehicles/e131-1000/config.json",
+        "led": "vehicles/e131-1000/led.json",
+        "icons": [
+            "vehicles/e131-1000/icons/icon1.png"
+        ],
+        "site": "vehicles/e131-1000/site.json",
+    },
+    {
         "id": "E233-0",
         "name": "E233系0番台",
         "config": "vehicles/E233-0/config.json",
