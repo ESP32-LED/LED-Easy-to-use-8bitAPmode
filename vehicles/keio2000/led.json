@@ -94,7 +94,7 @@
         {
             "id": "next",
             "name": "次駅",
-            "groups": [
+            "items": [
                 {
                     "id": "meidaimae",
                     "view": {
