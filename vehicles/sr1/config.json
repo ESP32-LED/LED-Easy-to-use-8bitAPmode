@@ -24,7 +24,7 @@
     "information2Distinction": false,
     "carNumberDistinction": false,
 
-    "typeSwitching": true,
+    "typeSwitching": false,
 
     "sceneInterval": 3000,
     "languageSwitching": true,
