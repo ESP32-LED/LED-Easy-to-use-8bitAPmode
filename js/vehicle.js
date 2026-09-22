@@ -31,6 +31,7 @@ function createVehicleButtons() {
         btn.append(iconContainer, span);
 
         btn.addEventListener("click", async () => {
+            document.body.classList.add("simulatorMode");
 
             selectedVehicle = vehicle;
             document.getElementById("vehicleSelector").hidden = true;
