@@ -134,6 +134,9 @@ function createESP32Frame(matrix, hw, margin) {
     const br = brInput ? parseFloat(brInput.value) || 1.0 : 1.0;
     const gam = gamInput ? parseFloat(gamInput.value) || 1.5 : 1.5;
 
+    // 縦幅が32ピクセル未満の場合の中央寄せ用Yオフセット
+    const yOffset = config.ledHeight < 32 ? Math.floor((32 - config.ledHeight) / 2) : 0;
+
     for (let y = 0; y < config.ledHeight; y++) {
         for (let x = 0; x < config.ledWidth; x++) {
 
@@ -142,7 +145,11 @@ function createESP32Frame(matrix, hw, margin) {
 
             // 右詰めのためのX座標オフセット
             let targetX = x + margin;
-            if (targetX >= hw || y >= 32) continue;
+            if (targetX >= hw) continue;
+
+            // 中央寄せのためのY座標オフセット
+            let targetY = y + yOffset;
+            if (targetY >= 32) continue;
 
             // 色の明るさとガンマ補正の適用
             let rgb = [0, 0, 0];
@@ -154,13 +161,13 @@ function createESP32Frame(matrix, hw, margin) {
 
             for (let bit = 0; bit < 8; bit++) {
                 if ((r >> bit) & 1) {
-                    frame[bit][y % 16][targetX] |= (y < 16 ? 0x01 : 0x08);
+                    frame[bit][targetY % 16][targetX] |= (targetY < 16 ? 0x01 : 0x08);
                 }
                 if ((g >> bit) & 1) {
-                    frame[bit][y % 16][targetX] |= (y < 16 ? 0x02 : 0x10);
+                    frame[bit][targetY % 16][targetX] |= (targetY < 16 ? 0x02 : 0x10);
                 }
                 if ((b >> bit) & 1) {
-                    frame[bit][y % 16][targetX] |= (y < 16 ? 0x04 : 0x20);
+                    frame[bit][targetY % 16][targetX] |= (targetY < 16 ? 0x04 : 0x20);
                 }
             }
         }
