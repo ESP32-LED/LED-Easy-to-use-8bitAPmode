@@ -1,5 +1,16 @@
 [
     {
+        "id": "E129",
+        "name": "E129系",
+        "config": "vehicles/E129/config.json",
+        "led": "vehicles/E129/led.json",
+        "icons": [
+            "vehicles/E129/icons/icon1.png"
+        ],
+        "site": "vehicles/E129/site.json",
+        "font": "fonts/font_E233.json"
+    },
+    {
         "id": "E131-200",
         "name": "E131系200番台",
         "config": "vehicles/E131-200/config.json",
