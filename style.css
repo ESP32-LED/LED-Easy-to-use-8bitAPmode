@@ -438,19 +438,69 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 768px) {
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
+
+    body {
+        overflow: hidden;
+    }
+
     #tittle {
-        width: 100vw!important;
+        width: 100vw !important;
         box-sizing: border-box;
+        flex-shrink: 0;
     }
 
-    aside {
-        box-sizing: border-box;
+    #vehicleSelector {
+        flex-shrink: 0;
     }
 
+    #simulator {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .container {
+        height: 100%;
+        min-height: 0;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* mainを上 */
     main {
+        order: 1;
+
+        flex: 0 0 auto;
+
         box-sizing: border-box;
         overflow-x: auto;
+        overflow-y: hidden;
+
         justify-content: flex-start;
+    }
+
+    /* resizerはスマホでは不要 */
+    #resizer {
+        display: none;
+    }
+
+    /* asideを下 */
+    aside {
+        order: 2;
+
+        flex: 1 1 auto;
+        min-height: 0;
+
+        box-sizing: border-box;
+
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     .ledFrame {
@@ -472,24 +522,28 @@ input[type="number"]::-webkit-outer-spin-button {
 
     .buttonGroup {
         max-height: 240px;
-        min-height: 10px!important;
+        min-height: 10px !important;
     }
 
     #vehicleSelect {
-        display:grid;
-        grid-template-columns: repeat(1,1fr);
-        gap:8px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 8px;
     }
 
     .vehicleIcons {
         display: grid;
-        grid-template-columns: repeat(6,1fr);
+        grid-template-columns: repeat(6, 1fr);
         gap: 4px;
         flex-shrink: 0;
     }
 
     .selectGroup {
-        max-height: none!important;
+        max-height: none !important;
+    }
+
+    .displayLabel {
+        font-size: medium !important;
     }
 }
 
