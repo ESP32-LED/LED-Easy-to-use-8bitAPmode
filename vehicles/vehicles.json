@@ -285,7 +285,7 @@
         "id": "keio90007000",
         "name": "京王9000系・7000系　FCLED車",
         "config": "vehicles/keio90007000/config.json",
-        "led": "vehicles/keio90007000/led.json",
+        "led": "vehicles/keio90007000/led.min.json",
         "icons": [
             "vehicles/keio90007000/icons/icon1.png",
             "vehicles/keio90007000/icons/icon2.png",
