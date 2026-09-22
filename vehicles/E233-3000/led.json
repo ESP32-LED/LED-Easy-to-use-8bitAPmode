@@ -1,12 +1,12 @@
 {
     "categories": [
         {
-        "id": "type",
-        "name": "種別",
-        "items": [
-            {
-                "id": "null_type",
-                "view": {
+            "id": "type",
+            "name": "種別",
+            "items": [
+                {
+                    "id": "null_type",
+                    "view": {
                         "normal": {
                             "ja": {
                                 "name": "無表示",
