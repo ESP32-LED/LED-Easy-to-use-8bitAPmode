@@ -755,6 +755,7 @@ document.querySelectorAll(".numberInput").forEach(container => {
 
 const tittle = document.getElementById("tittle");
 tittle.addEventListener("click", () => {
+    document.body.classList.remove("simulatorMode");
     initSimulator();
     clearReferenceSite();
     clearExplanation();
