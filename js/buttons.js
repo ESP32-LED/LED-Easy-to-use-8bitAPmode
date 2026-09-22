@@ -1237,6 +1237,7 @@ function setSelected(container, button) {
 function setVehicleSelectButton() {
     const container = document.getElementById("vehicleSelectButton");
     container.addEventListener("click", () => {
+        document.body.classList.remove("simulatorMode");
         initSimulator();
         clearReferenceSite();
         clearExplanation();
