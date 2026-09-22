@@ -259,6 +259,18 @@
         "site": "vehicles/2020/site.json"
     },
     {
+        "id": "tokyu9000",
+        "name": "東急9000系・9020系",
+        "config": "vehicles/tokyu9000/config.json",
+        "led": "vehicles/tokyu9000/led.json",
+        "icons": [
+            "vehicles/tokyu9000/icons/icon1.png",
+            "vehicles/tokyu9000/icons/icon2.png",
+            "vehicles/tokyu9000/icons/icon3.png"
+        ],
+        "site": "vehicles/tokyu9000/site.json"
+    },
+    {
         "id": "keio2000",
         "name": "京王2000系",
         "config": "vehicles/keio2000/config.json",
