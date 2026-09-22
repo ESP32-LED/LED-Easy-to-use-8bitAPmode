@@ -1,7 +1,12 @@
 [
     {
         "id": "1",
-        "name": "JR東日本E233系1000番代 | 行先表示器＆発車標シミュレータ",
-        "link": "https://iketamachannel0test.web.fc2.com/simulator/jre/E233-1000/index.html?1000s"
+        "name": "JR東日本E233系3000番代 | 行先表示器＆発車標シミュレータ",
+        "link": "https://iketamachannel0test.web.fc2.com/simulator/jre/E233-3000/index.html?3000s"
     },
+    {
+        "id": "2",
+        "name": "LED再現ギャラリーJR東日本E233系3000番台（側面）",
+        "link": "https://w.atwiki.jp/led-gallery/pages/113.html"
+    }
 ]
