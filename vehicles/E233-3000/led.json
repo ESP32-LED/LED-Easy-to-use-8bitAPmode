@@ -3479,7 +3479,7 @@
       "groups": [
         {
           "id": "tokaidoLine",
-          "name": "東海道本線",
+          "name": "東海道本線方面",
           "items": [
             {
               "id": "item_0120",
@@ -4453,7 +4453,7 @@
         },
         {
           "id": "tohokuLine",
-          "name": "東北本線（宇都宮線）",
+          "name": "東北本線（宇都宮線）方面",
           "items": [
             {
               "id": "item_0166",
