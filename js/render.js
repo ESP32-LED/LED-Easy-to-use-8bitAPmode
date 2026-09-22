@@ -128,6 +128,14 @@ function createDisplayMatrix () {
                         drawInformation2(info2, matrix);
                     }
                 }
+                if(informationMode === "information_information2") {
+                    if (informationId != null) {
+                        drawInformationSmall(info, matrix);
+                    }
+                    if (information2Id != null) {
+                        drawInformation2Small(info2, matrix);
+                    }
+                }
                 if(informationMode === "line") {
                     if (lineId != null) {
                         drawLine(line,matrix);
@@ -170,7 +178,7 @@ function createDisplayMatrix () {
             }
             if(informationMode === "information2") {
                 if (information2Id != null) {
-                    drawInformation2(info2, matrix);
+                    drawInformation2Small(info2, matrix);
                 }
             }
             if(informationMode === "information_small1") {

@@ -371,17 +371,47 @@ function buildSceneList() {
         if (config.informationPosition === "normal") {
             if (scrollId === null) {
                 if (nextId != null) {
-                    sceneList.push({
-                        lang: "ja",
-                        information: "information",
-                        next: true
-                    });
-                    if (config.informationLanguageSwitching) {
+                    if (information2Id === null) {
                         sceneList.push({
-                            lang: "en",
+                            lang: "ja",
                             information: "information",
                             next: true
                         });
+                        if (config.informationLanguageSwitching) {
+                            sceneList.push({
+                                lang: "en",
+                                information: "information",
+                                next: true
+                            });
+                        }
+                    } else {
+                        if (config.hasInformationCombined) {
+                            sceneList.push({
+                                lang: "ja",
+                                information: "information_information2",
+                                next: false
+                            })
+                            if (config.informationLanguageSwitching) {
+                                sceneList.push({
+                                    lang: "en",
+                                    information: "information_information2",
+                                    next: false
+                                });
+                            }
+                        } else {
+                            sceneList.push({
+                                lang: "ja",
+                                information: "information",
+                                next: true
+                            });
+                            if (config.informationLanguageSwitching) {
+                                sceneList.push({
+                                    lang: "en",
+                                    information: "information",
+                                    next: true
+                                });
+                            }
+                        }
                     }
                 } else {
                     if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
@@ -446,11 +476,13 @@ function buildSceneList() {
 
     if (information2Id != null) {
         if (nextId != null) {
-            sceneList.push({
-                lang: "ja",
-                information: "information2",
-                next: true
-            });
+            if (!config.hasInformationCombined) {
+                sceneList.push({
+                    lang: "ja",
+                    information: "information2",
+                    next: true
+                });
+            }
         } else {
             sceneList.push({
                 lang: "ja",

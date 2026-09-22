@@ -388,6 +388,56 @@ function drawInformationSmall(info, matrix) {
     drawImage(data, typewidth, 0, matrix);
 }
 
+function drawInformation2Small(info2, matrix) {
+
+    let usedSmall = false;
+    let typewidth;
+
+    let view = isInformationFullScreen(info2)
+        ? "full_small"
+        : "small";
+    if (informationMode === "information2_small1") {
+        view = isInformationFullScreen(info2)
+            ? "full_small1"
+            : "small1";
+    }
+    if (informationMode === "information2_small2") {
+        view = isInformationFullScreen(info2)
+            ? "full_small2"
+            : "small2";
+    }
+
+    let data =
+        info2.view?.[view]?.[lang]
+        ?? info2.view?.[view]?.ja;
+        if (view === "small" || view === "small1" || view === "small2") {
+            usedSmall = true;
+        }
+
+    if (!data) {
+        data =
+            info2.view?.small?.[lang]
+            ?? info2.view?.small?.ja;
+        usedSmall = true;
+    }
+
+    if (!data) return;
+    const type = getItem("type", typeId)
+    if (usedSmall) {
+        typewidth = getTypeWidth(type, usedSmall);
+    } else {
+        typewidth = 0;
+    }
+    let yOffset;
+    const nextPosition = config.nextPosition;
+    if (informationMode === "information_information2") {
+        yOffset = nextPosition;
+    } else {
+        yOffset = 0;
+    }
+    drawImage(data, typewidth, yOffset, matrix);
+}
+
 function drawNext(next, matrix) {
 
     let usedNormal = false;
