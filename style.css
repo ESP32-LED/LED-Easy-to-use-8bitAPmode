@@ -445,8 +445,10 @@ input[type="number"]::-webkit-outer-spin-button {
         margin: 0;
     }
 
+    /* 通常の車両選択画面ではスクロール可能 */
     body {
-        overflow: hidden;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     #tittle {
@@ -472,8 +474,21 @@ input[type="number"]::-webkit-outer-spin-button {
         flex-direction: column;
     }
 
+    /* =========================
+       シミュレーター画面のみ固定
+       ========================= */
+
+    body.simulatorMode {
+        overflow: hidden;
+    }
+
+    body.simulatorMode #simulator {
+        flex: 1;
+        min-height: 0;
+    }
+
     /* mainを上 */
-    main {
+    body.simulatorMode main {
         order: 1;
 
         flex: 0 0 auto;
@@ -486,12 +501,12 @@ input[type="number"]::-webkit-outer-spin-button {
     }
 
     /* resizerはスマホでは不要 */
-    #resizer {
+    body.simulatorMode #resizer {
         display: none;
     }
 
     /* asideを下 */
-    aside {
+    body.simulatorMode aside {
         order: 2;
 
         flex: 1 1 auto;
@@ -502,6 +517,10 @@ input[type="number"]::-webkit-outer-spin-button {
         overflow-y: auto;
         overflow-x: hidden;
     }
+
+    /* =========================
+       その他のスマホ用設定
+       ========================= */
 
     .ledFrame {
         margin: 10px;
