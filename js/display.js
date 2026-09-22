@@ -360,8 +360,8 @@ function drawInformationSmall(info, matrix) {
     }
     if (informationMode === "information_small2") {
         view = isInformationFullScreen(info)
-            ? "full_small1"
-            : "small1";
+            ? "full_small2"
+            : "small2";
     }
 
     let data =
@@ -377,7 +377,6 @@ function drawInformationSmall(info, matrix) {
             ?? info.view?.small?.ja;
         usedSmall = true;
     }
-    console.log(usedSmall, view)
 
     if (!data) return;
     const type = getItem("type", typeId)
