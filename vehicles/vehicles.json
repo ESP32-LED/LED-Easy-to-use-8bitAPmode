@@ -292,7 +292,7 @@
             "vehicles/keio90007000/icons/icon3.png",
             "vehicles/keio90007000/icons/icon4.png"
         ],
-        "site": "vehicles/keio90007000/site.json",
+        "site": "vehicles/keio90007000/site.json"
     },
     {
         "id": "keio2000",
