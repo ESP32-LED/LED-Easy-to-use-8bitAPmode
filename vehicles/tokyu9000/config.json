@@ -10,6 +10,7 @@
     "hasLine": false,
     "hasNext": false,
     "hasScroll": false,
+    "scrollLabel": false,
     "hasCarNumber": false,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,
@@ -17,6 +18,10 @@
     "carNumber": null,
     "informationPosition": "normal",
     "destinationPosition": "normal",
+    "hasNextFullScreen": false,
+    "hasScrollFullScreen": false,
+
+    "hasInformationCombined": false,
 
     "destinationDistinction": false,
     "nextModeDistinction": false,

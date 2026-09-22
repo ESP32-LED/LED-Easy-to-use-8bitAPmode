@@ -7,6 +7,7 @@
     "hasDestination": true,
     "hasInformation": true,
     "hasInformation2": false,
+    "hasLine": false,
     "hasNext": false,
     "hasScroll": false,
     "scrollLabel": null,
@@ -19,6 +20,8 @@
     "destinationPosition": "normal",
     "hasNextFullScreen": false,
     "hasScrollFullScreen": false,
+
+    "hasInformationCombined": true,
 
     "destinationDistinction": false,
     "nextModeDistinction": false,

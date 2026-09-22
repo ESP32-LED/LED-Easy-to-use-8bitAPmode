@@ -8,6 +8,7 @@
     "hasDestination": true,
     "hasInformation": true,
     "hasInformation2": false,
+    "hasLine": false,
     "hasNext": true,
     "hasScroll": true,
     "scrollLabel": "停車駅：北野、終点　京王八王子です。",
@@ -20,6 +21,8 @@
     "destinationPosition": "normal",
     "hasNextFullScreen": true,
     "hasScrollFullScreen": false,
+
+    "hasInformationCombined": true,
 
     "destinationDistinction": false,
     "nextModeDistinction": false,
