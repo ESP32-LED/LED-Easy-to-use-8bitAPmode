@@ -40,7 +40,7 @@
             "vehicles/E131-600/icons/icon1.png"
         ],
         "site": "vehicles/E131-600/site.json",
-        "font": "fonts/font_E131.json"
+        "font": "fonts/font_E233.json"
     },
     {
         "id": "e131-1000",
@@ -161,7 +161,7 @@
     },
     {
         "id": "HB-E300",
-        "name": "HB-E300系 リゾートしらかみ",
+        "name": "HB-E300系「リゾートしらかみ」",
         "config": "vehicles/HB-E300/config.json",
         "led": "vehicles/HB-E300/led.json",
         "icons": [
@@ -170,6 +170,16 @@
             "vehicles/HB-E300/icons/icon3.png"
         ],
         "site": "vehicles/HB-E300/site.json"
+    },
+    {
+        "id": "HB-E300(1)",
+        "name": "HB-E300系「リゾートあすなろ」",
+        "config": "vehicles/HB-E300(1)/config.json",
+        "led": "vehicles/HB-E300(1)/led.json",
+        "icons": [
+            "vehicles/HB-E300(1)/icons/icon1.png"
+        ],
+        "site": "vehicles/HB-E300(1)/site.json"
     },
     {
         "id": "101",
