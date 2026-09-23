@@ -476,12 +476,20 @@ function buildSceneList() {
 
     if (information2Id != null) {
         if (nextId != null) {
-            if (!config.hasInformationCombined) {
-                sceneList.push({
-                    lang: "ja",
-                    information: "information2",
-                    next: true
-                });
+            if (informationId != null) {
+                if (!config.hasInformationCombined) {
+                    sceneList.push({
+                        lang: "ja",
+                        information: "information2",
+                        next: true
+                    });
+                } else {
+                    sceneList.push({
+                        lang: "ja",
+                        information: "information2",
+                        next: true
+                    });
+                }
             }
         } else {
             sceneList.push({
