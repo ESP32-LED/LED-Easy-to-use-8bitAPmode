@@ -166,8 +166,7 @@
         "led": "vehicles/HB-E300/led.json",
         "icons": [
             "vehicles/HB-E300/icons/icon1.png",
-            "vehicles/HB-E300/icons/icon2.png",
-            "vehicles/HB-E300/icons/icon3.png"
+            "vehicles/HB-E300/icons/icon2.png"
         ],
         "site": "vehicles/HB-E300/site.json"
     },
