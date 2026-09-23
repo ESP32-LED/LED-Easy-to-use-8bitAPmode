@@ -22,7 +22,7 @@
     "hasNextFullScreen": true,
     "hasScrollFullScreen": false,
 
-    "hasInformationCombined": true,
+    "hasInformationCombined": false,
 
     "destinationDistinction": false,
     "nextModeDistinction": false,
