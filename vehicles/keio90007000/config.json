@@ -30,6 +30,7 @@
     "information2Distinction": false,
     "lineDistinction": false,
     "carNumberDistinction": false,
+    "information_ja_en": false,
 
     "typeSwitching": false,
 
