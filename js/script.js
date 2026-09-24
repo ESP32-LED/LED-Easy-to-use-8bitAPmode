@@ -383,34 +383,8 @@ function buildSceneList() {
         if (config.informationPosition === "normal") {
             if (scrollId === null) {
                 if (nextId != null) {
-                    if (information2Id === null) {
-                        sceneList.push({
-                            lang: "ja",
-                            information: "information",
-                            next: true
-                        });
-                        if (config.informationLanguageSwitching) {
-                            sceneList.push({
-                                lang: "en",
-                                information: "information",
-                                next: true
-                            });
-                        }
-                    } else {
-                        if (config.hasInformationCombined) {
-                            sceneList.push({
-                                lang: "ja",
-                                information: "information_information2",
-                                next: false
-                            })
-                            if (config.informationLanguageSwitching) {
-                                sceneList.push({
-                                    lang: "en",
-                                    information: "information_information2",
-                                    next: false
-                                });
-                            }
-                        } else {
+                    if (!config.information_ja_en) {
+                        if (information2Id === null) {
                             sceneList.push({
                                 lang: "ja",
                                 information: "information",
@@ -423,11 +397,62 @@ function buildSceneList() {
                                     next: true
                                 });
                             }
+                        } else {
+                            if (config.hasInformationCombined) {
+                                sceneList.push({
+                                    lang: "ja",
+                                    information: "information_information2",
+                                    next: false
+                                })
+                                if (config.informationLanguageSwitching) {
+                                    sceneList.push({
+                                        lang: "en",
+                                        information: "information_information2",
+                                        next: false
+                                    });
+                                }
+                            } else {
+                                sceneList.push({
+                                    lang: "ja",
+                                    information: "information",
+                                    next: true
+                                });
+                                if (config.informationLanguageSwitching) {
+                                    sceneList.push({
+                                        lang: "en",
+                                        information: "information",
+                                        next: true
+                                    });
+                                }
+                            }
                         }
+                    } else {
+                        sceneList.push({
+                            lang: "ja_en",
+                            information: "information",
+                            next: true
+                        });
                     }
                 } else {
-                    if (!hasEnglishType()) {
-                        if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
+                    if (!config.information_ja_en) {
+                        if (!hasEnglishType()) {
+                            if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
+                                sceneList.push({
+                                    lang: "ja",
+                                    information: "information",
+                                    next: false
+                                });
+                                if (config.informationLanguageSwitching) {
+                                    if (hasEnglishInformation()) {
+                                        sceneList.push({
+                                            lang: "en",
+                                            information: "information",
+                                            next: false
+                                        });
+                                    }
+                                }
+                            }
+                        } else {
                             sceneList.push({
                                 lang: "ja",
                                 information: "information",
@@ -445,19 +470,10 @@ function buildSceneList() {
                         }
                     } else {
                         sceneList.push({
-                            lang: "ja",
+                            lang: "ja_en",
                             information: "information",
                             next: false
                         });
-                        if (config.informationLanguageSwitching) {
-                            if (hasEnglishInformation()) {
-                                sceneList.push({
-                                    lang: "en",
-                                    information: "information",
-                                    next: false
-                                });
-                            }
-                        }
                     }
                 }
             } else {
@@ -626,9 +642,7 @@ function buildSceneList() {
             });
         }
     }
-
 }
-
 function applyScene() {
     lang = sceneList[scene].lang;
     informationMode = sceneList[scene].information;
