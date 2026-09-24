@@ -6,7 +6,7 @@
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
-    "hasInformation2": false,
+    "hasInformation2": true,
     "hasLine": false,
     "hasNext": true,
     "hasScroll": false,
@@ -46,6 +46,7 @@
 
     "enAhead": false,
     "informationAhead": true,
+    "information2Ahead": true,
 
     "setSwitchingTime": false,
 
