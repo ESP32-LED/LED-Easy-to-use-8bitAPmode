@@ -426,7 +426,24 @@ function buildSceneList() {
                         }
                     }
                 } else {
-                    if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
+                    if (!hasEnglishType()) {
+                        if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
+                            sceneList.push({
+                                lang: "ja",
+                                information: "information",
+                                next: false
+                            });
+                            if (config.informationLanguageSwitching) {
+                                if (hasEnglishInformation()) {
+                                    sceneList.push({
+                                        lang: "en",
+                                        information: "information",
+                                        next: false
+                                    });
+                                }
+                            }
+                        }
+                    } else {
                         sceneList.push({
                             lang: "ja",
                             information: "information",
