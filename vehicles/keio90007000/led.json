@@ -811,15 +811,9 @@
               }
             }
           }
-        }
-      ]
-    },
-    {
-      "id": "information2",
-      "name": "案内②",
-      "items": [
+        },
         {
-          "id": "item_0025",
+          "id": "item_0065",
           "view": {
             "full": {
               "ja": {
@@ -832,7 +826,7 @@
           }
         },
         {
-          "id": "item_0063",
+          "id": "item_0066",
           "view": {
             "full": {
               "ja": {
@@ -843,7 +837,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "id": "information2",
+      "name": "案内②",
+      "items": [
         {
           "id": "item_0064",
           "view": {
