@@ -6,7 +6,7 @@
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
-    "hasInformation2": false,
+    "hasInformation2": true,
     "hasLine": false,
     "hasNext": false,
     "hasScroll": false,
