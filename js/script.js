@@ -191,6 +191,18 @@ function buildSceneList() {
 
     sceneList = [];
     const type = getItem("type", typeId);
+
+    if (information2Id != null) {
+        if (config.information2Position === "next") {
+            if (config.information2Ahead) {
+                sceneList.push({
+                    lang: "ja",
+                    information: "information2_next",
+                    next: false
+                });
+            }
+        }
+    }
     
     if (informationId != null) {
         if (config.informationPosition === "next") {
@@ -475,9 +487,17 @@ function buildSceneList() {
     }
 
     if (information2Id != null) {
-        if (nextId != null) {
-            if (informationId != null) {
-                if (!config.hasInformationCombined) {
+        if (!config.information2Ahead) {
+            if (nextId != null) {
+                if (informationId != null) {
+                    if (!config.hasInformationCombined) {
+                        sceneList.push({
+                            lang: "ja",
+                            information: "information2",
+                            next: true
+                        });
+                    }
+                } else {
                     sceneList.push({
                         lang: "ja",
                         information: "information2",
@@ -488,15 +508,9 @@ function buildSceneList() {
                 sceneList.push({
                     lang: "ja",
                     information: "information2",
-                    next: true
+                    next: false
                 });
             }
-        } else {
-            sceneList.push({
-                lang: "ja",
-                information: "information2",
-                next: false
-            });
         }
     }
 

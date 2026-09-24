@@ -92,6 +92,14 @@ function createDisplayMatrix () {
                         drawInformation(info, matrix);
                     }
                 }
+                if(informationMode === "information2_next") {
+                    if (destinationId != null) {
+                        drawDestinationSmall(dest,matrix);
+                    }
+                    if (informationId != null) {
+                        drawInformation2(info2, matrix);
+                    }
+                }
                 if(informationMode === "carNumber_destination") {
                     if (carNumberId != null) {
                         drawCarNumber(carNumber, matrix);
@@ -152,6 +160,14 @@ function createDisplayMatrix () {
                     }
                     if (informationId != null) {
                         drawInformation(info, matrix);
+                    }
+                }
+                if(informationMode === "information2_next") {
+                    if (destinationId != null) {
+                        drawDestinationSmall(dest,matrix);
+                    }
+                    if (informationId != null) {
+                        drawInformation2(info2, matrix);
                     }
                 }
                 if(informationMode === "carNumber_destination") {
