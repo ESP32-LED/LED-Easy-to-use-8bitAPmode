@@ -435,7 +435,7 @@ function buildSceneList() {
                     }
                 } else {
                     if (!config.information_ja_en) {
-                        if (!hasEnglishType()) {
+                        if (hasEnglishType()) {
                             if (!config.languageSwitching || config.languageSwitching && config.destinationLanguageSwitching) {
                                 sceneList.push({
                                     lang: "ja",
