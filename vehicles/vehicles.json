@@ -42,16 +42,6 @@
         "site": "vehicles/E131-500/site.json"
     },
     {
-        "id": "E131-800",
-        "name": "E131系800番台",
-        "config": "vehicles/E131-800/config.json",
-        "led": "vehicles/E131-800/led.json",
-        "icons": [
-            "vehicles/E131-800/icons/icon1.png"
-        ],
-        "site": "vehicles/E131-800/site.json"
-    },
-    {
         "id": "E131-600",
         "name": "E131系600番台",
         "config": "vehicles/E131-600/config.json",
@@ -61,6 +51,16 @@
         ],
         "site": "vehicles/E131-600/site.json",
         "font": "fonts/font_E233.json"
+    },
+    {
+        "id": "E131-800",
+        "name": "E131系800番台",
+        "config": "vehicles/E131-800/config.json",
+        "led": "vehicles/E131-800/led.json",
+        "icons": [
+            "vehicles/E131-800/icons/icon1.png"
+        ],
+        "site": "vehicles/E131-800/site.json"
     },
     {
         "id": "e131-1000",
