@@ -1,7 +1,7 @@
 {
     "name": "JR西日本一体型フルカラーLED",
 
-    "explanation": "a",
+    "explanation": "これは225系、227系、323系、521系、DEC700形、271系、273系のそれぞれに搭載されている種別表示、行先表示、号車表示、案内表示を組み合わせてLEDに表示することができるものです。",
 
     "hasType": true,
     "hasDestination": true,
