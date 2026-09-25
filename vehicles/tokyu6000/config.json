@@ -42,7 +42,9 @@
     "enAhead": false,
     "informationAhead": false,
 
-    "setSwitchingTime": false,
+    "setSwitchingTime": true,
+    "jaTime": 9,
+    "enTime": 4,
 
     "next_normal": false,
     "nextPosition": 16,
