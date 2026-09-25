@@ -1,0 +1,53 @@
+{
+    "name": "東急6000系",
+
+    "explanation": "a",
+
+    "hasType": true,
+    "hasDestination": true,
+    "hasInformation": false,
+    "hasInformation2": false,
+    "hasLine": false,
+    "hasNext": false,
+    "hasScroll": false,
+    "hasCarNumber": false,
+    "hasCarNumberFull": false,
+    "hasCarNumberSmall": false,
+    "hasCarNumberNormal": false,
+    "carNumber": null,
+    "informationPosition": "normal",
+    "destinationPosition": "normal",
+
+    "destinationDistinction": false,
+    "nextModeDistinction": false,
+    "typeDistinction": false,
+    "informationDistinction": false,
+    "information2Distinction": false,
+    "lineDistinction": false,
+    "carNumberDistinction": false,
+
+    "typeSwitching": false,
+
+    "sceneInterval": 3000,
+    "languageSwitching": true,
+    "carNumberLanguageSwitching": false,
+    "destinationLanguageSwitching": true,
+    "informationLanguageSwitching": false,
+    "ledWidth": 144,
+    "ledHeight": 24,
+    "pixelSize": 8.5,
+    "ledSize": 6.5,
+    "ledGap": 2,
+
+    "enAhead": false,
+    "informationAhead": false,
+
+    "setSwitchingTime": false,
+
+    "next_normal": false,
+    "nextPosition": 16,
+
+    "hasReferenceSite": false,
+
+    "ledShape": "circle"
+}
