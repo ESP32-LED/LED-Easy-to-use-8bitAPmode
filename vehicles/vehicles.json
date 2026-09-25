@@ -289,6 +289,22 @@
         "site": "vehicles/tobu100/site.json"
     },
     {
+        "id": "tokyu7000",
+        "name": "東急1000系・7000系",
+        "config": "vehicles/tokyu7000/config.json",
+        "led": "vehicles/tokyu7000/led.json",
+        "icons": [
+            "vehicles/tokyu7000/icons/icon1.png",
+            "vehicles/tokyu7000/icons/icon2.png",
+            "vehicles/tokyu7000/icons/icon3.png",
+            "vehicles/tokyu7000/icons/icon4.png",
+            "vehicles/tokyu7000/icons/icon5.png",
+            "vehicles/tokyu7000/icons/icon6.png",
+            "vehicles/tokyu7000/icons/icon7.png"
+        ],
+        "site": "vehicles/tokyu7000/site.json"
+    },
+    {
         "id": "2020",
         "name": "東急2020系",
         "config": "vehicles/2020/config.json",
