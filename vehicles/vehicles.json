@@ -309,6 +309,16 @@
         "site": "vehicles/3020/site.json"
     },
     {
+        "id": "tokyu6000",
+        "name": "東急6000系",
+        "config": "vehicles/tokyu6000/config.json",
+        "led": "vehicles/tokyu6000/led.json",
+        "icons": [
+            "vehicles/tokyu6000/icons/icon1.png"
+        ],
+        "site": "vehicles/tokyu6000/site.json"
+    },
+    {
         "id": "tokyu9000",
         "name": "東急9000系・9020系",
         "config": "vehicles/tokyu9000/config.json",
