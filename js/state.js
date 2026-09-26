@@ -47,4 +47,6 @@ let areaRight = 128;
 let areaTop = 16;
 let areaBottom = 32;
 
+let scrollSpeed = 450;
+
 const langs = ["ja", "en"];
