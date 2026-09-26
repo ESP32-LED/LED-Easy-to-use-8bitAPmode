@@ -381,16 +381,6 @@
         "font": "fonts/font_E233.json"
     },
     {
-        "id": "6300",
-        "name": "都営6300形",
-        "config": "vehicles/6300/config.json",
-        "led": "vehicles/6300/led.json",
-        "icons": [
-            "vehicles/6300/icons/icon1.png"
-        ],
-        "site": "vehicles/6300/site.json"
-    },
-    {
         "id": "3000",
         "name": "京成3000形・北総7500形など",
         "config": "vehicles/3000/config.json",
