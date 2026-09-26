@@ -6,7 +6,7 @@ let autoTransferTimeout = null;
 // ESP32設定
 // ============================================================
 
-const ESP32_MAX_SCENES = 5;
+const ESP32_MAX_SCENES = 6;
 const ESP32_MAX_WIDTH = 256;
 const ESP32_MIN_WIDTH = 64;
 const ESP32_MAX_SCROLL_WIDTH = 4096;
