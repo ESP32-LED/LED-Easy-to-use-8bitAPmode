@@ -232,6 +232,21 @@
         "site": "vehicles/E993/site.json"
     },
     {
+        "id": "360",
+        "name": "E954形・E955形",
+        "config": "vehicles/360/config.json",
+        "led": "vehicles/360/led.json",
+        "icons": [
+            "vehicles/360/icons/icon1.png",
+            "vehicles/360/icons/icon2.png",
+            "vehicles/360/icons/icon3.png",
+            "vehicles/360/icons/icon4.png",
+            "vehicles/360/icons/icon5.png",
+            "vehicles/360/icons/icon6.png"
+        ],
+        "site": "vehicles/360/site.json"
+    },
+    {
         "id": "225-100",
         "name": "225系100番台",
         "config": "vehicles/225-100/config.json",
