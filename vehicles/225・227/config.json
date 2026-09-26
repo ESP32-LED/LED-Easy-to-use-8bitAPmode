@@ -27,7 +27,7 @@
 
     "destinationDistinction": true,
     "nextModeDistinction": true,
-    "typeDistinction": false,
+    "typeDistinction": true,
     "informationDistinction": false,
     "information2Distinction": false,
     "lineDistinction": false,
