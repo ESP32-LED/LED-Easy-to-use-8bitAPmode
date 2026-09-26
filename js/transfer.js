@@ -629,7 +629,7 @@ function createESP32Packet() {
         // スクロール速度
         // ----------------------------------------------------
 
-        const transferScrollSpeed
+        const transferScrollSpeed = 18;
 
         // ----------------------------------------------------
         // スクロールデータ
