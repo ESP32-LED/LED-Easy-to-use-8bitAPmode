@@ -148,16 +148,7 @@ function getScrollText() {
 // ============================================================
 
 function isScrollEnabled() {
-    const scrollCheck =
-        document.getElementById("scrollCheck");
-
-    // チェックボックスが存在しない構成なら
-    // 文字が入力されていれば有効とする
-    if (!scrollCheck) {
-        return getScrollText().length > 0;
-    }
-
-    return scrollCheck.checked;
+    return clickStartScrollBtn;
 }
 
 
@@ -638,24 +629,7 @@ function createESP32Packet() {
         // スクロール速度
         // ----------------------------------------------------
 
-        let scrollSpeed =
-            getNumberValue(
-                "scroll-speed",
-                10
-            );
-
-
-        scrollSpeed =
-            Math.max(
-                0,
-                Math.min(
-                    255,
-                    Math.round(
-                        scrollSpeed
-                    )
-                )
-            );
-
+        const transferScrollSpeed
 
         // ----------------------------------------------------
         // スクロールデータ
@@ -756,7 +730,7 @@ function createESP32Packet() {
                 hw,
                 margin,
                 scrollData.tw,
-                scrollSpeed,
+                transferScrollSpeed,
                 xOff
             );
 
@@ -1212,7 +1186,7 @@ function createAllESP32Scenes(
 // 0  AA
 // 1  56
 // 2  sceneCount
-// 3  scrollSpeed
+// 3  transferScrollSpeed
 // 4  scrollWidth LOW
 // 5  scrollWidth HIGH
 // 6  scrollXOffset
@@ -1227,7 +1201,7 @@ function createESP32Header(
     hw,
     margin,
     scrollWidth,
-    scrollSpeed,
+    transferScrollSpeed,
     xOff
 ) {
 
@@ -1360,7 +1334,7 @@ function createESP32Header(
 
 
     header[3] =
-        scrollSpeed & 0xFF;
+        transferScrollSpeed & 0xFF;
 
 
     header[4] =
