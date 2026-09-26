@@ -232,6 +232,16 @@
         "site": "vehicles/E993/site.json"
     },
     {
+        "id": "225-100",
+        "name": "225系100番台",
+        "config": "vehicles/225-100/config.json",
+        "led": "vehicles/225-100/led.json",
+        "icons": [
+            "vehicles/225-100/icons/icon1.png"
+        ],
+        "site": "vehicles/225-100/site.json"
+    },
+    {
         "id": "225・227",
         "name": "JR西日本一体型フルカラーLED",
         "config": "vehicles/225・227/config.json",
