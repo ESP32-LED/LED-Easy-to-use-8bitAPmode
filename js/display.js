@@ -853,7 +853,7 @@ let scrollAnimationId = null;
 let lastScrollTime = null;
 
 // スクロール速度（1秒あたりのピクセル数）
-const scrollSpeed = 900;
+scrollSpeed = 450;
 
 function createScrollMatrix() {
     scrollTextMatrix = [];
