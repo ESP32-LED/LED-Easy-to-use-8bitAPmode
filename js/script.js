@@ -346,13 +346,7 @@ function buildSceneList() {
     if (config.destinationLanguageSwitching) {
         if (!config.languageSwitching) {
             if (hasEnglishDestination()) {
-                if (nextId != null) {
-                    sceneList.push({
-                        lang: "en",
-                        information: "destination",
-                        next: true
-                    });
-                } else {
+                if (nextId === null) {
                     sceneList.push({
                         lang: "en",
                         information: "destination",
