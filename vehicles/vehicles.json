@@ -300,6 +300,16 @@
         "site": "vehicles/227-500_urara/site.json"
     },
     {
+        "id": "227-500_kizashi",
+        "name": "227系500番台「Kizashi」",
+        "config": "vehicles/227-500_kizashi/config.json",
+        "led": "vehicles/227-500_kizashi/led.json",
+        "icons": [
+            "vehicles/227-500_kizashi/icons/icon1.png"
+        ],
+        "site": "vehicles/227-500_kizashi/site.json"
+    },
+    {
         "id": "225・227",
         "name": "JR西日本一体型フルカラーLED",
         "config": "vehicles/225・227/config.json",
