@@ -280,6 +280,16 @@
         "site": "vehicles/225-5100/site.json"
     },
     {
+        "id": "227-0",
+        "name": "227系0番台「Red Wing」",
+        "config": "vehicles/227-0/config.json",
+        "led": "vehicles/227-0/led.json",
+        "icons": [
+            "vehicles/227-0/icons/icon1.png"
+        ],
+        "site": "vehicles/227-0/site.json"
+    },
+    {
         "id": "225・227",
         "name": "JR西日本一体型フルカラーLED",
         "config": "vehicles/225・227/config.json",
