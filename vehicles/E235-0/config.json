@@ -5,7 +5,7 @@
 
     "hasType": true,
     "hasDestination": true,
-    "hasInformation": false,
+    "hasInformation": true,
     "hasInformation2": false,
     "hasLine": false,
     "hasNext": true,
@@ -51,7 +51,7 @@
     "setSwitchingTime": false,
 
     "next_normal": false,
-    "nextPosition": 16,
+    "nextPosition": 18,
 
     "hasReferenceSite": false,
 
