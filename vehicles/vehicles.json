@@ -160,6 +160,16 @@
         "site": "vehicles/mari_E233/site.json"
     },
     {
+        "id": "E235-0",
+        "name": "E235系0番台",
+        "config": "vehicles/E235-0/config.json",
+        "led": "vehicles/E235-0/led.json",
+        "icons": [
+            "vehicles/E235-0/icons/icon1.png"
+        ],
+        "site": "vehicles/E235-0/site.json"
+    },
+    {
         "id": "EV-E301",
         "name": "EV-E301系",
         "config": "vehicles/EV-E301/config.json",
