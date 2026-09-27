@@ -204,14 +204,14 @@
         "site": "vehicles/HB-E300/site.json"
     },
     {
-        "id": "HB-E300(1)",
+        "id": "HB-E300_asunaro",
         "name": "HB-E300系「リゾートあすなろ」",
-        "config": "vehicles/HB-E300(1)/config.json",
-        "led": "vehicles/HB-E300(1)/led.json",
+        "config": "vehicles/HB-E300_asunaro/config.json",
+        "led": "vehicles/HB-E300_asunaro/led.json",
         "icons": [
-            "vehicles/HB-E300(1)/icons/icon1.png"
+            "vehicles/HB-E300_asunaro/icons/icon1.png"
         ],
-        "site": "vehicles/HB-E300(1)/site.json"
+        "site": "vehicles/HB-E300_asunaro/site.json"
     },
     {
         "id": "101",
@@ -288,6 +288,16 @@
             "vehicles/227-0/icons/icon1.png"
         ],
         "site": "vehicles/227-0/site.json"
+    },
+    {
+        "id": "227-500_urara",
+        "name": "227系500番台「Urara」",
+        "config": "vehicles/227-500_urara/config.json",
+        "led": "vehicles/227-500_urara/led.json",
+        "icons": [
+            "vehicles/227-500_urara/icons/icon1.png"
+        ],
+        "site": "vehicles/227-500_urara/site.json"
     },
     {
         "id": "225・227",
