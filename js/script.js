@@ -355,12 +355,14 @@ function buildSceneList() {
                 }
             }
         }
-        if (!hasEnglishType()) {
-            sceneList.push({
-                lang: "en",
-                information: "destination",
-                next: false
-            });
+        if (nextId === null || scrollId === null) {
+            if (!hasEnglishType()) {
+                sceneList.push({
+                    lang: "en",
+                    information: "destination",
+                    next: false
+                });
+            }
         }
     }
 
