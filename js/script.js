@@ -334,7 +334,7 @@ function buildSceneList() {
             }
         }
     } else {
-        if (nextId != null || scrollId != null) {
+        if (nextId != null && scrollId != null) {
             sceneList.push({
                 lang: "en",
                 information: "destination",
@@ -355,7 +355,7 @@ function buildSceneList() {
                 }
             }
         }
-        if (nextId === null || scrollId === null) {
+        if (nextId === null && scrollId === null) {
             if (!hasEnglishType()) {
                 sceneList.push({
                     lang: "en",
