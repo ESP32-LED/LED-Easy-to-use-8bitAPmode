@@ -214,6 +214,27 @@
         "site": "vehicles/HB-E300_asunaro/site.json"
     },
     {
+        "id": "HB-E300_hinabi",
+        "name": "HB-E300系「ひなび」",
+        "config": "vehicles/HB-E300_hinabi/config.json",
+        "led": "vehicles/HB-E300_hinabi/led.json",
+        "icons": [
+            "vehicles/HB-E300_hinabi/icons/icon1.png"
+        ],
+        "site": "vehicles/HB-E300_hinabi/site.json"
+    },
+    {
+        "id": "HB-E300_satono",
+        "name": "HB-E300系「SATONO」",
+        "config": "vehicles/HB-E300_satono/config.json",
+        "led": "vehicles/HB-E300_satono/led.json",
+        "icons": [
+            "vehicles/HB-E300_satono/icons/icon1.png",
+            "vehicles/HB-E300_satono/icons/icon2.png"
+        ],
+        "site": "vehicles/HB-E300_satono/site.json"
+    },
+    {
         "id": "101",
         "name": "キハ101形 左沢線",
         "config": "vehicles/101/config.json",
