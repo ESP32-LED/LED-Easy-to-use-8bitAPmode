@@ -402,6 +402,16 @@
         "site": "vehicles/2700/site.json"
     },
     {
+        "id": "metro8000",
+        "name": "東京メトロ8000系",
+        "config": "vehicles/metro8000/config.json",
+        "led": "vehicles/metro8000/led.json",
+        "icons": [
+            "vehicles/metro8000/icons/icon1.png"
+        ],
+        "site": "vehicles/metro8000/site.json"
+    },
+    {
         "id": "tobu100",
         "name": "東武100系 特急スペーシア",
         "config": "vehicles/tobu100/config.json",
