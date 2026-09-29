@@ -356,7 +356,7 @@ function buildSceneList() {
             }
         }
         if (nextId === null && scrollId === null) {
-            if (!hasEnglishType()) {
+            if (!hasEnglishDestination()) {
                 sceneList.push({
                     lang: "en",
                     information: "destination",
