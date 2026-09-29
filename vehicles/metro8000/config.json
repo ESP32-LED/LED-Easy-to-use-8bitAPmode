@@ -39,7 +39,7 @@
     "carNumberLanguageSwitching": false,
     "destinationLanguageSwitching": false,
     "informationLanguageSwitching": false,
-    "ledWidth": 128,
+    "ledWidth": 112,
     "ledHeight": 32,
     "pixelSize": 8.8,
     "ledSize": 6.5,
