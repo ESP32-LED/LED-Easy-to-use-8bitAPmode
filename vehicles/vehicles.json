@@ -367,6 +367,18 @@
         "site": "vehicles/tobu100/site.json"
     },
     {
+        "id": "20400",
+        "name": "東武20400型(前面)",
+        "config": "vehicles/20400/config.json",
+        "led": "vehicles/20400/led.json",
+        "icons": [
+            "vehicles/20400/icons/icon1.png",
+            "vehicles/20400/icons/icon2.png",
+            "vehicles/20400/icons/icon3.png"
+        ],
+        "site": "vehicles/20400/site.json"
+    },
+    {
         "id": "tokyu7000",
         "name": "東急1000系・7000系",
         "config": "vehicles/tokyu7000/config.json",
