@@ -341,6 +341,16 @@
         "site": "vehicles/227-500_kizashi/site.json"
     },
     {
+        "id": "227-1000",
+        "name": "227系1000番台",
+        "config": "vehicles/227-1000/config.json",
+        "led": "vehicles/227-1000/led.json",
+        "icons": [
+            "vehicles/227-1000/icons/icon1.png"
+        ],
+        "site": "vehicles/227-1000/site.json"
+    },
+    {
         "id": "225・227",
         "name": "JR西日本一体型フルカラーLED",
         "config": "vehicles/225・227/config.json",
