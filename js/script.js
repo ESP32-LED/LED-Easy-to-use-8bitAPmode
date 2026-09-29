@@ -334,7 +334,7 @@ function buildSceneList() {
             }
         }
     } else {
-        if (nextId != null && scrollId != null) {
+        if (nextId != null || scrollId != null) {
             sceneList.push({
                 lang: "en",
                 information: "destination",
