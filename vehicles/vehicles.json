@@ -461,6 +461,19 @@
         "site": "vehicles/3000/site.json"
     },
     {
+        "id": "so9000",
+        "name": "相鉄8000系・9000系 (FC)",
+        "config": "vehicles/so9000/config.json",
+        "led": "vehicles/so9000/led.json",
+        "icons": [
+            "vehicles/so9000/icons/icon1.png",
+            "vehicles/so9000/icons/icon2.png",
+            "vehicles/so9000/icons/icon3.png",
+            "vehicles/so9000/icons/icon4.png"
+        ],
+        "site": "vehicles/so9000/site.json"
+    },
+    {
         "id": "tx1000・2000",
         "name": "首都圏新都市鉄道　TX-1000系・TX-2000系",
         "config": "vehicles/tx1000・2000/config.json",
