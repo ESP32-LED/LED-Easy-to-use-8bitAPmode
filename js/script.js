@@ -354,6 +354,7 @@ function buildSceneList() {
                     });
                 }
             }
+        } else {
             if (nextId === null) {
                 if (config.hasScroll) {
                     if (scrollId === null) {
