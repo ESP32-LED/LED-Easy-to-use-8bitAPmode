@@ -355,7 +355,7 @@ function buildSceneList() {
                 }
             }
         } else {
-            if (!hasEnglishType) {
+            if (!hasEnglishType()) {
                 if (nextId === null) {
                     if (config.hasScroll) {
                         if (scrollId === null) {
