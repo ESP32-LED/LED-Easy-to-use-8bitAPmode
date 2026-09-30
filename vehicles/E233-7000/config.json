@@ -1,16 +1,16 @@
 {
     "name": "E233系7000番台",
 
-    "explanation": "a",
+    "explanation": "どわーｗ",
 
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
     "hasInformation2": true,
-    "hasLine": true,
+    "hasLine": false,
     "hasNext": true,
     "hasScroll": true,
-    "scrollLabel": null,
+    "scrollLabel": "停車駅：南古谷、終点　新木場です。",
     "hasCarNumber": false,
     "hasCarNumberFull": false,
     "hasCarNumberSmall": false,
@@ -24,8 +24,8 @@
 
     "hasInformationCombined": false,
 
-    "destinationDistinction": false,
-    "nextModeDistinction": false,
+    "destinationDistinction": true,
+    "nextModeDistinction": true,
     "typeDistinction": false,
     "informationDistinction": false,
     "information2Distinction": false,
@@ -34,10 +34,10 @@
 
     "typeSwitching": false,
 
-    "sceneInterval": 10000,
+    "sceneInterval": 3000,
     "languageSwitching": false,
     "carNumberLanguageSwitching": false,
-    "destinationLanguageSwitching": true,
+    "destinationLanguageSwitching": false,
     "informationLanguageSwitching": false,
     "ledWidth": 128,
     "ledHeight": 32,
@@ -48,11 +48,7 @@
     "enAhead": false,
     "informationAhead": false,
 
-    "setSwitchingTime": true,
-    "jaTime": 10,
-    "enTime": 10,
-    "infoTime": 1,
-    "carNumberTime": 1,
+    "setSwitchingTime": false,
 
     "next_normal": false,
     "nextPosition": 16,
