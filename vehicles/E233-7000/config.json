@@ -1,15 +1,15 @@
 {
-    "name": "E233系7000番台",
+    "name": "E233系6000番台",
 
-    "explanation": "どわーｗ",
+    "explanation": "うおｗ",
 
     "hasType": true,
     "hasDestination": true,
-    "hasInformation": false,
-    "hasInformation2": false,
+    "hasInformation": true,
+    "hasInformation2": true,
     "hasLine": false,
     "hasNext": true,
-    "hasScroll": false,
+    "hasScroll": true,
     "scrollLabel": "停車駅：南古谷、終点　新木場です。",
     "hasCarNumber": false,
     "hasCarNumberFull": false,
@@ -24,8 +24,8 @@
 
     "hasInformationCombined": false,
 
-    "destinationDistinction": false,
-    "nextModeDistinction": false,
+    "destinationDistinction": true,
+    "nextModeDistinction": true,
     "typeDistinction": false,
     "informationDistinction": false,
     "information2Distinction": false,
