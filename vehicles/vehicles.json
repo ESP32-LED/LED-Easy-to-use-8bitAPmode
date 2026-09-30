@@ -165,10 +165,7 @@
         "config": "vehicles/E235-0/config.json",
         "led": "vehicles/E235-0/led.json",
         "icons": [
-            "vehicles/E235-0/icons/icon1.png",
-            "vehicles/E235-0/icons/icon2.png",
-            "vehicles/E235-0/icons/icon3.png",
-            "vehicles/E235-0/icons/icon4.png"
+            "vehicles/E235-0/icons/icon1.png"
         ],
         "site": "vehicles/E235-0/site.json"
     },
