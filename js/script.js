@@ -354,7 +354,16 @@ function buildSceneList() {
                     });
                 }
             }
-            if (nextId === null && scrollId === null) {
+            if (nextId === null) {
+                if (config.hasScroll) {
+                    if (scrollId === null) {
+                        sceneList.push({
+                            lang: "en",
+                            information: "destination",
+                            next: false
+                        });
+                    }
+                }
                 if (hasEnglishDestination()) {
                     sceneList.push({
                         lang: "en",
