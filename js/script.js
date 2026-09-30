@@ -355,22 +355,24 @@ function buildSceneList() {
                 }
             }
         } else {
-            if (nextId === null) {
-                if (config.hasScroll) {
-                    if (scrollId === null) {
-                        sceneList.push({
-                            lang: "en",
-                            information: "destination",
-                            next: false
-                        });
-                    }
-                } else {
-                    if (hasEnglishDestination()) {
-                        sceneList.push({
-                            lang: "en",
-                            information: "destination",
-                            next: false
-                        });
+            if (!hasEnglishType) {
+                if (nextId === null) {
+                    if (config.hasScroll) {
+                        if (scrollId === null) {
+                            sceneList.push({
+                                lang: "en",
+                                information: "destination",
+                                next: false
+                            });
+                        }
+                    } else {
+                        if (hasEnglishDestination()) {
+                            sceneList.push({
+                                lang: "en",
+                                information: "destination",
+                                next: false
+                            });
+                        }
                     }
                 }
             }
