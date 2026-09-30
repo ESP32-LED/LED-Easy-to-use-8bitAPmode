@@ -524,18 +524,22 @@ function drawNext(next, matrix) {
 function getTypeWidth(type, used) {
 
     if(!type) {
-        if(used) {
-            if (config.hasCarNumber) {
-                let data = getItem("type", "null_type").view.normal.ja.width
-                const carNumber = getItem("carNumber", carNumberId)
-                return (
-                    data + getCarNumberWidth(carNumber, true)
-                )
+        if (config.hasType) {
+            if(used) {
+                if (config.hasCarNumber) {
+                    let data = getItem("type", "null_type").view.normal.ja.width
+                    const carNumber = getItem("carNumber", carNumberId)
+                    return (
+                        data + getCarNumberWidth(carNumber, true)
+                    )
 
+                } else {
+                    return (
+                        getItem("type", "null_type").view.normal.ja.width
+                    );
+                }
             } else {
-                return (
-                    getItem("type", "null_type").view.normal.ja.width
-                );
+                return 0;
             }
         } else {
             return 0;
@@ -573,14 +577,17 @@ function getDestinationWidth(type, dest, used) {
     let destData;
 
     if(!type) {
-        if(used) {
-            typeData =
-                getItem("type", "null_type").view.normal.ja.width;
+        if (config.hasType) {
+            if(used) {
+                typeData =
+                    getItem("type", "null_type").view.normal.ja.width;
+            } else {
+                typeData = 0
+            }
         } else {
             typeData = 0
         }
     }
-
     const typeView = isTypeFullScreen(type)
         ? "full"
         : "normal";
