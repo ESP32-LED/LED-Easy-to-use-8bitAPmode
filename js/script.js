@@ -363,13 +363,14 @@ function buildSceneList() {
                             next: false
                         });
                     }
-                }
-                if (hasEnglishDestination()) {
-                    sceneList.push({
-                        lang: "en",
-                        information: "destination",
-                        next: false
-                    });
+                } else {
+                    if (hasEnglishDestination()) {
+                        sceneList.push({
+                            lang: "en",
+                            information: "destination",
+                            next: false
+                        });
+                    }
                 }
             }
         }
