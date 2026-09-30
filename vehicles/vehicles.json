@@ -649,5 +649,15 @@
             "vehicles/20100/icons/icon3.png"
         ],
         "site": "vehicles/20100/site.json"
-    }
+    },
+    {
+        "id": "ET122",
+        "name": "えちごトキめき鉄道　ET122形",
+        "config": "vehicles/ET122/config.json",
+        "led": "vehicles/ET122/led.json",
+        "icons": [
+            "vehicles/ET122/icons/icon1.png"
+        ],
+        "site": "vehicles/ET122/site.json"
+    },
 ]
