@@ -1,0 +1,63 @@
+{
+    "name": "E233系7000番台",
+
+    "explanation": "a",
+
+    "hasType": true,
+    "hasDestination": true,
+    "hasInformation": true,
+    "hasInformation2": true,
+    "hasLine": true,
+    "hasNext": true,
+    "hasScroll": true,
+    "scrollLabel": null,
+    "hasCarNumber": false,
+    "hasCarNumberFull": false,
+    "hasCarNumberSmall": false,
+    "hasCarNumberNormal": false,
+    "carNumber": null,
+    "informationPosition": "normal",
+    "destinationPosition": "normal",
+    "hasNextFullScreen": false,
+    "hasScrollFullScreen": false,
+    "information_ja_en": false,
+
+    "hasInformationCombined": false,
+
+    "destinationDistinction": false,
+    "nextModeDistinction": false,
+    "typeDistinction": false,
+    "informationDistinction": false,
+    "information2Distinction": false,
+    "lineDistinction": false,
+    "carNumberDistinction": false,
+
+    "typeSwitching": false,
+
+    "sceneInterval": 10000,
+    "languageSwitching": false,
+    "carNumberLanguageSwitching": false,
+    "destinationLanguageSwitching": true,
+    "informationLanguageSwitching": false,
+    "ledWidth": 128,
+    "ledHeight": 32,
+    "pixelSize": 8.5,
+    "ledSize": 6.5,
+    "ledGap": 2,
+
+    "enAhead": false,
+    "informationAhead": false,
+
+    "setSwitchingTime": true,
+    "jaTime": 10,
+    "enTime": 10,
+    "infoTime": 1,
+    "carNumberTime": 1,
+
+    "next_normal": false,
+    "nextPosition": 16,
+
+    "hasReferenceSite": false,
+
+    "ledShape": "circle"
+}
