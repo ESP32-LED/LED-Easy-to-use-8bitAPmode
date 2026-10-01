@@ -273,6 +273,16 @@
         "site": "vehicles/E130-500/site.json"
     },
     {
+        "id": "E200",
+        "name": "キハE200系",
+        "config": "vehicles/E200/config.json",
+        "led": "vehicles/E200/led.json",
+        "icons": [
+            "vehicles/E200/icons/icon1.png"
+        ],
+        "site": "vehicles/E200/site.json"
+    },
+    {
         "id": "E26",
         "name": "E26系",
         "config": "vehicles/E26/config.json",
