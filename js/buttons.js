@@ -96,6 +96,12 @@ function createTypeButtons() {
                             if (destinationId != null) {
                                 const destinationData = getItem("destination", destinationId);
                                 const nullDestination = getItem("destination", "null_destination");
+                                let view;
+                                if (isDestinationFullScreen(destinationData)) {
+                                    view = "full";
+                                } else {
+                                    view = "normal"
+                                }
     
                                 const destinationJaWidth =
                                     destinationData.view?.[view]?.ja?.width;
@@ -230,6 +236,12 @@ function createTypeButtons() {
                         if (destinationId != null) {
                             const destinationData = getItem("destination", destinationId);
                             const nullDestination = getItem("destination", "null_destination");
+                            let view;
+                            if (isDestinationFullScreen(destinationData)) {
+                                view = "full";
+                            } else {
+                                view = "normal"
+                            }
     
                             const destinationJaWidth =
                                 destinationData.view?.[view]?.ja?.width;
@@ -344,6 +356,12 @@ function createTypeButtons() {
                     if (destinationId != null) {
                         const destinationData = getItem("destination", destinationId);
                         const nullDestination = getItem("destination", "null_destination");
+                        let view;
+                        if (isDestinationFullScreen(destinationData)) {
+                            view = "full";
+                        } else {
+                            view = "normal"
+                        }
     
                         const destinationJaWidth =
                             destinationData.view?.[view]?.ja?.width;
@@ -656,6 +674,12 @@ function createDestinationButtons() {
                             if (typeId != null) {
                                 const typeData = getItem("type", typeId);
                                 const nullType = getItem("type", "null_type");
+                                let view;
+                                if (isTypeFullScreen(typeData)) {
+                                    view = "full";
+                                } else {
+                                    view = "normal"
+                                }
     
                                 const typeJaWidth =
                                     typeData.view?.[view]?.ja?.width;
@@ -792,6 +816,12 @@ function createDestinationButtons() {
                         if (typeId != null) {
                             const typeData = getItem("type", typeId);
                             const nullType = getItem("type", "null_type");
+                            let view;
+                            if (isTypeFullScreen(typeData)) {
+                                view = "full";
+                            } else {
+                                view = "normal"
+                            }
     
                             const typeJaWidth =
                                 typeData.view?.[view]?.ja?.width;
@@ -908,6 +938,12 @@ function createDestinationButtons() {
                     if (typeId != null) {
                         const typeData = getItem("type", typeId);
                         const nullType = getItem("type", "null_type");
+                        let view;
+                        if (isTypeFullScreen(typeData)) {
+                            view = "full";
+                        } else {
+                            view = "normal"
+                        }
     
                         const typeJaWidth =
                             typeData.view?.[view]?.ja?.width;
