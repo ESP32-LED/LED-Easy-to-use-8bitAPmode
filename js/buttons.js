@@ -88,9 +88,11 @@ function createTypeButtons() {
                             } else {
                                 stopTypeScroll("en");
                             }
+                        }
     
                             // すでに行先が選択されている場合、
                             // 種別の幅が変わったので行先スクロールも再計算
+                        if (config.hasDestinationScroll) {
                             if (destinationId != null) {
                                 const destinationData = getItem("destination", destinationId);
                                 const nullDestination = getItem("destination", "null_destination");
@@ -220,9 +222,11 @@ function createTypeButtons() {
                         } else {
                             stopTypeScroll("en");
                         }
+                    }
     
                         // すでに行先が選択されている場合、
                         // 種別の幅が変わったので行先スクロールも再計算
+                    if (config.hasDestinationScroll) {
                         if (destinationId != null) {
                             const destinationData = getItem("destination", destinationId);
                             const nullDestination = getItem("destination", "null_destination");
@@ -332,9 +336,11 @@ function createTypeButtons() {
                     } else {
                         stopTypeScroll("en");
                     }
+                }
     
                     // すでに行先が選択されている場合、
                     // 種別の幅が変わったので行先スクロールも再計算
+                if (config.hasDestinationScroll) {
                     if (destinationId != null) {
                         const destinationData = getItem("destination", destinationId);
                         const nullDestination = getItem("destination", "null_destination");
@@ -644,7 +650,9 @@ function createDestinationButtons() {
                             } else {
                                 stopDestinationScroll("en");
                             }
+                        }
     
+                        if (config.hasTypeScroll) {
                             if (typeId != null) {
                                 const typeData = getItem("type", typeId);
                                 const nullType = getItem("type", "null_type");
@@ -778,7 +786,9 @@ function createDestinationButtons() {
                         } else {
                             stopDestinationScroll("en");
                         }
+                    }
     
+                    if (config.hasTypeScroll) {
                         if (typeId != null) {
                             const typeData = getItem("type", typeId);
                             const nullType = getItem("type", "null_type");
@@ -892,7 +902,9 @@ function createDestinationButtons() {
                     } else {
                         stopDestinationScroll("en");
                     }
+                }
     
+                if (config.hasTypeScroll) {
                     if (typeId != null) {
                         const typeData = getItem("type", typeId);
                         const nullType = getItem("type", "null_type");
