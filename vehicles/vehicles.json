@@ -549,6 +549,16 @@
         "site": "vehicles/keio90007000/site.json"
     },
     {
+        "id": "keio8000",
+        "name": "京王8000系",
+        "config": "vehicles/keio8000/config.json",
+        "led": "vehicles/keio8000/led.json",
+        "icons": [
+            "vehicles/keio8000/icons/icon1.png"
+        ],
+        "site": "vehicles/keio8000/site.json"
+    },
+    {
         "id": "keio2000",
         "name": "京王2000系",
         "config": "vehicles/keio2000/config.json",
