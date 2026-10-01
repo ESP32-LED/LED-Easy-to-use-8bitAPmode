@@ -1739,6 +1739,7 @@ function setVehicleSelectButton() {
         scrollId = null;
         scrollTimer = null;
         clickStartScrollBtn = false;
+        typeDestinationScrollAnimationId = null;
         stopScroll();
     })
 }
