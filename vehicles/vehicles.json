@@ -243,6 +243,16 @@
         "site": "vehicles/HB-E300_satono/site.json"
     },
     {
+        "id": "HB-E300_kairi",
+        "name": "HB-E300系「海里」",
+        "config": "vehicles/HB-E300_kairi/config.json",
+        "led": "vehicles/HB-E300_kairi/led.json",
+        "icons": [
+            "vehicles/HB-E300_kairi/icons/icon1.png"
+        ],
+        "site": "vehicles/HB-E300_kairi/site.json"
+    },
+    {
         "id": "101",
         "name": "キハ101形 左沢線",
         "config": "vehicles/101/config.json",
