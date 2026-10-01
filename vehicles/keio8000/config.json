@@ -1,12 +1,12 @@
 {
-    "name": "京王9000系・7000系　FCLED車",
+    "name": "京王8000系",
 
     "explanation": "a",
 
     "hasType": true,
     "hasDestination": true,
     "hasInformation": true,
-    "hasInformation2": true,
+    "hasInformation2": false,
     "hasLine": false,
     "hasNext": false,
     "hasScroll": false,
