@@ -670,5 +670,15 @@
             "vehicles/ET122/icons/icon1.png"
         ],
         "site": "vehicles/ET122/site.json"
+    },
+    {
+        "id": "2000",
+        "name": "遠州鉄道2000形",
+        "config": "vehicles/2000/config.json",
+        "led": "vehicles/2000/led.json",
+        "icons": [
+            "vehicles/2000/icons/icon1.png"
+        ],
+        "site": "vehicles/2000/site.json"
     }
 ]
