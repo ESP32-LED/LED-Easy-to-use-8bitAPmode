@@ -1,38 +1,41 @@
 let transferController = null;
 let autoTransferTimeout = null;
 
-
 // ============================================================
 // ESP32設定
 // ============================================================
-
 const ESP32_MAX_SCENES = 6;
 const ESP32_MAX_WIDTH = 256;
 const ESP32_MIN_WIDTH = 64;
 const ESP32_MAX_SCROLL_WIDTH = 4096;
 const ESP32_HEADER_SIZE = 20;
 
+// 新しい種別・行先スクロール用
+const ESP32_TYPE_DESTINATION_SCROLL_MAGIC = [0x54, 0x53, 0x43, 0x52]; // TSCR
+const ESP32_TYPE_DESTINATION_SCROLL_VERSION = 1;
+const ESP32_TYPE_DESTINATION_SCROLL_COUNT = 4;
+const ESP32_TYPE_DESTINATION_SCROLL_HEADER_SIZE = 8;
+const ESP32_TYPE_DESTINATION_SCROLL_DESCRIPTOR_SIZE = 16;
+const ESP32_TYPE_DESTINATION_SCROLL_PATH = "/update-type-destination-scroll";
+
+// 既存スクロールと同じ速度
+const transferScrollSpeed = 17;
 
 // ============================================================
 // 自動転送
 // ============================================================
-
 function triggerAutoTransfer() {
     if (autoTransferTimeout) {
         clearTimeout(autoTransferTimeout);
     }
-
     autoTransferTimeout = setTimeout(() => {
         const ip = document.getElementById("esp32Ip");
-
         if (ip && ip.value.trim() !== "") {
             transferToESP32();
         }
     }, 500);
 }
 
-
-// クリックによる自動転送
 document.addEventListener("click", (e) => {
     if (
         e.target.tagName === "BUTTON" ||
@@ -47,8 +50,6 @@ document.addEventListener("click", (e) => {
     }
 });
 
-
-// スクロール文字入力などの変更で自動転送
 document.addEventListener("input", (e) => {
     if (
         e.target.id === "scrollText" ||
@@ -80,164 +81,81 @@ document.addEventListener("change", (e) => {
     }
 });
 
-
 // ============================================================
 // 数値取得
 // ============================================================
-
 function getNumberValue(id, defaultValue) {
     const element = document.getElementById(id);
-
     if (!element) {
         return defaultValue;
     }
-
-    // inputそのもの
     if (element.matches && element.matches("input")) {
         const value = Number(element.value);
-
-        return Number.isFinite(value)
-            ? value
-            : defaultValue;
+        return Number.isFinite(value) ? value : defaultValue;
     }
-
-    // #jaTime のようなコンテナ
     const input = element.querySelector
         ? element.querySelector("input")
         : null;
-
     if (!input) {
         return defaultValue;
     }
-
     const value = Number(input.value);
-
-    return Number.isFinite(value)
-        ? value
-        : defaultValue;
+    return Number.isFinite(value) ? value : defaultValue;
 }
 
-
 // ============================================================
-// スクロール文字取得
+// 既存スクロール文字取得
 // ============================================================
-
 function getScrollText() {
-    // リポジトリ本来のID
-    const scrollText =
-        document.getElementById("scrollText");
-
+    const scrollText = document.getElementById("scrollText");
     if (scrollText) {
         return scrollText.value || "";
     }
-
-    // 旧バージョンとの互換
-    const oldScrollText =
-        document.getElementById("scroll-text-input");
-
+    const oldScrollText = document.getElementById("scroll-text-input");
     if (oldScrollText) {
         return oldScrollText.value || "";
     }
-
     return "";
 }
 
-
 // ============================================================
-// スクロールが有効か
+// 既存スクロールが有効か
 // ============================================================
-
 function isScrollEnabled() {
     return clickStartScrollBtn;
 }
 
-
 // ============================================================
-// スクロール色
+// 既存スクロール色
 // ============================================================
-//
-// drawScroll() は
-//
-//   r: 255
-//   g: 242
-//   b: 0
-//
-// を使用しているため、デフォルトは同じ色。
-// #scroll-color が存在する場合のみ、その色を使用する。
-//
-
 function getScrollColor() {
-    const colorInput =
-        document.getElementById("scroll-color");
-
-    // リポジトリ本来の色
+    const colorInput = document.getElementById("scroll-color");
     const defaultColor = {
         r: 255,
         g: 242,
         b: 0
     };
-
     if (!colorInput || !colorInput.value) {
         return defaultColor;
     }
-
-    const value =
-        colorInput.value.trim();
-
-    const match =
-        value.match(
-            /^#([0-9a-fA-F]{6})$/
-        );
-
+    const value = colorInput.value.trim();
+    const match = value.match(/^#([0-9a-fA-F]{6})$/);
     if (!match) {
         return defaultColor;
     }
-
     return {
-        r: parseInt(
-            match[1].slice(0, 2),
-            16
-        ),
-        g: parseInt(
-            match[1].slice(2, 4),
-            16
-        ),
-        b: parseInt(
-            match[1].slice(4, 6),
-            16
-        )
+        r: parseInt(match[1].slice(0, 2), 16),
+        g: parseInt(match[1].slice(2, 4), 16),
+        b: parseInt(match[1].slice(4, 6), 16)
     };
 }
 
-
 // ============================================================
-// スクロールデータ生成
+// 既存スクロールデータ生成
 // ============================================================
-//
-// リポジトリの drawScroll() / createScrollMatrix() と同じ方式:
-//
-// 1文字 = 16 × 16 ドット
-// 文字列幅 = 文字数 × 16
-//
-// fontData[文字] に入っている256個の0/1をそのまま使用。
-//
-// ESP32へ送る順番:
-//
-//   X0 Y0
-//   X0 Y1
-//   ...
-//   X0 Y15
-//   X1 Y0
-//   ...
-//
-// RGB565 little endian
-//
-
 function createESP32ScrollData(br, gam) {
-
     const text = getScrollText();
 
-    // スクロールOFF
     if (!isScrollEnabled()) {
         return {
             tw: 0,
@@ -245,7 +163,6 @@ function createESP32ScrollData(br, gam) {
         };
     }
 
-    // 文字なし
     if (!text) {
         return {
             tw: 0,
@@ -253,18 +170,12 @@ function createESP32ScrollData(br, gam) {
         };
     }
 
-    // 車両側がスクロール非対応
     if (config && config.hasScroll === false) {
         return {
             tw: 0,
             sbuf: new Uint8Array(0)
         };
     }
-
-
-    // --------------------------------------------------------
-    // fontData確認
-    // --------------------------------------------------------
 
     if (
         typeof fontData === "undefined" ||
@@ -275,22 +186,8 @@ function createESP32ScrollData(br, gam) {
         );
     }
 
-
-    // --------------------------------------------------------
-    // drawScroll() と同じ文字分割
-    // --------------------------------------------------------
-
-    // for...of と同じくUnicodeコードポイント単位で分割
     const chars = [...text];
-
-
-    // --------------------------------------------------------
-    // 1文字16px
-    // --------------------------------------------------------
-
-    const tw =
-        chars.length * 16;
-
+    const tw = chars.length * 16;
 
     if (tw > ESP32_MAX_SCROLL_WIDTH) {
         throw new Error(
@@ -298,129 +195,53 @@ function createESP32ScrollData(br, gam) {
         );
     }
 
-
-    // --------------------------------------------------------
-    // RGB565用バッファ
-    // --------------------------------------------------------
-
-    const sbuf =
-        new Uint8Array(
-            tw * 16 * 2
-        );
-
+    const sbuf = new Uint8Array(tw * 16 * 2);
     let sp = 0;
+    const baseColor = getScrollColor();
 
+    for (let charIndex = 0; charIndex < chars.length; charIndex++) {
+        const char = chars[charIndex];
+        const data = fontData[char];
 
-    // --------------------------------------------------------
-    // スクロール色
-    // --------------------------------------------------------
-
-    const baseColor =
-        getScrollColor();
-
-
-    // --------------------------------------------------------
-    // 文字ごとに16×16ドットを展開
-    // --------------------------------------------------------
-
-    for (
-        let charIndex = 0;
-        charIndex < chars.length;
-        charIndex++
-    ) {
-
-        const char =
-            chars[charIndex];
-
-
-        /*
-         * display.js の textToMatrix16() と同じ。
-         *
-         * fontData[char] が無ければ
-         * 16×16全消灯。
-         */
-
-        const data =
-            fontData[char];
-
-
-        for (
-            let px = 0;
-            px < 16;
-            px++
-        ) {
-
-            for (
-                let py = 0;
-                py < 16;
-                py++
-            ) {
-
+        for (let px = 0; px < 16; px++) {
+            for (let py = 0; py < 16; py++) {
                 let r = 0;
                 let g = 0;
                 let b = 0;
 
-
-                // 未登録文字
-                if (!data) {
-                    r = 0;
-                    g = 0;
-                    b = 0;
-
-                } else {
-
-                    const index =
-                        py * 16 + px;
-
-
-                    // textToMatrix16() と同じく
-                    // value === 1 のみ点灯
-                    const on =
-                        data[index] === 1;
-
+                if (data) {
+                    const index = py * 16 + px;
+                    const on = data[index] === 1;
 
                     if (on) {
-
-                        // 明るさ・ガンマ補正
                         r = Math.min(
                             255,
                             Math.max(
                                 0,
                                 Math.round(
-                                    Math.pow(
-                                        baseColor.r / 255,
-                                        gam
-                                    ) *
+                                    Math.pow(baseColor.r / 255, gam) *
                                     br *
                                     255
                                 )
                             )
                         );
-
                         g = Math.min(
                             255,
                             Math.max(
                                 0,
                                 Math.round(
-                                    Math.pow(
-                                        baseColor.g / 255,
-                                        gam
-                                    ) *
+                                    Math.pow(baseColor.g / 255, gam) *
                                     br *
                                     255
                                 )
                             )
                         );
-
                         b = Math.min(
                             255,
                             Math.max(
                                 0,
                                 Math.round(
-                                    Math.pow(
-                                        baseColor.b / 255,
-                                        gam
-                                    ) *
+                                    Math.pow(baseColor.b / 255, gam) *
                                     br *
                                     255
                                 )
@@ -429,24 +250,16 @@ function createESP32ScrollData(br, gam) {
                     }
                 }
 
-
-                // RGB888 → RGB565
                 const rgb565 =
                     ((r >> 3) << 11) |
                     ((g >> 2) << 5) |
                     (b >> 3);
 
-
-                // little endian
-                sbuf[sp++] =
-                    rgb565 & 0xFF;
-
-                sbuf[sp++] =
-                    (rgb565 >> 8) & 0xFF;
+                sbuf[sp++] = rgb565 & 0xFF;
+                sbuf[sp++] = (rgb565 >> 8) & 0xFF;
             }
         }
     }
-
 
     return {
         tw,
@@ -454,13 +267,365 @@ function createESP32ScrollData(br, gam) {
     };
 }
 
+// ============================================================
+// 新しい種別・行先スクロール用 状態取得
+// ============================================================
+function getESP32TypeDestinationScrollStates() {
+    const states = [];
+
+    if (
+        typeof typeJaScrollState !== "undefined"
+    ) {
+        states.push({
+            state: typeJaScrollState,
+            kind: 0,
+            lang: 0,
+            category: "type",
+            langName: "ja"
+        });
+    }
+
+    if (
+        typeof typeEnScrollState !== "undefined"
+    ) {
+        states.push({
+            state: typeEnScrollState,
+            kind: 0,
+            lang: 1,
+            category: "type",
+            langName: "en"
+        });
+    }
+
+    if (
+        typeof destinationJaScrollState !== "undefined"
+    ) {
+        states.push({
+            state: destinationJaScrollState,
+            kind: 1,
+            lang: 0,
+            category: "destination",
+            langName: "ja"
+        });
+    }
+
+    if (
+        typeof destinationEnScrollState !== "undefined"
+    ) {
+        states.push({
+            state: destinationEnScrollState,
+            kind: 1,
+            lang: 1,
+            category: "destination",
+            langName: "en"
+        });
+    }
+
+    return states;
+}
+
+// ============================================================
+// 新しい種別・行先スクロール用 RGB565生成
+// ============================================================
+function createESP32TypeDestinationScrollBitmap(view, br, gam) {
+    if (
+        !view ||
+        !view.data ||
+        !Number.isFinite(Number(view.width)) ||
+        !Number.isFinite(Number(view.height))
+    ) {
+        return null;
+    }
+
+    const width = Number(view.width);
+    const height = Number(view.height);
+
+    if (width <= 0 || height <= 0) {
+        return null;
+    }
+
+    if (width > ESP32_MAX_SCROLL_WIDTH) {
+        throw new Error(
+            `種別・行先スクロール幅が長すぎます（最大${ESP32_MAX_SCROLL_WIDTH}px）`
+        );
+    }
+
+    const data = view.data;
+    const sbuf = new Uint8Array(
+        width * height * 2
+    );
+
+    let sp = 0;
+
+    for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; y++) {
+            const index = (y * width + x) * 3;
+
+            const srcR = Number(data[index] ?? 0);
+            const srcG = Number(data[index + 1] ?? 0);
+            const srcB = Number(data[index + 2] ?? 0);
+
+            const r = Math.min(
+                255,
+                Math.max(
+                    0,
+                    Math.round(
+                        Math.pow(srcR / 255, gam) *
+                        br *
+                        255
+                    )
+                )
+            );
+
+            const g = Math.min(
+                255,
+                Math.max(
+                    0,
+                    Math.round(
+                        Math.pow(srcG / 255, gam) *
+                        br *
+                        255
+                    )
+                )
+            );
+
+            const b = Math.min(
+                255,
+                Math.max(
+                    0,
+                    Math.round(
+                        Math.pow(srcB / 255, gam) *
+                        br *
+                        255
+                    )
+                )
+            );
+
+            const rgb565 =
+                ((r >> 3) << 11) |
+                ((g >> 2) << 5) |
+                (b >> 3);
+
+            sbuf[sp++] = rgb565 & 0xFF;
+            sbuf[sp++] = (rgb565 >> 8) & 0xFF;
+        }
+    }
+
+    return {
+        width,
+        height,
+        sbuf
+    };
+}
+
+// ============================================================
+// 新しい種別・行先スクロール パケット生成
+// ============================================================
+// パケット:
+// [8byte header]
+// [4系統 × 16byte descriptor]
+// [type JA RGB565]
+// [type EN RGB565]
+// [destination JA RGB565]
+// [destination EN RGB565]
+//
+// descriptor:
+// 0 active
+// 1 kind       0=type / 1=destination
+// 2 lang       0=ja / 1=en
+// 3-4 width
+// 5 height
+// 6-7 areaLeft
+// 8-9 areaRight
+// 10 areaTop
+// 11 areaBottom
+// 12-15 dataLength
+// ============================================================
+function createESP32TypeDestinationScrollPacket(br, gam) {
+    const states = getESP32TypeDestinationScrollStates();
+
+    if (states.length === 0) {
+        return new Uint8Array(0);
+    }
+
+    const descriptors = [];
+    const bitmaps = [];
+    let totalDataLength = 0;
+
+    for (let i = 0; i < ESP32_TYPE_DESTINATION_SCROLL_COUNT; i++) {
+        const info = states[i];
+
+        let descriptor = {
+            active: 0,
+            kind: info ? info.kind : 0,
+            lang: info ? info.lang : 0,
+            width: 0,
+            height: 0,
+            areaLeft: 0,
+            areaRight: 0,
+            areaTop: 0,
+            areaBottom: 0,
+            dataLength: 0
+        };
+
+        let bitmap = new Uint8Array(0);
+
+        if (
+            info &&
+            info.state &&
+            info.state.active &&
+            clickStartScrollBtn !== false
+        ) {
+            let item = null;
+
+            if (info.category === "type") {
+                item = getItem("type", typeId);
+            } else {
+                item = getItem("destination", destinationId);
+            }
+
+            const view = item?.view?.normal?.[info.langName];
+            const created = createESP32TypeDestinationScrollBitmap(
+                view,
+                br,
+                gam
+            );
+
+            if (created) {
+                descriptor.active = 1;
+                descriptor.width = created.width;
+                descriptor.height = created.height;
+                descriptor.areaLeft = Math.max(
+                    0,
+                    Math.round(info.state.areaLeft)
+                );
+                descriptor.areaRight = Math.max(
+                    0,
+                    Math.round(info.state.areaRight)
+                );
+                descriptor.areaTop = Math.max(
+                    0,
+                    Math.round(info.state.areaTop)
+                );
+                descriptor.areaBottom = Math.max(
+                    0,
+                    Math.round(info.state.areaBottom)
+                );
+                descriptor.dataLength = created.sbuf.length;
+                bitmap = created.sbuf;
+            }
+        }
+
+        descriptors.push(descriptor);
+        bitmaps.push(bitmap);
+        totalDataLength += bitmap.length;
+    }
+
+    let activeCount = 0;
+
+    for (const descriptor of descriptors) {
+        if (descriptor.active) {
+            activeCount++;
+        }
+    }
+
+    if (activeCount === 0) {
+        return new Uint8Array(0);
+    }
+
+    const packetLength =
+        ESP32_TYPE_DESTINATION_SCROLL_HEADER_SIZE +
+        ESP32_TYPE_DESTINATION_SCROLL_COUNT *
+        ESP32_TYPE_DESTINATION_SCROLL_DESCRIPTOR_SIZE +
+        totalDataLength;
+
+    const packet = new Uint8Array(packetLength);
+    let offset = 0;
+
+    packet.set(
+        ESP32_TYPE_DESTINATION_SCROLL_MAGIC,
+        offset
+    );
+    offset += 4;
+
+    packet[offset++] =
+        ESP32_TYPE_DESTINATION_SCROLL_VERSION;
+
+    packet[offset++] =
+        ESP32_TYPE_DESTINATION_SCROLL_COUNT;
+
+    packet[offset++] =
+        transferScrollSpeed & 0xFF;
+
+    packet[offset++] = 0;
+
+    for (const descriptor of descriptors) {
+        packet[offset++] = descriptor.active & 0xFF;
+        packet[offset++] = descriptor.kind & 0xFF;
+        packet[offset++] = descriptor.lang & 0xFF;
+
+        packet[offset++] =
+            descriptor.width & 0xFF;
+        packet[offset++] =
+            (descriptor.width >> 8) & 0xFF;
+
+        packet[offset++] =
+            descriptor.height & 0xFF;
+
+        packet[offset++] =
+            descriptor.areaLeft & 0xFF;
+        packet[offset++] =
+            (descriptor.areaLeft >> 8) & 0xFF;
+
+        packet[offset++] =
+            descriptor.areaRight & 0xFF;
+        packet[offset++] =
+            (descriptor.areaRight >> 8) & 0xFF;
+
+        packet[offset++] =
+            descriptor.areaTop & 0xFF;
+
+        packet[offset++] =
+            descriptor.areaBottom & 0xFF;
+
+        packet[offset++] =
+            descriptor.dataLength & 0xFF;
+        packet[offset++] =
+            (descriptor.dataLength >> 8) & 0xFF;
+        packet[offset++] =
+            (descriptor.dataLength >> 16) & 0xFF;
+        packet[offset++] =
+            (descriptor.dataLength >> 24) & 0xFF;
+    }
+
+    for (const bitmap of bitmaps) {
+        packet.set(bitmap, offset);
+        offset += bitmap.length;
+    }
+
+    console.log(
+        "ESP32 type/destination scroll packet:",
+        packet.length,
+        "bytes"
+    );
+
+    console.log(
+        "ESP32 type/destination scroll active:",
+        activeCount
+    );
+
+    console.log(
+        "ESP32 type/destination scroll speed:",
+        transferScrollSpeed
+    );
+
+    return packet;
+}
 
 // ============================================================
 // ESP32パケット生成
 // ============================================================
-
 function createESP32Packet() {
-
     if (
         typeof buildSceneList !== "function" ||
         typeof buildTypeSceneList !== "function" ||
@@ -473,73 +638,47 @@ function createESP32Packet() {
         );
     }
 
-
     if (!config) {
         throw new Error(
             "車両configが読み込まれていません"
         );
     }
 
-
-    // --------------------------------------------------------
-    // スクロール状態を取得
-    // --------------------------------------------------------
-
-    const scrollText =
-        getScrollText();
-
+    const scrollText = getScrollText();
 
     const scrollActive =
         config.hasScroll === true &&
         isScrollEnabled() &&
         scrollText.length > 0;
 
-
-    // --------------------------------------------------------
-    // スクロール表示時は
-    // buildSceneList() にもscrollId=trueとして扱わせる
-    //
-    // drawScroll() と同じ状態にするため
-    // --------------------------------------------------------
-
     const oldScrollId =
         typeof scrollId !== "undefined"
             ? scrollId
             : null;
 
-
+    // これは既存スクロール用だけ
     if (scrollActive) {
         scrollId = true;
     }
 
-
     try {
-
-        // ----------------------------------------------------
-        // シーン構築
-        // ----------------------------------------------------
-
         buildSceneList();
         buildTypeSceneList();
-
 
         if (sceneList.length === 0) {
             return new Uint8Array();
         }
-
 
         const typeCount =
             typeSceneList.length > 0
                 ? typeSceneList.length
                 : 1;
 
-
         const calculatedSceneCount =
             lcm(
                 sceneList.length,
                 typeCount
             );
-
 
         if (
             calculatedSceneCount >
@@ -550,14 +689,8 @@ function createESP32Packet() {
             );
         }
 
-
         const sceneCount =
             calculatedSceneCount;
-
-
-        // ----------------------------------------------------
-        // ハードウェア幅
-        // ----------------------------------------------------
 
         const hw =
             Math.round(
@@ -566,7 +699,6 @@ function createESP32Packet() {
                     160
                 )
             );
-
 
         if (
             hw < ESP32_MIN_WIDTH ||
@@ -577,14 +709,8 @@ function createESP32Packet() {
             );
         }
 
-
-        // ----------------------------------------------------
-        // 表示データ幅
-        // ----------------------------------------------------
-
         const pw =
             Number(config.ledWidth);
-
 
         if (
             !Number.isFinite(pw) ||
@@ -595,21 +721,11 @@ function createESP32Packet() {
             );
         }
 
-
-        // ----------------------------------------------------
-        // ハードウェア上での右詰め余白
-        // ----------------------------------------------------
-
         const margin =
             Math.max(
                 0,
                 hw - pw
             );
-
-
-        // ----------------------------------------------------
-        // 明るさ・ガンマ
-        // ----------------------------------------------------
 
         const br =
             getNumberValue(
@@ -617,45 +733,20 @@ function createESP32Packet() {
                 1.0
             );
 
-
         const gam =
             getNumberValue(
                 "gammaCorrection",
                 1.5
             );
 
-
-        // ----------------------------------------------------
-        // スクロール速度
-        // ----------------------------------------------------
-
-        const transferScrollSpeed = 17;
-
-        // ----------------------------------------------------
-        // スクロールデータ
-        // ----------------------------------------------------
-
+        // 既存スクロール
         const scrollData =
             createESP32ScrollData(
                 br,
                 gam
             );
 
-
-        // ----------------------------------------------------
-        // スクロール開始位置
-        //
-        // drawScroll():
-        //
-        //   通常 → areaLeft = 48
-        //   全画面 → areaLeft = -1
-        //
-        // ハードウェア側では
-        // 表示データ全体の右詰め分marginを加える。
-        // ----------------------------------------------------
-
         let areaLeft = 48;
-
 
         const type =
             typeof getItem === "function"
@@ -665,10 +756,7 @@ function createESP32Packet() {
                 )
                 : null;
 
-
-        let typeIsFull =
-            false;
-
+        let typeIsFull = false;
 
         if (
             type &&
@@ -678,9 +766,6 @@ function createESP32Packet() {
                 isTypeFullScreen(type);
         }
 
-
-        // drawScroll() と同じく
-        // フル画面種別ではスクロールしない
         if (
             scrollActive &&
             typeIsFull
@@ -690,7 +775,6 @@ function createESP32Packet() {
                 new Uint8Array(0);
         }
 
-
         if (
             typeId === null &&
             config.hasScrollFullScreen
@@ -698,17 +782,14 @@ function createESP32Packet() {
             areaLeft = 0;
         }
 
-
         if (
             config.hasNextFullScreen
         ) {
             areaLeft = 0;
         }
 
-
         let xOff =
             areaLeft + margin;
-
 
         xOff =
             Math.max(
@@ -718,11 +799,6 @@ function createESP32Packet() {
                     xOff
                 )
             );
-
-
-        // ----------------------------------------------------
-        // ヘッダー
-        // ----------------------------------------------------
 
         const header =
             createESP32Header(
@@ -734,26 +810,12 @@ function createESP32Packet() {
                 xOff
             );
 
-
-        // ----------------------------------------------------
-        // シーンデータ
-        // ----------------------------------------------------
-
         const sceneData =
             createAllESP32Scenes(
                 sceneCount,
                 hw,
                 margin
             );
-
-
-        // ----------------------------------------------------
-        // 最終パケット
-        //
-        // [20byte header]
-        // [scroll RGB565]
-        // [scene data]
-        // ----------------------------------------------------
 
         const packet =
             new Uint8Array(
@@ -762,25 +824,21 @@ function createESP32Packet() {
                 sceneData.length
             );
 
-
         packet.set(
             header,
             0
         );
-
 
         packet.set(
             scrollData.sbuf,
             header.length
         );
 
-
         packet.set(
             sceneData,
             header.length +
             scrollData.sbuf.length
         );
-
 
         console.log(
             "ESP32 packet size:",
@@ -808,12 +866,10 @@ function createESP32Packet() {
             xOff
         );
 
-
         return packet;
 
     } finally {
-
-        // 元のscrollIdを必ず復元
+        // 既存スクロールの状態だけ元に戻す
         if (
             typeof scrollId !== "undefined"
         ) {
@@ -823,17 +879,14 @@ function createESP32Packet() {
     }
 }
 
-
 // ============================================================
 // ESP32用フレーム生成
 // ============================================================
-
 function createESP32Frame(
     matrix,
     hw,
     margin
 ) {
-
     const frame =
         Array.from(
             { length: 8 },
@@ -845,13 +898,11 @@ function createESP32Frame(
                 )
         );
 
-
     const br =
         getNumberValue(
             "softBrightness",
             1.0
         );
-
 
     const gam =
         getNumberValue(
@@ -859,16 +910,12 @@ function createESP32Frame(
             1.5
         );
 
-
     const ledHeight =
         Number(config.ledHeight);
-
 
     const ledWidth =
         Number(config.ledWidth);
 
-
-    // 縦32未満なら中央寄せ
     const yOffset =
         ledHeight < 32
             ? Math.floor(
@@ -876,31 +923,25 @@ function createESP32Frame(
             )
             : 0;
 
-
     for (
         let y = 0;
         y < ledHeight;
         y++
     ) {
-
         for (
             let x = 0;
             x < ledWidth;
             x++
         ) {
-
             const pixel =
                 matrix[y]?.[x];
-
 
             if (!pixel) {
                 continue;
             }
 
-
             const targetX =
                 x + margin;
-
 
             if (
                 targetX < 0 ||
@@ -909,10 +950,8 @@ function createESP32Frame(
                 continue;
             }
 
-
             const targetY =
                 y + yOffset;
-
 
             if (
                 targetY < 0 ||
@@ -920,7 +959,6 @@ function createESP32Frame(
             ) {
                 continue;
             }
-
 
             const r =
                 Math.min(
@@ -938,7 +976,6 @@ function createESP32Frame(
                     )
                 );
 
-
             const g =
                 Math.min(
                     255,
@@ -954,7 +991,6 @@ function createESP32Frame(
                         )
                     )
                 );
-
 
             const b =
                 Math.min(
@@ -972,13 +1008,11 @@ function createESP32Frame(
                     )
                 );
 
-
             for (
                 let bit = 0;
                 bit < 8;
                 bit++
             ) {
-
                 if (
                     (r >> bit) & 1
                 ) {
@@ -990,7 +1024,6 @@ function createESP32Frame(
                             : 0x08;
                 }
 
-
                 if (
                     (g >> bit) & 1
                 ) {
@@ -1001,7 +1034,6 @@ function createESP32Frame(
                             ? 0x02
                             : 0x10;
                 }
-
 
                 if (
                     (b >> bit) & 1
@@ -1017,71 +1049,57 @@ function createESP32Frame(
         }
     }
 
-
     return frame;
 }
-
 
 // ============================================================
 // フレーム → Uint8Array
 // ============================================================
-
 function frameToUint8Array(
     frame,
     hw
 ) {
-
     const sceneBuf =
         new Uint8Array(
             8 * 16 * hw
         );
 
-
     let p = 0;
-
 
     for (
         let bit = 0;
         bit < 8;
         bit++
     ) {
-
         for (
             let y = 0;
             y < 16;
             y++
         ) {
-
             for (
                 let x = 0;
                 x < hw;
                 x++
             ) {
-
                 sceneBuf[p++] =
                     frame[bit][y][x];
             }
         }
     }
 
-
     return sceneBuf;
 }
-
 
 // ============================================================
 // 全シーン生成
 // ============================================================
-
 function createAllESP32Scenes(
     sceneCount,
     hw,
     margin
 ) {
-
     const sceneSize =
         8 * 16 * hw;
-
 
     const allData =
         new Uint8Array(
@@ -1089,43 +1107,33 @@ function createAllESP32Scenes(
             sceneSize
         );
 
-
     let offset = 0;
-
 
     const oldScene =
         scene;
 
-
     const oldTypeScene =
         typeScene;
 
-
     try {
-
         for (
             let i = 0;
             i < sceneCount;
             i++
         ) {
-
             scene =
                 i % sceneList.length;
-
 
             typeScene =
                 typeSceneList.length > 0
                     ? i % typeSceneList.length
                     : 0;
 
-
             applyScene();
             applyTypeScene();
 
-
             const matrix =
                 createDisplayMatrix();
-
 
             const frame =
                 createESP32Frame(
@@ -1134,35 +1142,28 @@ function createAllESP32Scenes(
                     margin
                 );
 
-
             const sceneBuf =
                 frameToUint8Array(
                     frame,
                     hw
                 );
 
-
             allData.set(
                 sceneBuf,
                 offset
             );
-
 
             offset +=
                 sceneSize;
         }
 
     } finally {
-
         scene =
             oldScene;
-
 
         typeScene =
             oldTypeScene;
 
-
-        // 表示状態を復元
         try {
             applyScene();
             applyTypeScene();
@@ -1174,28 +1175,12 @@ function createAllESP32Scenes(
         }
     }
 
-
     return allData;
 }
-
 
 // ============================================================
 // ESP32ヘッダー
 // ============================================================
-//
-// 0  AA
-// 1  56
-// 2  sceneCount
-// 3  transferScrollSpeed
-// 4  scrollWidth LOW
-// 5  scrollWidth HIGH
-// 6  scrollXOffset
-// 7-16  scene interval × 5
-// 17 hardware brightness
-// 18 hardware width LOW
-// 19 hardware width HIGH
-//
-
 function createESP32Header(
     sceneCount,
     hw,
@@ -1204,30 +1189,21 @@ function createESP32Header(
     transferScrollSpeed,
     xOff
 ) {
-
     const header =
         new Uint8Array(
             ESP32_HEADER_SIZE
         );
 
-
     let times;
-
-
-    // --------------------------------------------------------
-    // シーン切替時間
-    // --------------------------------------------------------
 
     if (
         config.setSwitchingTime
     ) {
-
         const jaTime =
             getNumberValue(
                 "jaTime",
                 3
             ) * 1000;
-
 
         const enTime =
             getNumberValue(
@@ -1235,20 +1211,17 @@ function createESP32Header(
                 3
             ) * 1000;
 
-
         const infoTime =
             getNumberValue(
                 "infoTime",
                 3
             ) * 1000;
 
-
         const carNumberTime =
             getNumberValue(
                 "carNumberTime",
                 3
             ) * 1000;
-
 
         times =
             sceneList
@@ -1258,7 +1231,6 @@ function createESP32Header(
                 )
                 .map(
                     currentScene => {
-
                         if (
                             currentScene.information ===
                             "carNumber" ||
@@ -1270,7 +1242,6 @@ function createESP32Header(
                             return carNumberTime;
                         }
 
-
                         if (
                             currentScene.information ===
                             "information"
@@ -1278,19 +1249,16 @@ function createESP32Header(
                             return infoTime;
                         }
 
-
                         if (
                             currentScene.information ===
                             "destination"
                         ) {
-
                             if (
                                 currentScene.lang ===
                                 "ja"
                             ) {
                                 return jaTime;
                             }
-
 
                             if (
                                 currentScene.lang ===
@@ -1300,13 +1268,11 @@ function createESP32Header(
                             }
                         }
 
-
                         return 3000;
                     }
                 );
 
     } else {
-
         times = [
             3000,
             3000,
@@ -1316,49 +1282,32 @@ function createESP32Header(
         ];
     }
 
-
-    // --------------------------------------------------------
-    // 固定ヘッダー
-    // --------------------------------------------------------
-
     header[0] =
         0xAA;
-
 
     header[1] =
         0x56;
 
-
     header[2] =
         sceneCount & 0xFF;
-
 
     header[3] =
         transferScrollSpeed & 0xFF;
 
-
     header[4] =
         scrollWidth & 0xFF;
-
 
     header[5] =
         (scrollWidth >> 8) & 0xFF;
 
-
     header[6] =
         xOff & 0xFF;
-
-
-    // --------------------------------------------------------
-    // シーン時間
-    // --------------------------------------------------------
 
     for (
         let i = 0;
         i < 5;
         i++
     ) {
-
         const time =
             Math.max(
                 0,
@@ -1371,19 +1320,12 @@ function createESP32Header(
                 )
             );
 
-
         header[7 + i * 2] =
             time & 0xFF;
-
 
         header[8 + i * 2] =
             (time >> 8) & 0xFF;
     }
-
-
-    // --------------------------------------------------------
-    // ハードウェア輝度
-    // --------------------------------------------------------
 
     const hwBright =
         Math.max(
@@ -1399,86 +1341,60 @@ function createESP32Header(
             )
         );
 
-
     header[17] =
         hwBright & 0xFF;
-
-
-    // --------------------------------------------------------
-    // ハードウェア幅
-    // --------------------------------------------------------
 
     header[18] =
         hw & 0xFF;
 
-
     header[19] =
         (hw >> 8) & 0xFF;
-
 
     return header;
 }
 
-
 // ============================================================
 // ESP32へ転送
 // ============================================================
-
 async function transferToESP32() {
-
     const status =
         document.getElementById(
             "transferStatus"
         );
-
 
     const ipInput =
         document.getElementById(
             "esp32Ip"
         );
 
-
     const ip =
         ipInput
             ? ipInput.value.trim()
             : "192.168.4.1";
 
-
     if (!ip) {
-
         if (status) {
             status.textContent =
                 "ESP32のIPアドレスを入力してください";
         }
-
         return;
     }
-
-
-    // --------------------------------------------------------
-    // 前の転送を停止
-    // --------------------------------------------------------
 
     if (transferController) {
         transferController.abort();
     }
 
-
     transferController =
         new AbortController();
 
-
     try {
-
         if (status) {
             status.textContent =
                 "データ作成中...";
         }
 
-
         const packet =
             createESP32Packet();
-
 
         if (
             !packet ||
@@ -1489,12 +1405,10 @@ async function transferToESP32() {
             );
         }
 
-
         if (status) {
             status.textContent =
                 `Wi-Fi転送中... (${packet.length} bytes)`;
         }
-
 
         console.log(
             "ESP32 packet:",
@@ -1502,14 +1416,11 @@ async function transferToESP32() {
             "bytes"
         );
 
-
-        // ----------------------------------------------------
-        // FormData
-        // ----------------------------------------------------
-
+        // ====================================================
+        // 既存の転送
+        // ====================================================
         const formData =
             new FormData();
-
 
         formData.append(
             "file",
@@ -1523,11 +1434,6 @@ async function transferToESP32() {
             "led.bin"
         );
 
-
-        // ----------------------------------------------------
-        // Wi-Fi POST
-        // ----------------------------------------------------
-
         const response =
             await fetch(
                 `http://${ip}/update`,
@@ -1539,14 +1445,11 @@ async function transferToESP32() {
                 }
             );
 
-
         if (!response.ok) {
-
             throw new Error(
                 `転送失敗: HTTP ${response.status}`
             );
         }
-
 
         let responseText = "";
 
@@ -1554,46 +1457,117 @@ async function transferToESP32() {
             responseText =
                 await response.text();
         } catch (e) {
-            // 本文を取得できなくても
-            // HTTP成功なら転送成功とする
         }
-
 
         console.log(
             "ESP32 response:",
             responseText
         );
 
+        // ====================================================
+        // 新しい種別・行先スクロール
+        // ====================================================
+        const br =
+            getNumberValue(
+                "softBrightness",
+                1.0
+            );
+
+        const gam =
+            getNumberValue(
+                "gammaCorrection",
+                1.5
+            );
+
+        const typeDestinationScrollPacket =
+            createESP32TypeDestinationScrollPacket(
+                br,
+                gam
+            );
+
+        if (
+            typeDestinationScrollPacket &&
+            typeDestinationScrollPacket.length > 0
+        ) {
+            if (status) {
+                status.textContent =
+                    `種別・行先スクロール転送中... (${typeDestinationScrollPacket.length} bytes)`;
+            }
+
+            console.log(
+                "ESP32 type/destination scroll packet:",
+                typeDestinationScrollPacket.length,
+                "bytes"
+            );
+
+            const scrollFormData =
+                new FormData();
+
+            scrollFormData.append(
+                "file",
+                new Blob(
+                    [typeDestinationScrollPacket],
+                    {
+                        type:
+                            "application/octet-stream"
+                    }
+                ),
+                "type_destination_scroll.bin"
+            );
+
+            const scrollResponse =
+                await fetch(
+                    `http://${ip}${ESP32_TYPE_DESTINATION_SCROLL_PATH}`,
+                    {
+                        method: "POST",
+                        body: scrollFormData,
+                        signal:
+                            transferController.signal
+                    }
+                );
+
+            if (!scrollResponse.ok) {
+                throw new Error(
+                    `種別・行先スクロール転送失敗: HTTP ${scrollResponse.status}`
+                );
+            }
+
+            let scrollResponseText = "";
+
+            try {
+                scrollResponseText =
+                    await scrollResponse.text();
+            } catch (e) {
+            }
+
+            console.log(
+                "ESP32 type/destination scroll response:",
+                scrollResponseText
+            );
+        }
 
         if (status) {
             status.textContent =
                 "転送完了";
         }
 
-
     } catch (error) {
-
         if (
             error &&
             error.name === "AbortError"
         ) {
-
             console.log(
                 "ESP32転送を中断しました"
             );
-
             return;
         }
-
 
         console.error(
             "ESP32転送エラー:",
             error
         );
 
-
         if (status) {
-
             status.textContent =
                 "転送失敗: " +
                 (
@@ -1603,24 +1577,19 @@ async function transferToESP32() {
         }
 
     } finally {
-
         transferController =
             null;
     }
 }
 
-
 // ============================================================
 // GCD
 // ============================================================
-
 function gcd(a, b) {
-
     a = Math.abs(a);
     b = Math.abs(b);
 
     while (b !== 0) {
-
         const temp =
             a % b;
 
@@ -1631,13 +1600,10 @@ function gcd(a, b) {
     return a;
 }
 
-
 // ============================================================
 // LCM
 // ============================================================
-
 function lcm(a, b) {
-
     if (
         a === 0 ||
         b === 0
