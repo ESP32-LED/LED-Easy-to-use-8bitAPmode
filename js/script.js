@@ -877,6 +877,10 @@ tittle.addEventListener("click", () => {
     typeDestinationScrollAnimationId = null;
     typeScroll = false;
     destinationScroll = false;
+    stopTypeScroll(ja);
+    stopTypeScroll(en);
+    stopDestinationScroll(ja);
+    stopDestinationScroll(en);
     stopScroll();
 })
 
