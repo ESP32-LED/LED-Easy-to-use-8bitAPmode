@@ -1745,7 +1745,7 @@ function setVehicleSelectButton() {
         stopTypeScroll(ja);
         stopTypeScroll(en);
         stopDestinationScroll(ja);
-        stopDestinationScroll(ja);
+        stopDestinationScroll(en);
         stopScroll();
     })
 }
