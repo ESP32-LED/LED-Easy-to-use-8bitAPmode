@@ -875,6 +875,8 @@ tittle.addEventListener("click", () => {
     scrollTimer = null;
     clickStartScrollBtn = false;
     typeDestinationScrollAnimationId = null;
+    typeScroll = false;
+    destinationScroll = false;
     stopScroll();
 })
 
