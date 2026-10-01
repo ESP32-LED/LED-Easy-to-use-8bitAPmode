@@ -1742,6 +1742,10 @@ function setVehicleSelectButton() {
         typeDestinationScrollAnimationId = null;
         typeScroll = false;
         destinationScroll = false;
+        stopTypeScroll(ja);
+        stopTypeScroll(en);
+        stopDestinationScroll(ja);
+        stopDestinationScroll(ja);
         stopScroll();
     })
 }
