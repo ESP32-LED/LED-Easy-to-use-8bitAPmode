@@ -585,18 +585,34 @@ function buildSceneList() {
 
     if (information2Id != null) {
         if (!config.information2Ahead) {
-            if (nextId != null) {
-                if (informationId != null) {
-                    if (!config.informationNormalOnNext) {
-                        if (!config.hasInformationCombined) {
+            if (scrollId === null) {
+                if (nextId != null) {
+                    if (informationId != null) {
+                        if (!config.informationNormalOnNext) {
+                            if (!config.hasInformationCombined) {
+                                sceneList.push({
+                                    lang: "ja",
+                                    information: "information2",
+                                    next: true
+                                });
+                            }
+                        } else {
+                            if (!config.hasInformationCombined) {
+                                sceneList.push({
+                                    lang: "ja",
+                                    information: "information2",
+                                    next: false
+                                });
+                            }
+                        }
+                    } else {
+                        if (!config.informationNormalOnNext) {
                             sceneList.push({
                                 lang: "ja",
                                 information: "information2",
                                 next: true
                             });
-                        }
-                    } else {
-                        if (!config.hasInformationCombined) {
+                        } else {
                             sceneList.push({
                                 lang: "ja",
                                 information: "information2",
@@ -620,19 +636,11 @@ function buildSceneList() {
                     }
                 }
             } else {
-                if (!config.informationNormalOnNext) {
-                    sceneList.push({
-                        lang: "ja",
-                        information: "information2",
-                        next: true
-                    });
-                } else {
-                    sceneList.push({
-                        lang: "ja",
-                        information: "information2",
-                        next: false
-                    });
-                }
+                sceneList.push({
+                    lang: "ja",
+                    information: "information2",
+                    next: true
+                });
             }
         }
     }
