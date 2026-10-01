@@ -28,7 +28,7 @@
     "nextModeDistinction": true,
     "typeDistinction": false,
     "informationDistinction": true,
-    "information2Distinction": false,
+    "information2Distinction": true,
     "lineDistinction": false,
     "carNumberDistinction": false,
 
