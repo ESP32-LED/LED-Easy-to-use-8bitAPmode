@@ -411,17 +411,32 @@ function buildSceneList() {
                 if (nextId != null) {
                     if (!config.information_ja_en) {
                         if (information2Id === null) {
-                            sceneList.push({
-                                lang: "ja",
-                                information: "information",
-                                next: true
-                            });
-                            if (config.informationLanguageSwitching) {
+                            if (config.informationNormalOnNext) {
                                 sceneList.push({
-                                    lang: "en",
+                                    lang: "ja",
                                     information: "information",
                                     next: true
                                 });
+                                if (config.informationLanguageSwitching) {
+                                    sceneList.push({
+                                        lang: "en",
+                                        information: "information",
+                                        next: true
+                                    });
+                                }
+                            } else {
+                                sceneList.push({
+                                    lang: "ja",
+                                    information: "information",
+                                    next: false
+                                });
+                                if (config.informationLanguageSwitching) {
+                                    sceneList.push({
+                                        lang: "en",
+                                        information: "information",
+                                        next: false
+                                    });
+                                }
                             }
                         } else {
                             if (config.hasInformationCombined) {
@@ -438,26 +453,49 @@ function buildSceneList() {
                                     });
                                 }
                             } else {
-                                sceneList.push({
-                                    lang: "ja",
-                                    information: "information",
-                                    next: true
-                                });
-                                if (config.informationLanguageSwitching) {
+                                if (config.informationNormalOnNext) {
                                     sceneList.push({
-                                        lang: "en",
+                                        lang: "ja",
                                         information: "information",
                                         next: true
                                     });
+                                    if (config.informationLanguageSwitching) {
+                                        sceneList.push({
+                                            lang: "en",
+                                            information: "information",
+                                            next: true
+                                        });
+                                    }
+                                } else {
+                                    sceneList.push({
+                                        lang: "ja",
+                                        information: "information",
+                                        next: false
+                                    });
+                                    if (config.informationLanguageSwitching) {
+                                        sceneList.push({
+                                            lang: "en",
+                                            information: "information",
+                                            next: false
+                                        });
+                                    }
                                 }
                             }
                         }
                     } else {
-                        sceneList.push({
-                            lang: "ja_en",
-                            information: "information",
-                            next: true
-                        });
+                        if (config.informationNormalOnNext) {
+                            sceneList.push({
+                                lang: "ja_en",
+                                information: "information",
+                                next: true
+                            });
+                        } else {
+                            sceneList.push({
+                                lang: "ja_en",
+                                information: "information",
+                                next: false
+                            });
+                        }
                     }
                 } else {
                     if (!config.information_ja_en) {
