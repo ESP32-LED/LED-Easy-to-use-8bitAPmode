@@ -610,70 +610,72 @@ function createDestinationButtons() {
                         setSelected(container, btn);
                         destinationId = dest.id;
 
-                        const typeData = getItem("type", typeId);
-                        const destinationData = getItem("destination", destinationId);
-                        const nullDestination = getItem("destination", "null_destination");
-                        let view;
-                        if (isTypeFullScreen(typeData)) {
-                            view = "full";
-                        } else {
-                            view = "normal"
-                        }
-
-                        const destinationJaWidth = destinationData.view?.[view]?.ja?.width;
-                        const destinationEnWidth = destinationData.view?.[view]?.en?.width;
-
-                        const nullDestinationJaWidth =
-                            nullDestination.view?.[view]?.ja?.width;
-                        const nullDestinationEnWidth =
-                            nullDestination.view?.[view]?.en?.width;
-
-                        destinationScroll =
-                            destinationJaWidth !== nullDestinationJaWidth ||
-                            destinationEnWidth !== nullDestinationEnWidth;
-
-                        if (destinationJaWidth !== nullDestinationJaWidth) {
-                            startDestinationScroll("ja");
-                        } else {
-                            stopDestinationScroll("ja");
-                        }
-
-                        if (destinationEnWidth !== nullDestinationEnWidth) {
-                            startDestinationScroll("en");
-                        } else {
-                            stopDestinationScroll("en");
-                        }
-
-                        if (typeId != null) {
+                        if (config.hasDestinationScroll) {
                             const typeData = getItem("type", typeId);
-                            const nullType = getItem("type", "null_type");
-
-                            const typeJaWidth =
-                                typeData.view?.[view]?.ja?.width;
-
-                            const typeEnWidth =
-                                typeData.view?.[view]?.en?.width;
-
-                            const nullTypeJaWidth =
-                                nullType.view?.[view]?.ja?.width;
-
-                            const nullTypeEnWidth =
-                                nullType.view?.[view]?.ja?.width;
-
-                            typeScroll =
-                                typeJaWidth !== nullTypeJaWidth ||
-                                typeEnWidth !== nullTypeEnWidth;
-
-                            if (typeJaWidth !== nullTypeJaWidth) {
-                                startTypeScroll("ja");
+                            const destinationData = getItem("destination", destinationId);
+                            const nullDestination = getItem("destination", "null_destination");
+                            let view;
+                            if (isDestinationFullScreen(destinationData)) {
+                                view = "full";
                             } else {
-                                stopTypeScroll("ja");
+                                view = "normal"
                             }
-
-                            if (typeEnWidth !== nullTypeEnWidth) {
-                                startTypeScroll("en");
+    
+                            const destinationJaWidth = destinationData.view?.[view]?.ja?.width;
+                            const destinationEnWidth = destinationData.view?.[view]?.en?.width;
+    
+                            const nullDestinationJaWidth =
+                                nullDestination.view?.[view]?.ja?.width;
+                            const nullDestinationEnWidth =
+                                nullDestination.view?.[view]?.en?.width;
+    
+                            destinationScroll =
+                                destinationJaWidth !== nullDestinationJaWidth ||
+                                destinationEnWidth !== nullDestinationEnWidth;
+    
+                            if (destinationJaWidth !== nullDestinationJaWidth) {
+                                startDestinationScroll("ja");
                             } else {
-                                stopTypeScroll("en");
+                                stopDestinationScroll("ja");
+                            }
+    
+                            if (destinationEnWidth !== nullDestinationEnWidth) {
+                                startDestinationScroll("en");
+                            } else {
+                                stopDestinationScroll("en");
+                            }
+    
+                            if (typeId != null) {
+                                const typeData = getItem("type", typeId);
+                                const nullType = getItem("type", "null_type");
+    
+                                const typeJaWidth =
+                                    typeData.view?.[view]?.ja?.width;
+    
+                                const typeEnWidth =
+                                    typeData.view?.[view]?.en?.width;
+    
+                                const nullTypeJaWidth =
+                                    nullType.view?.[view]?.ja?.width;
+    
+                                const nullTypeEnWidth =
+                                    nullType.view?.[view]?.ja?.width;
+    
+                                typeScroll =
+                                    typeJaWidth !== nullTypeJaWidth ||
+                                    typeEnWidth !== nullTypeEnWidth;
+    
+                                if (typeJaWidth !== nullTypeJaWidth) {
+                                    startTypeScroll("ja");
+                                } else {
+                                    stopTypeScroll("ja");
+                                }
+    
+                                if (typeEnWidth !== nullTypeEnWidth) {
+                                    startTypeScroll("en");
+                                } else {
+                                    stopTypeScroll("en");
+                                }
                             }
                         }
 
@@ -742,70 +744,72 @@ function createDestinationButtons() {
                     setSelected(container, btn);
                     destinationId = dest.id;
 
-                    const typeData = getItem("type", typeId);
-                    const destinationData = getItem("destination", destinationId);
-                    const nullDestination = getItem("destination", "null_destination");
-                    let view;
-                    if (isTypeFullScreen(typeData)) {
-                        view = "full";
-                    } else {
-                        view = "normal"
-                    }
-
-                    const destinationJaWidth = destinationData.view?.[view]?.ja?.width;
-                    const destinationEnWidth = destinationData.view?.[view]?.en?.width;
-
-                    const nullDestinationJaWidth =
-                        nullDestination.view?.[view]?.ja?.width;
-                    const nullDestinationEnWidth =
-                        nullDestination.view?.[view]?.en?.width;
-
-                    destinationScroll =
-                        destinationJaWidth !== nullDestinationJaWidth ||
-                        destinationEnWidth !== nullDestinationEnWidth;
-
-                    if (destinationJaWidth !== nullDestinationJaWidth) {
-                        startDestinationScroll("ja");
-                    } else {
-                        stopDestinationScroll("ja");
-                    }
-
-                    if (destinationEnWidth !== nullDestinationEnWidth) {
-                        startDestinationScroll("en");
-                    } else {
-                        stopDestinationScroll("en");
-                    }
-
-                    if (typeId != null) {
+                    if (config.hasDestinationScroll) {
                         const typeData = getItem("type", typeId);
-                        const nullType = getItem("type", "null_type");
-
-                        const typeJaWidth =
-                            typeData.view?.[view]?.ja?.width;
-
-                        const typeEnWidth =
-                            typeData.view?.[view]?.en?.width;
-
-                        const nullTypeJaWidth =
-                            nullType.view?.[view]?.ja?.width;
-
-                        const nullTypeEnWidth =
-                            nullType.view?.[view]?.ja?.width;
-
-                        typeScroll =
-                            typeJaWidth !== nullTypeJaWidth ||
-                            typeEnWidth !== nullTypeEnWidth;
-
-                        if (typeJaWidth !== nullTypeJaWidth) {
-                            startTypeScroll("ja");
+                        const destinationData = getItem("destination", destinationId);
+                        const nullDestination = getItem("destination", "null_destination");
+                        let view;
+                        if (isDestinationFullScreen(destinationData)) {
+                            view = "full";
                         } else {
-                            stopTypeScroll("ja");
+                            view = "normal"
                         }
-
-                        if (typeEnWidth !== nullTypeEnWidth) {
-                            startTypeScroll("en");
+    
+                        const destinationJaWidth = destinationData.view?.[view]?.ja?.width;
+                        const destinationEnWidth = destinationData.view?.[view]?.en?.width;
+    
+                        const nullDestinationJaWidth =
+                            nullDestination.view?.[view]?.ja?.width;
+                        const nullDestinationEnWidth =
+                            nullDestination.view?.[view]?.en?.width;
+    
+                        destinationScroll =
+                            destinationJaWidth !== nullDestinationJaWidth ||
+                            destinationEnWidth !== nullDestinationEnWidth;
+    
+                        if (destinationJaWidth !== nullDestinationJaWidth) {
+                            startDestinationScroll("ja");
                         } else {
-                            stopTypeScroll("en");
+                            stopDestinationScroll("ja");
+                        }
+    
+                        if (destinationEnWidth !== nullDestinationEnWidth) {
+                            startDestinationScroll("en");
+                        } else {
+                            stopDestinationScroll("en");
+                        }
+    
+                        if (typeId != null) {
+                            const typeData = getItem("type", typeId);
+                            const nullType = getItem("type", "null_type");
+    
+                            const typeJaWidth =
+                                typeData.view?.[view]?.ja?.width;
+    
+                            const typeEnWidth =
+                                typeData.view?.[view]?.en?.width;
+    
+                            const nullTypeJaWidth =
+                                nullType.view?.[view]?.ja?.width;
+    
+                            const nullTypeEnWidth =
+                                nullType.view?.[view]?.ja?.width;
+    
+                            typeScroll =
+                                typeJaWidth !== nullTypeJaWidth ||
+                                typeEnWidth !== nullTypeEnWidth;
+    
+                            if (typeJaWidth !== nullTypeJaWidth) {
+                                startTypeScroll("ja");
+                            } else {
+                                stopTypeScroll("ja");
+                            }
+    
+                            if (typeEnWidth !== nullTypeEnWidth) {
+                                startTypeScroll("en");
+                            } else {
+                                stopTypeScroll("en");
+                            }
                         }
                     }
 
@@ -854,70 +858,72 @@ function createDestinationButtons() {
                 setSelected(container, btn);
                 destinationId = dest.id;
 
-                const typeData = getItem("type", typeId);
-                const destinationData = getItem("destination", destinationId);
-                const nullDestination = getItem("destination", "null_destination");
-                let view;
-                if (isTypeFullScreen(typeData)) {
-                    view = "full";
-                } else {
-                    view = "normal"
-                }
-
-                const destinationJaWidth = destinationData.view?.[view]?.ja?.width;
-                const destinationEnWidth = destinationData.view?.[view]?.en?.width;
-
-                const nullDestinationJaWidth =
-                    nullDestination.view?.[view]?.ja?.width;
-                const nullDestinationEnWidth =
-                    nullDestination.view?.[view]?.en?.width;
-
-                destinationScroll =
-                    destinationJaWidth !== nullDestinationJaWidth ||
-                    destinationEnWidth !== nullDestinationEnWidth;
-
-                if (destinationJaWidth !== nullDestinationJaWidth) {
-                    startDestinationScroll("ja");
-                } else {
-                    stopDestinationScroll("ja");
-                }
-
-                if (destinationEnWidth !== nullDestinationEnWidth) {
-                    startDestinationScroll("en");
-                } else {
-                    stopDestinationScroll("en");
-                }
-
-                if (typeId != null) {
+                if (config.hasDestinationScroll) {
                     const typeData = getItem("type", typeId);
-                    const nullType = getItem("type", "null_type");
-
-                    const typeJaWidth =
-                        typeData.view?.[view]?.ja?.width;
-
-                    const typeEnWidth =
-                        typeData.view?.[view]?.en?.width;
-
-                    const nullTypeJaWidth =
-                        nullType.view?.[view]?.ja?.width;
-
-                    const nullTypeEnWidth =
-                        nullType.view?.[view]?.ja?.width;
-
-                    typeScroll =
-                        typeJaWidth !== nullTypeJaWidth ||
-                        typeEnWidth !== nullTypeEnWidth;
-
-                    if (typeJaWidth !== nullTypeJaWidth) {
-                        startTypeScroll("ja");
+                    const destinationData = getItem("destination", destinationId);
+                    const nullDestination = getItem("destination", "null_destination");
+                    let view;
+                    if (isDestinationFullScreen(destinationData)) {
+                        view = "full";
                     } else {
-                        stopTypeScroll("ja");
+                        view = "normal"
                     }
-
-                    if (typeEnWidth !== nullTypeEnWidth) {
-                        startTypeScroll("en");
+    
+                    const destinationJaWidth = destinationData.view?.[view]?.ja?.width;
+                    const destinationEnWidth = destinationData.view?.[view]?.en?.width;
+    
+                    const nullDestinationJaWidth =
+                        nullDestination.view?.[view]?.ja?.width;
+                    const nullDestinationEnWidth =
+                        nullDestination.view?.[view]?.en?.width;
+    
+                    destinationScroll =
+                        destinationJaWidth !== nullDestinationJaWidth ||
+                        destinationEnWidth !== nullDestinationEnWidth;
+    
+                    if (destinationJaWidth !== nullDestinationJaWidth) {
+                        startDestinationScroll("ja");
                     } else {
-                        stopTypeScroll("en");
+                        stopDestinationScroll("ja");
+                    }
+    
+                    if (destinationEnWidth !== nullDestinationEnWidth) {
+                        startDestinationScroll("en");
+                    } else {
+                        stopDestinationScroll("en");
+                    }
+    
+                    if (typeId != null) {
+                        const typeData = getItem("type", typeId);
+                        const nullType = getItem("type", "null_type");
+    
+                        const typeJaWidth =
+                            typeData.view?.[view]?.ja?.width;
+    
+                        const typeEnWidth =
+                            typeData.view?.[view]?.en?.width;
+    
+                        const nullTypeJaWidth =
+                            nullType.view?.[view]?.ja?.width;
+    
+                        const nullTypeEnWidth =
+                            nullType.view?.[view]?.ja?.width;
+    
+                        typeScroll =
+                            typeJaWidth !== nullTypeJaWidth ||
+                            typeEnWidth !== nullTypeEnWidth;
+    
+                        if (typeJaWidth !== nullTypeJaWidth) {
+                            startTypeScroll("ja");
+                        } else {
+                            stopTypeScroll("ja");
+                        }
+    
+                        if (typeEnWidth !== nullTypeEnWidth) {
+                            startTypeScroll("en");
+                        } else {
+                            stopTypeScroll("en");
+                        }
                     }
                 }
 
