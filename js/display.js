@@ -1402,7 +1402,7 @@ function drawScroll() {
     if (
         !scrollCheck.checked ||
         clickStartScrollBtn === false ||
-        typeDestinationScrollId === null ||
+        scrollId === null ||
         isTypeFull === true
     ) {
         stopScroll();
@@ -1535,7 +1535,7 @@ function startScroll() {
     if (
         !scrollCheck.checked ||
         clickStartScrollBtn === false ||
-        typeDestinationScrollId === null
+        scrollId === null
     ) {
         stopScroll();
         return;
@@ -1629,7 +1629,7 @@ function stopScroll() {
         state.signature = null;
     }
 
-    typeDestinationScrollId = null;
+    scrollId = null;
     clickStartScrollBtn = false;
     lastScrollTime = null;
 }
