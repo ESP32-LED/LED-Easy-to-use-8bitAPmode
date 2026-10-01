@@ -57,69 +57,71 @@ function createTypeButtons() {
 
                         typeId = item.id;
 
-                        const typeData = getItem("type", typeId);
-                        const nullType = getItem("type", "null_type");
-                        let view;
-                        if (isTypeFullScreen(typeData)) {
-                            view = "full";
-                        } else {
-                            view = "normal"
-                        }
-
-                        const typeJaWidth = typeData.view?.[view]?.ja?.width;
-                        const typeEnWidth = typeData.view?.[view]?.en?.width;
-
-                        const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
-                        const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
-
-                        typeScroll =
-                            typeJaWidth !== nullTypeJaWidth ||
-                            typeEnWidth !== nullTypeEnWidth;
-
-                        if (typeJaWidth !== nullTypeJaWidth) {
-                            startTypeScroll("ja");
-                        } else {
-                            stopTypeScroll("ja");
-                        }
-
-                        if (typeEnWidth !== nullTypeEnWidth) {
-                            startTypeScroll("en");
-                        } else {
-                            stopTypeScroll("en");
-                        }
-
-                        // すでに行先が選択されている場合、
-                        // 種別の幅が変わったので行先スクロールも再計算
-                        if (destinationId != null) {
-                            const destinationData = getItem("destination", destinationId);
-                            const nullDestination = getItem("destination", "null_destination");
-
-                            const destinationJaWidth =
-                                destinationData.view?.[view]?.ja?.width;
-
-                            const destinationEnWidth =
-                                destinationData.view?.[view]?.en?.width;
-
-                            const nullDestinationJaWidth =
-                                nullDestination.view?.[view]?.ja?.width;
-
-                            const nullDestinationEnWidth =
-                                nullDestination.view?.[view]?.ja?.width;
-
-                            destinationScroll =
-                                destinationJaWidth !== nullDestinationJaWidth ||
-                                destinationEnWidth !== nullDestinationEnWidth;
-
-                            if (destinationJaWidth !== nullDestinationJaWidth) {
-                                startDestinationScroll("ja");
+                        if (config.hasTypeScroll) {
+                            const typeData = getItem("type", typeId);
+                            const nullType = getItem("type", "null_type");
+                            let view;
+                            if (isTypeFullScreen(typeData)) {
+                                view = "full";
                             } else {
-                                stopDestinationScroll("ja");
+                                view = "normal"
                             }
-
-                            if (destinationEnWidth !== nullDestinationEnWidth) {
-                                startDestinationScroll("en");
+    
+                            const typeJaWidth = typeData.view?.[view]?.ja?.width;
+                            const typeEnWidth = typeData.view?.[view]?.en?.width;
+    
+                            const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
+                            const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
+    
+                            typeScroll =
+                                typeJaWidth !== nullTypeJaWidth ||
+                                typeEnWidth !== nullTypeEnWidth;
+    
+                            if (typeJaWidth !== nullTypeJaWidth) {
+                                startTypeScroll("ja");
                             } else {
-                                stopDestinationScroll("en");
+                                stopTypeScroll("ja");
+                            }
+    
+                            if (typeEnWidth !== nullTypeEnWidth) {
+                                startTypeScroll("en");
+                            } else {
+                                stopTypeScroll("en");
+                            }
+    
+                            // すでに行先が選択されている場合、
+                            // 種別の幅が変わったので行先スクロールも再計算
+                            if (destinationId != null) {
+                                const destinationData = getItem("destination", destinationId);
+                                const nullDestination = getItem("destination", "null_destination");
+    
+                                const destinationJaWidth =
+                                    destinationData.view?.[view]?.ja?.width;
+    
+                                const destinationEnWidth =
+                                    destinationData.view?.[view]?.en?.width;
+    
+                                const nullDestinationJaWidth =
+                                    nullDestination.view?.[view]?.ja?.width;
+    
+                                const nullDestinationEnWidth =
+                                    nullDestination.view?.[view]?.ja?.width;
+    
+                                destinationScroll =
+                                    destinationJaWidth !== nullDestinationJaWidth ||
+                                    destinationEnWidth !== nullDestinationEnWidth;
+    
+                                if (destinationJaWidth !== nullDestinationJaWidth) {
+                                    startDestinationScroll("ja");
+                                } else {
+                                    stopDestinationScroll("ja");
+                                }
+    
+                                if (destinationEnWidth !== nullDestinationEnWidth) {
+                                    startDestinationScroll("en");
+                                } else {
+                                    stopDestinationScroll("en");
+                                }
                             }
                         }
 
@@ -187,69 +189,71 @@ function createTypeButtons() {
 
                     typeId = item.id;
 
-                    const typeData = getItem("type", typeId);
-                    const nullType = getItem("type", "null_type");
-                    let view;
-                    if (isTypeFullScreen(typeData)) {
-                        view = "full";
-                    } else {
-                        view = "normal"
-                    }
-
-                    const typeJaWidth = typeData.view?.[view]?.ja?.width;
-                    const typeEnWidth = typeData.view?.[view]?.en?.width;
-
-                    const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
-                    const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
-
-                    typeScroll =
-                        typeJaWidth !== nullTypeJaWidth ||
-                        typeEnWidth !== nullTypeEnWidth;
-
-                    if (typeJaWidth !== nullTypeJaWidth) {
-                        startTypeScroll("ja");
-                    } else {
-                        stopTypeScroll("ja");
-                    }
-
-                    if (typeEnWidth !== nullTypeEnWidth) {
-                        startTypeScroll("en");
-                    } else {
-                        stopTypeScroll("en");
-                    }
-
-                    // すでに行先が選択されている場合、
-                    // 種別の幅が変わったので行先スクロールも再計算
-                    if (destinationId != null) {
-                        const destinationData = getItem("destination", destinationId);
-                        const nullDestination = getItem("destination", "null_destination");
-
-                        const destinationJaWidth =
-                            destinationData.view?.[view]?.ja?.width;
-
-                        const destinationEnWidth =
-                            destinationData.view?.[view]?.en?.width;
-
-                        const nullDestinationJaWidth =
-                            nullDestination.view?.[view]?.ja?.width;
-
-                        const nullDestinationEnWidth =
-                            nullDestination.view?.[view]?.ja?.width;
-
-                        destinationScroll =
-                            destinationJaWidth !== nullDestinationJaWidth ||
-                            destinationEnWidth !== nullDestinationEnWidth;
-
-                        if (destinationJaWidth !== nullDestinationJaWidth) {
-                            startDestinationScroll("ja");
+                    if (config.hasTypeScroll) {
+                        const typeData = getItem("type", typeId);
+                        const nullType = getItem("type", "null_type");
+                        let view;
+                        if (isTypeFullScreen(typeData)) {
+                            view = "full";
                         } else {
-                            stopDestinationScroll("ja");
+                            view = "normal"
                         }
-
-                        if (destinationEnWidth !== nullDestinationEnWidth) {
-                            startDestinationScroll("en");
+    
+                        const typeJaWidth = typeData.view?.[view]?.ja?.width;
+                        const typeEnWidth = typeData.view?.[view]?.en?.width;
+    
+                        const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
+                        const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
+    
+                        typeScroll =
+                            typeJaWidth !== nullTypeJaWidth ||
+                            typeEnWidth !== nullTypeEnWidth;
+    
+                        if (typeJaWidth !== nullTypeJaWidth) {
+                            startTypeScroll("ja");
                         } else {
-                            stopDestinationScroll("en");
+                            stopTypeScroll("ja");
+                        }
+    
+                        if (typeEnWidth !== nullTypeEnWidth) {
+                            startTypeScroll("en");
+                        } else {
+                            stopTypeScroll("en");
+                        }
+    
+                        // すでに行先が選択されている場合、
+                        // 種別の幅が変わったので行先スクロールも再計算
+                        if (destinationId != null) {
+                            const destinationData = getItem("destination", destinationId);
+                            const nullDestination = getItem("destination", "null_destination");
+    
+                            const destinationJaWidth =
+                                destinationData.view?.[view]?.ja?.width;
+    
+                            const destinationEnWidth =
+                                destinationData.view?.[view]?.en?.width;
+    
+                            const nullDestinationJaWidth =
+                                nullDestination.view?.[view]?.ja?.width;
+    
+                            const nullDestinationEnWidth =
+                                nullDestination.view?.[view]?.ja?.width;
+    
+                            destinationScroll =
+                                destinationJaWidth !== nullDestinationJaWidth ||
+                                destinationEnWidth !== nullDestinationEnWidth;
+    
+                            if (destinationJaWidth !== nullDestinationJaWidth) {
+                                startDestinationScroll("ja");
+                            } else {
+                                stopDestinationScroll("ja");
+                            }
+    
+                            if (destinationEnWidth !== nullDestinationEnWidth) {
+                                startDestinationScroll("en");
+                            } else {
+                                stopDestinationScroll("en");
+                            }
                         }
                     }
 
@@ -297,69 +301,71 @@ function createTypeButtons() {
 
                 typeId = item.id;
 
-                const typeData = getItem("type", typeId);
-                const nullType = getItem("type", "null_type");
-                let view;
-                if (isTypeFullScreen(typeData)) {
-                    view = "full";
-                } else {
-                    view = "normal"
-                }
-
-                const typeJaWidth = typeData.view?.[view]?.ja?.width;
-                const typeEnWidth = typeData.view?.[view]?.en?.width;
-
-                const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
-                const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
-
-                typeScroll =
-                    typeJaWidth !== nullTypeJaWidth ||
-                    typeEnWidth !== nullTypeEnWidth;
-
-                if (typeJaWidth !== nullTypeJaWidth) {
-                    startTypeScroll("ja");
-                } else {
-                    stopTypeScroll("ja");
-                }
-
-                if (typeEnWidth !== nullTypeEnWidth) {
-                    startTypeScroll("en");
-                } else {
-                    stopTypeScroll("en");
-                }
-
-                // すでに行先が選択されている場合、
-                // 種別の幅が変わったので行先スクロールも再計算
-                if (destinationId != null) {
-                    const destinationData = getItem("destination", destinationId);
-                    const nullDestination = getItem("destination", "null_destination");
-
-                    const destinationJaWidth =
-                        destinationData.view?.[view]?.ja?.width;
-
-                    const destinationEnWidth =
-                        destinationData.view?.[view]?.en?.width;
-
-                    const nullDestinationJaWidth =
-                        nullDestination.view?.[view]?.ja?.width;
-
-                    const nullDestinationEnWidth =
-                        nullDestination.view?.[view]?.ja?.width;
-
-                    destinationScroll =
-                        destinationJaWidth !== nullDestinationJaWidth ||
-                        destinationEnWidth !== nullDestinationEnWidth;
-
-                    if (destinationJaWidth !== nullDestinationJaWidth) {
-                        startDestinationScroll("ja");
+                if (config.hasTypeScroll) {
+                    const typeData = getItem("type", typeId);
+                    const nullType = getItem("type", "null_type");
+                    let view;
+                    if (isTypeFullScreen(typeData)) {
+                        view = "full";
                     } else {
-                        stopDestinationScroll("ja");
+                        view = "normal"
                     }
-
-                    if (destinationEnWidth !== nullDestinationEnWidth) {
-                        startDestinationScroll("en");
+    
+                    const typeJaWidth = typeData.view?.[view]?.ja?.width;
+                    const typeEnWidth = typeData.view?.[view]?.en?.width;
+    
+                    const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
+                    const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
+    
+                    typeScroll =
+                        typeJaWidth !== nullTypeJaWidth ||
+                        typeEnWidth !== nullTypeEnWidth;
+    
+                    if (typeJaWidth !== nullTypeJaWidth) {
+                        startTypeScroll("ja");
                     } else {
-                        stopDestinationScroll("en");
+                        stopTypeScroll("ja");
+                    }
+    
+                    if (typeEnWidth !== nullTypeEnWidth) {
+                        startTypeScroll("en");
+                    } else {
+                        stopTypeScroll("en");
+                    }
+    
+                    // すでに行先が選択されている場合、
+                    // 種別の幅が変わったので行先スクロールも再計算
+                    if (destinationId != null) {
+                        const destinationData = getItem("destination", destinationId);
+                        const nullDestination = getItem("destination", "null_destination");
+    
+                        const destinationJaWidth =
+                            destinationData.view?.[view]?.ja?.width;
+    
+                        const destinationEnWidth =
+                            destinationData.view?.[view]?.en?.width;
+    
+                        const nullDestinationJaWidth =
+                            nullDestination.view?.[view]?.ja?.width;
+    
+                        const nullDestinationEnWidth =
+                            nullDestination.view?.[view]?.ja?.width;
+    
+                        destinationScroll =
+                            destinationJaWidth !== nullDestinationJaWidth ||
+                            destinationEnWidth !== nullDestinationEnWidth;
+    
+                        if (destinationJaWidth !== nullDestinationJaWidth) {
+                            startDestinationScroll("ja");
+                        } else {
+                            stopDestinationScroll("ja");
+                        }
+    
+                        if (destinationEnWidth !== nullDestinationEnWidth) {
+                            startDestinationScroll("en");
+                        } else {
+                            stopDestinationScroll("en");
+                        }
                     }
                 }
 
