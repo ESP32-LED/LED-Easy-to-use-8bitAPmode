@@ -332,6 +332,16 @@ function buildSceneList() {
                     });
                 }
             }
+        } else {
+            if (!hasEnglishType()) {
+                if (nextId != null) {
+                    sceneList.push({
+                        lang: "en",
+                        information: "destination",
+                        next: true
+                    });
+                }
+            }
         }
     } else {
         if (nextId != null || scrollId != null) {
