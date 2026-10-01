@@ -22,6 +22,8 @@
     "hasScrollFullScreen": false,
     "information_ja_en": false,
 
+    "informationNormalOnNext": true,
+
     "hasInformationCombined": false,
 
     "destinationDistinction": true,
