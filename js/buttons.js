@@ -36,7 +36,7 @@ function createTypeButtons() {
         typeCategory.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(item => {
 
@@ -449,7 +449,7 @@ function createCarNumberButtons() {
         carNumberCategory.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(item => {
 
@@ -612,7 +612,7 @@ function createDestinationButtons() {
         destinationCategory.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(dest => {
 
@@ -1033,7 +1033,7 @@ function createNextModeButtons() {
         nextModeCategory.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(item => {
 
@@ -1203,7 +1203,7 @@ function createInformationButtons() {
         informationCategory.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(info => {
 
@@ -1395,7 +1395,7 @@ function createInformation2Buttons() {
         information2Category.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(info => {
 
@@ -1571,7 +1571,7 @@ function createLineButtons() {
         informationCategory.groups.forEach(group => {
 
             // ===== 無表示グループ =====
-            if (group.name === "無表示") {
+            if (group.name === "無表示" || group.id === "__ungrouped__") {
 
                 group.items.forEach(info => {
 
