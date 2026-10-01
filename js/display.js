@@ -1519,7 +1519,7 @@ function startScroll() {
     lastScrollTime = null;
 
     // スクロール中
-    typeDestinationScrollId = true;
+    scrollId = true;
 
     // スクロール表示をすぐ反映
     render();
@@ -1569,7 +1569,7 @@ function startScroll() {
                     generation !== scrollGeneration ||
                     !scrollCheck.checked ||
                     clickStartScrollBtn === false ||
-                    typeDestinationScrollId === null
+                    scrollId === null
                 ) {
                     scrollWaiting = false;
                     return;
@@ -1612,21 +1612,14 @@ function stopScroll() {
         scrollAnimationId = null;
     }
 
-    if (typeDestinationScrollAnimationId !== null) {
-        cancelAnimationFrame(typeDestinationScrollAnimationId);
-        typeDestinationScrollAnimationId = null;
+    if (scrollAnimationId !== null) {
+        cancelAnimationFrame(scrollAnimationId);
+        scrollAnimationId = null;
     }
 
     if (scrollTimer !== null) {
         clearInterval(scrollTimer);
         scrollTimer = null;
-    }
-
-    for (const state of allScrollStates) {
-        state.active = false;
-        state.waiting = false;
-        state.lastTime = null;
-        state.signature = null;
     }
 
     scrollId = null;
