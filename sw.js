@@ -22,40 +22,30 @@ async function cacheFile(cache, url) {
 
 // index.htmlからJS・CSSなどを探す
 async function cacheAppFiles(cache) {
+    const indexUrl = new URL("./index.html", self.location.href).href;
 
-    const indexUrl = "./index.html";
-
-    const response = await fetch(indexUrl, {
-        cache: "no-cache"
-    });
+    const response = await fetch(indexUrl, { cache: "no-cache" });
 
     if (!response.ok) {
         throw new Error("index.htmlを取得できませんでした");
     }
 
-    // index.html自身も保存
     await cache.put(indexUrl, response.clone());
 
     const html = await response.text();
-
     const files = new Set();
 
-    // <script src="...">
-    const scriptRegex =
-        /<script[^>]+src=["']([^"']+)["']/gi;
+    const scriptRegex = /<script[^>]+src=["']([^"']+)["']/gi;
 
     for (const match of html.matchAll(scriptRegex)) {
         files.add(match[1]);
     }
 
-    // <link href="...">
-    const linkRegex =
-        /<link[^>]+href=["']([^"']+)["']/gi;
+    const linkRegex = /<link[^>]+href=["']([^"']+)["']/gi;
 
     for (const match of html.matchAll(linkRegex)) {
         const path = match[1];
 
-        // 外部URLや#～などは除外
         if (
             !path.startsWith("http://") &&
             !path.startsWith("https://") &&
@@ -66,12 +56,9 @@ async function cacheAppFiles(cache) {
         }
     }
 
-    // 見つかったファイルをキャッシュ
     for (const file of files) {
-        await cacheFile(
-            cache,
-            new URL(file, indexUrl).pathname
-        );
+        const url = new URL(file, indexUrl).href;
+        await cacheFile(cache, url);
     }
 }
 
