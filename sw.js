@@ -98,114 +98,65 @@ self.addEventListener("activate", event => {
 // ========================================
 
 self.addEventListener("fetch", event => {
+    if (event.request.method !== "GET") return;
 
-    if (event.request.method !== "GET") {
-        return;
-    }
+    event.respondWith((async () => {
+        const url = new URL(event.request.url);
 
-    const url = new URL(event.request.url);
+        // JSONファイルは常にネットワークを優先
+        if (url.pathname.endsWith(".json")) {
+            try {
+                const response = await fetch(event.request, {
+                    cache: "no-cache"
+                });
 
+                if (response.ok) {
+                    const cache = await caches.open(CACHE_NAME);
+                    await cache.put(event.request, response.clone());
+                }
 
-    // ========================================
-    // vehicles.json
-    // ========================================
-    //
-    // vehicles.jsonだけはネットワーク優先
-    //
-    // オンライン
-    //   ↓
-    // 最新版を取得
-    //
-    // オフライン
-    //   ↓
-    // キャッシュを使用
-    //
-    // ========================================
+                return response;
+            } catch (error) {
+                // オフラインならキャッシュを使用
+                const cachedResponse = await caches.match(event.request);
 
-    if (
-        url.pathname.endsWith(
-            "/vehicles/vehicles.json"
-        )
-    ) {
-        event.respondWith(
-            getVehiclesJson(event.request)
-        );
+                if (cachedResponse) {
+                    return cachedResponse;
+                }
 
-        return;
-    }
-
-
-    // ========================================
-    // その他のファイル
-    // ========================================
-    //
-    // キャッシュ優先
-    //
-    // ========================================
-
-    event.respondWith(
-        getCachedFile(event.request)
-    );
-});
-
-
-// ========================================
-// vehicles.jsonを取得
-// ========================================
-
-async function getVehiclesJson(request) {
-
-    try {
-
-        // キャッシュを使わずネットから取得
-        const response = await fetch(
-            request,
-            {
-                cache: "no-cache"
+                throw error;
             }
-        );
-
-        if (!response.ok) {
-            throw new Error(
-                `HTTP ${response.status}`
-            );
         }
 
-        // 最新版をキャッシュに保存
-        const cache = await caches.open(
-            CACHE_NAME
-        );
+        // JSON以外はキャッシュを優先
+        const cachedResponse = await caches.match(event.request);
 
-        await cache.put(
-            request,
-            response.clone()
-        );
-
-        console.log(
-            "最新のvehicles.jsonを取得しました"
-        );
-
-        return response;
-
-    } catch (error) {
-
-        console.warn(
-            "vehicles.jsonをネットから取得できません。キャッシュを使用します。",
-            error
-        );
-
-        // オフラインならキャッシュ
-        const cached = await caches.match(
-            request
-        );
-
-        if (cached) {
-            return cached;
+        if (cachedResponse) {
+            return cachedResponse;
         }
 
-        throw error;
-    }
-}
+        try {
+            const response = await fetch(event.request);
+
+            if (response.ok) {
+                const cache = await caches.open(CACHE_NAME);
+                await cache.put(event.request, response.clone());
+            }
+
+            return response;
+        } catch (error) {
+            if (event.request.mode === "navigate") {
+                const index = await caches.match("./index.html");
+
+                if (index) {
+                    return index;
+                }
+            }
+
+            throw error;
+        }
+    })());
+});
 
 
 // ========================================
