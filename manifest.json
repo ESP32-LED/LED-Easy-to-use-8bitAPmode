@@ -1,0 +1,8 @@
+{
+  "name": "ESP32転送LED方向幕シミュレーター",
+  "short_name": "ESP32転送",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#222222",
+  "theme_color": "#222222"
+}
