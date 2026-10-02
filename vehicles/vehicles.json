@@ -253,6 +253,16 @@
         "site": "vehicles/HB-E300_kairi/site.json"
     },
     {
+        "id": "hybari",
+        "name": "FV-E991系　HYBARI",
+        "config": "vehicles/hybari/config.json",
+        "led": "vehicles/hybari/led.json",
+        "icons": [
+            "vehicles/hybari/icons/icon1.png"
+        ],
+        "site": "vehicles/hybari/site.json"
+    },
+    {
         "id": "101",
         "name": "キハ101形 左沢線",
         "config": "vehicles/101/config.json",
