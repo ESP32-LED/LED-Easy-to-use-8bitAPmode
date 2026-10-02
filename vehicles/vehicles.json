@@ -253,6 +253,16 @@
         "site": "vehicles/HB-E300_kairi/site.json"
     },
     {
+        "id": "HB-E300_furusato",
+        "name": "HB-E300系「リゾートビューふるさと」",
+        "config": "vehicles/HB-E300_furusato/config.json",
+        "led": "vehicles/HB-E300_furusato/led.json",
+        "icons": [
+            "vehicles/HB-E300_furusato/icons/icon1.png"
+        ],
+        "site": "vehicles/HB-E300_furusato/site.json"
+    },
+    {
         "id": "hybari",
         "name": "FV-E991系　HYBARI",
         "config": "vehicles/hybari/config.json",
