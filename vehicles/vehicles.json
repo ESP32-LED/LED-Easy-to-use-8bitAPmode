@@ -273,6 +273,16 @@
         "site": "vehicles/hybari/site.json"
     },
     {
+        "id": "ShuKura",
+        "name": "キハ40・48形「越乃Shu*Kura」",
+        "config": "vehicles/ShuKura/config.json",
+        "led": "vehicles/ShuKura/led.json",
+        "icons": [
+            "vehicles/ShuKura/icons/icon1.png"
+        ],
+        "site": "vehicles/ShuKura/site.json"
+    },
+    {
         "id": "101",
         "name": "キハ101形 左沢線",
         "config": "vehicles/101/config.json",
