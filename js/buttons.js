@@ -1824,6 +1824,10 @@ function setTimeSetting() {
                 document.getElementById("jaTime").hidden = false;
             }
         }
+        if (nextId != null) {
+            document.getElementById("jaTime").hidden = false;
+            document.getElementById("enTime").hidden = false;
+        }
     }
     if (informationId === null) {
         document.getElementById("infoTime").hidden = true;
