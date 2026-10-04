@@ -515,6 +515,22 @@ function createESP32TypeDestinationScrollPacket(br, gam) {
                 bitmap = created.sbuf;
             }
         }
+        console.log(
+            `ESP32 TD[${i}]`,
+            {
+                active: descriptor.active,
+                kind: descriptor.kind,
+                lang: descriptor.lang,
+                width: descriptor.width,
+                height: descriptor.height,
+                areaLeft: descriptor.areaLeft,
+                areaRight: descriptor.areaRight,
+                areaTop: descriptor.areaTop,
+                areaBottom: descriptor.areaBottom,
+                dataLength: descriptor.dataLength,
+                bitmapLength: bitmap.length
+            }
+        );
 
         descriptors.push(descriptor);
         bitmaps.push(bitmap);
