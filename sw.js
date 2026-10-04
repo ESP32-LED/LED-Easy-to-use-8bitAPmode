@@ -103,8 +103,13 @@ self.addEventListener("fetch", event => {
     event.respondWith((async () => {
         const url = new URL(event.request.url);
 
-        // JSONファイルは常にネットワークを優先
-        if (url.pathname.endsWith(".json")) {
+        // JSON / JS / CSS / HTMLファイルは常にネットワークを優先
+        if (
+            url.pathname.endsWith(".json") ||
+            url.pathname.endsWith(".js") ||
+            url.pathname.endsWith(".css") ||
+            url.pathname.endsWith(".html")
+        ) {
             try {
                 const response = await fetch(event.request, {
                     cache: "no-cache"
@@ -128,7 +133,7 @@ self.addEventListener("fetch", event => {
             }
         }
 
-        // JSON以外はキャッシュを優先
+        // JSON / JS / CSS / HTML以外はキャッシュを優先
         const cachedResponse = await caches.match(event.request);
 
         if (cachedResponse) {
