@@ -623,6 +623,16 @@
         "site": "vehicles/3000/site.json"
     },
     {
+        "id": "l00",
+        "name": "西武L00系",
+        "config": "vehicles/l00/config.json",
+        "led": "vehicles/l00/led.json",
+        "icons": [
+            "vehicles/l00/icons/icon1.png"
+        ],
+        "site": "vehicles/l00/site.json"
+    },
+    {
         "id": "so9000",
         "name": "相鉄8000系・9000系 (FC)",
         "config": "vehicles/so9000/config.json",
