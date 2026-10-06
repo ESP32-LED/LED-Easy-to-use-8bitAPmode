@@ -429,6 +429,16 @@
         "site": "vehicles/521-100/site.json"
     },
     {
+        "id": "271",
+        "name": "271系",
+        "config": "vehicles/271/config.json",
+        "led": "vehicles/271/led.json",
+        "icons": [
+            "vehicles/271/icons/icon1.png"
+        ],
+        "site": "vehicles/271/site.json"
+    },
+    {
         "id": "225・227",
         "name": "JR西日本一体型フルカラーLED",
         "config": "vehicles/225・227/config.json",
