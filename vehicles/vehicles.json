@@ -529,6 +529,17 @@
         "site": "vehicles/50000/site.json"
     },
     {
+        "id": "90000",
+        "name": "東武50070型（ゴシック体）・90000型",
+        "config": "vehicles/90000/config.json",
+        "led": "vehicles/90000/led.json",
+        "icons": [
+            "vehicles/90000/icons/icon1.png",
+            "vehicles/90000/icons/icon2.png"
+        ],
+        "site": "vehicles/90000/site.json"
+    },
+    {
         "id": "tokyu7000",
         "name": "東急1000系・7000系",
         "config": "vehicles/tokyu7000/config.json",
