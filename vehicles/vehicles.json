@@ -667,6 +667,16 @@
         "site": "vehicles/so9000/site.json"
     },
     {
+        "id": "toei10_300_3color",
+        "name": "都営10300形 (3色)",
+        "config": "vehicles/toei10_300_3color/config.json",
+        "led": "vehicles/toei10_300_3color/led.json",
+        "icons": [
+            "vehicles/toei10_300_3color/icons/icon1.png"
+        ],
+        "site": "vehicles/toei10_300_3color/site.json"
+    },
+    {
         "id": "tx1000・2000",
         "name": "首都圏新都市鉄道　TX-1000系・TX-2000系",
         "config": "vehicles/tx1000・2000/config.json",
