@@ -119,6 +119,19 @@ button.tap {
     100% { transform: scale(1.03); }
 }
 
+#vehicleSelectMethodLabel {
+    font-family: "BIZ UDMincho", "Yu Mincho", "游明朝", serif;
+    font-size: 20px;
+}
+
+#vehicleSelectMethod {
+    font-family: "BIZ UDMincho", "Yu Mincho", "游明朝", serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 6px;
+    border-radius: 10px;
+}
+
 #vehicleSelect {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -130,6 +143,10 @@ button.tap {
     align-items: center;
     justify-content: flex-start;
     text-align: left;
+}
+
+#vehicleSelect[hidden] {
+    display: none !important;
 }
 
 .vehicleIcons {
