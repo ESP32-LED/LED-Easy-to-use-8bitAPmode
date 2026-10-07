@@ -18,8 +18,15 @@ const ESP32_TYPE_DESTINATION_SCROLL_HEADER_SIZE = 8;
 const ESP32_TYPE_DESTINATION_SCROLL_DESCRIPTOR_SIZE = 16;
 const ESP32_TYPE_DESTINATION_SCROLL_PATH = "/update-type-destination-scroll";
 
-// 既存スクロールと同じ速度
+// ============================================================
+// スクロール速度
+// ============================================================
+
+// 既存の停車駅スクロール速度
 const transferScrollSpeed = 17;
+
+// 種別・行先スクロール速度
+const transferTypeDestinationScrollSpeed = 12;
 
 // ============================================================
 // 自動転送
@@ -571,7 +578,7 @@ function createESP32TypeDestinationScrollPacket(br, gam) {
         ESP32_TYPE_DESTINATION_SCROLL_COUNT;
 
     packet[offset++] =
-        transferScrollSpeed & 0xFF;
+        transferTypeDestinationScrollSpeed & 0xFF;
 
     packet[offset++] = 0;
 
@@ -632,7 +639,7 @@ function createESP32TypeDestinationScrollPacket(br, gam) {
 
     console.log(
         "ESP32 type/destination scroll speed:",
-        transferScrollSpeed
+        transferTypeDestinationScrollSpeed
     );
 
     return packet;
