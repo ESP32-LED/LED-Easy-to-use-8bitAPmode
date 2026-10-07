@@ -1,4 +1,4 @@
-const CACHE_NAME = "led-simulator-v2.0.1";
+const CACHE_NAME = "led-simulator-v2.0.2";
 
 
 // ========================================
@@ -12,6 +12,7 @@ self.addEventListener("install", event => {
 
             // index.html と JS / CSS / manifest
             await cacheAppFiles(cache);
+            await cacheLeafletFiles(cache);
 
             // vehicles.json
             const vehiclesUrl = new URL(
@@ -167,6 +168,19 @@ self.addEventListener("fetch", event => {
 // ========================================
 // 通常ファイルを取得
 // ========================================
+
+async function cacheLeafletFiles(cache) {
+    const files = [
+        "./leaflet/images/marker-icon.png",
+        "./leaflet/images/marker-icon-2x.png",
+        "./leaflet/images/marker-shadow.png"
+    ];
+
+    for (const file of files) {
+        const fileUrl = new URL(file, self.location.href).href;
+        await cacheFile(cache, fileUrl);
+    }
+}
 
 async function getCachedFile(request) {
 
