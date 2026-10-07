@@ -1,9 +1,25 @@
 const vehicleSelectMethod = document.getElementById("vehicleSelectMethod");
 const vehicleSelect = document.getElementById("vehicleSelect");
 const mapElement = document.getElementById("map");
+const lineVehicleList = document.getElementById("lineVehicleList");
+const closeLinePanel = document.getElementById("closeLinePanel");
+closeLinePanel.addEventListener("click", () => {
+    linePanel.hidden = true;
+});
 
 let railwayMap = null;
 
+const selectedLineName = document.getElementById("selectedLineName");
+const linePanel = document.getElementById("linePanel");
+
+let railwayLines = [];
+
+async function loadRailwayLines() {
+    const response = await fetch("data/lines.json");
+    const data = await response.json();
+
+    railwayLines = data.lines;
+}
 
 // 地図を作成
 function createMap() {
@@ -17,11 +33,47 @@ function createMap() {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap contributors"
     }).addTo(railwayMap);
+
+    railwayLines.forEach(line => {
+        const railwayLine = L.polyline(line.coordinates, {
+            color: line.color || "black",
+            weight: 5
+        }).addTo(railwayMap);
+
+        railwayLine.bindTooltip(line.name);
+
+        railwayLine.on("click", () => {
+            selectedLineName.textContent = line.name;
+
+            lineVehicleList.innerHTML = "";
+
+            line.vehicles.forEach(vehicleName => {
+                const vehicle = vehicles.find(
+                    vehicle => vehicle.name === vehicleName
+                );
+
+                if (!vehicle) {
+                    return;
+                }
+
+                const button = document.createElement("button");
+                button.textContent = vehicle.name;
+
+                button.addEventListener("click", async () => {
+                    await selectVehicle(vehicle);
+                });
+
+                lineVehicleList.appendChild(button);
+            });
+
+            linePanel.hidden = false;
+        });
+    });
 }
 
 
 // 車両選択方法を変更
-vehicleSelectMethod.addEventListener("change", () => {
+vehicleSelectMethod.addEventListener("change", async () => {
 
     if (vehicleSelectMethod.value === "grid") {
 
@@ -30,6 +82,9 @@ vehicleSelectMethod.addEventListener("change", () => {
 
         // 地図を表示
         mapElement.hidden = false;
+
+        await window.vehiclesReady;
+        await loadRailwayLines();
 
         // 地図を作成
         createMap();
