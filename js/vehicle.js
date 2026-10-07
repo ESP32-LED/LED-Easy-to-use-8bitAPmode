@@ -31,32 +31,41 @@ function createVehicleButtons() {
         btn.append(iconContainer, span);
 
         btn.addEventListener("click", async () => {
-            document.body.classList.add("simulatorMode");
-
-            selectedVehicle = vehicle;
-            document.getElementById("vehicleSelector").hidden = true;
-            document.getElementById("simulator").hidden = false;
-            await loadConfig();
-            if (config.hasScroll) {
-                await loadFont();
-            }
-            await startVehicle();
-            initVehicles();
-            setExplanation();
-            if (config.setSwitchingTime) {
-                document.querySelector("#jaTime input").value = config.jaTime;
-                document.querySelector("#enTime input").value = config.enTime;
-                document.querySelector("#infoTime input").value = config.infoTime;
-                document.querySelector("#carNumberTime input").value = config.carNumberTime;
-            }
-            if (config.hasReferenceSite) {
-                setReferenceSite();
-            } else {
-                document.getElementById("referenceSite").hidden = true;
-            }
+            await selectVehicle(vehicle);
         });
         container.appendChild(btn);
     });
+}
+
+async function selectVehicle(vehicle) {
+    document.body.classList.add("simulatorMode");
+
+    selectedVehicle = vehicle;
+    document.getElementById("vehicleSelector").hidden = true;
+    document.getElementById("simulator").hidden = false;
+
+    await loadConfig();
+
+    if (config.hasScroll) {
+        await loadFont();
+    }
+
+    await startVehicle();
+    initVehicles();
+    setExplanation();
+
+    if (config.setSwitchingTime) {
+        document.querySelector("#jaTime input").value = config.jaTime;
+        document.querySelector("#enTime input").value = config.enTime;
+        document.querySelector("#infoTime input").value = config.infoTime;
+        document.querySelector("#carNumberTime input").value = config.carNumberTime;
+    }
+
+    if (config.hasReferenceSite) {
+        setReferenceSite();
+    } else {
+        document.getElementById("referenceSite").hidden = true;
+    }
 }
 
 async function initVehicles() {
