@@ -73,4 +73,4 @@ async function initVehicles() {
     createVehicleButtons();
 }
 
-initVehicles();
+window.vehiclesReady = initVehicles();
