@@ -34,8 +34,14 @@
 				<option value="grid">地図上から選択</option>
 			</select>
 			<div id="vehicleSelect" class="selectGroup"></div>
-			<div id="map" hidden></div>
+			<div id="map" hidden>
+				<div id="linePanel" hidden>
+					<button id="closeLinePanel">×</button>
+					<h2 id="selectedLineName"></h2>
 
+					<div id="lineVehicleList"></div>
+				</div>
+			</div>
 			<!-- 追加したLED設定UI -->
 			<div id="ledSettings" style="margin-top: 20px; padding: 15px; background: #fcfcfc; border: 1px solid #000; border-radius: 8px;">
 				<h3 style="margin-top: 0;">LED設定</h3>
