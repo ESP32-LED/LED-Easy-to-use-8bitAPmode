@@ -1540,7 +1540,7 @@ async function transferToESP32() {
 
             const scrollResponse =
                 await fetch(
-                    `http://${ip}${ESP32_TYPE_DESTINATION_SCROLL_PATH}`,
+                    `http://ip{ESP32_TYPE_DESTINATION_SCROLL_PATH}`,
                     {
                         method: "POST",
                         body: scrollFormData,
