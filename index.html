@@ -6,6 +6,7 @@
 	<title>LED方向幕シミュレーター</title>
 	<link rel="stylesheet" href="style.css">
 	<link rel="manifest" href="manifest.json">
+	<link rel="stylesheet" href="leaflet/leaflet.css">
     </head>
 
 	<script>
@@ -27,8 +28,13 @@
     	</header>
 
 		<div id="vehicleSelector">
-			<label id="vehicle">車両を選択</label>
+			<label id="vehicleSelectMethodLabel" for="vehicleSelectMethod">車両の選択方法</label>
+			<select id="vehicleSelectMethod">
+				<option value="list">リストから選択</option>
+				<option value="grid">地図上から選択</option>
+			</select>
 			<div id="vehicleSelect" class="selectGroup"></div>
+			<div id="map" hidden></div>
 
 			<!-- 追加したLED設定UI -->
 			<div id="ledSettings" style="margin-top: 20px; padding: 15px; background: #fcfcfc; border: 1px solid #000; border-radius: 8px;">
@@ -183,5 +189,7 @@
 	<script src="js/vehicle.js"></script>
     <script src="js/script.js"></script>
 	<script src="js/transfer.js"></script>
+	<script src="leaflet/leaflet.js"></script>
+	<script src="js/map.js"></script>
     </body>
 </html>
