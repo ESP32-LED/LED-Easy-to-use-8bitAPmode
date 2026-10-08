@@ -1,5 +1,15 @@
 [
     {
+        "id": "H100",
+        "name": "H100形",
+        "config": "vehicles/H100/config.json",
+        "led": "vehicles/H100/led.json",
+        "icons": [
+            "vehicles/H100/icons/icon1.png"
+        ],
+        "site": "vehicles/H100/site.json"
+    },
+    {
         "id": "E129",
         "name": "E129系",
         "config": "vehicles/E129/config.json",
