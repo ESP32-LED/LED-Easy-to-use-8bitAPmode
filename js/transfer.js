@@ -501,7 +501,6 @@ function createESP32TypeDestinationScrollPacket(br, gam) {
             info &&
             info.state &&
             info.state.active &&
-            clickStartScrollBtn !== false &&
             isTypeDestinationScrollCategoryEnabled(info.category)
         ) {
             let item = null;
