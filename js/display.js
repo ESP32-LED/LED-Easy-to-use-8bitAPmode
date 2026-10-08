@@ -1053,8 +1053,6 @@ function startTypeScroll(lang) {
         return;
     }
 
-    const type = getItem("type", typeId);
-
     if (config.hasCarNumberSmall && config.carNumber === "left") {
         const carNumber = getItem("carNumber", carNumberId);
         state.areaLeft = getCarNumberWidth(carNumber, true);
@@ -1062,7 +1060,10 @@ function startTypeScroll(lang) {
         state.areaLeft = 0;
     }
 
-    state.areaRight = getTypeWidth(type, true);
+    typeScrollId = typeId;
+    const nullType = getItem("type", "null_type");
+
+    state.areaRight = getTypeWidth(nullType, true);
 
     const typeData = getItem("type", typeId);
     const jaHeight =
@@ -1093,11 +1094,14 @@ function startTypeScroll(lang) {
         state.waitingUntil = 0;
         state.active = true;
     }
+    typeScrollId = null;
 
     updateScrollId();
     drawTypeDestinationScroll(state);
     startTypeDestinationScrollAnimation();
 }
+
+let typeDestinationId = null;
 
 function startDestinationScroll(lang) {
     const state = lang === "ja"
@@ -1111,13 +1115,22 @@ function startDestinationScroll(lang) {
     }
 
     const type = getItem("type", typeId);
-    const dest = getItem("destination", destinationId);
 
     // 行先ボタンを押した時点の種別幅を保存
-    state.areaLeft = getTypeWidth(type, true);
+    destinationScrollId = destinationId;
+    const nullType = getItem("type", "null_type");
+    if (typeScroll === true) {
+        typeScrollId = typeId;
+        state.areaLeft = getTypeWidth(nullType, true);
+    } else {
+        state.areaLeft = getTypeWidth(type, true);
+    }
 
     // 行先の右端
-    state.areaRight = getDestinationWidth(type, dest, true);
+    
+    const nullDestination = getItem("destination", "null_destination");
+
+    state.areaRight = getDestinationWidth(nullType, nullDestination, true);
 
     const destData = getItem("destination", destinationId);
     const jaHeight =
