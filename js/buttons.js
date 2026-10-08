@@ -56,6 +56,7 @@ function createTypeButtons() {
                         setSelected(container, btn);
 
                         typeId = item.id;
+                        typeScrollId = null;
 
                         if (config.hasTypeScroll) {
                             const typeData = getItem("type", typeId);
@@ -196,6 +197,7 @@ function createTypeButtons() {
                     setSelected(container, btn);
 
                     typeId = item.id;
+                    typeScrollId = null;
 
                     if (config.hasTypeScroll) {
                         const typeData = getItem("type", typeId);
@@ -316,6 +318,7 @@ function createTypeButtons() {
                 setSelected(container, btn);
 
                 typeId = item.id;
+                typeScrollId = null;
 
                 if (config.hasTypeScroll) {
                     const typeData = getItem("type", typeId);
@@ -633,6 +636,7 @@ function createDestinationButtons() {
                     btn.addEventListener("click", () => {
                         setSelected(container, btn);
                         destinationId = dest.id;
+                        destinationScrollId = null;
 
                         if (config.hasDestinationScroll) {
                             const typeData = getItem("type", typeId);
@@ -775,6 +779,7 @@ function createDestinationButtons() {
                 btn.addEventListener("click", () => {
                     setSelected(container, btn);
                     destinationId = dest.id;
+                    destinationScrollId = null;
 
                     if (config.hasDestinationScroll) {
                         const typeData = getItem("type", typeId);
@@ -897,6 +902,7 @@ function createDestinationButtons() {
             btn.addEventListener("click", () => {
                 setSelected(container, btn);
                 destinationId = dest.id;
+                destinationScrollId = null;
 
                 if (config.hasDestinationScroll) {
                     const typeData = getItem("type", typeId);
