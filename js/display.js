@@ -175,12 +175,18 @@ function drawDestination(dest, matrix) {
     if (!data) return;
 
     const type = getItem("type", typeId);
+    const nullType = getItem("type", "null_type");
     const carNumber = getItem("carNumber", carNumberId);
     let yOffset;
     
     if (usedNormal) {
         if (config.destinationPosition === "normal") {
-            typewidth = getTypeWidth(type, usedNormal);
+            if (!typeScroll) {
+                typewidth = getTypeWidth(type, usedNormal);
+            } else {
+                typeScrollId = typeId;
+                typewidth = getTypeWidth(nullType, usedNormal);
+            }
         }
         if (config.destinationPosition === "next") {
             typewidth = getCarNumberWidth(carNumber, usedNormal);
