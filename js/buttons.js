@@ -72,7 +72,7 @@ function createTypeButtons() {
                             const typeEnWidth = typeData.view?.[view]?.en?.width;
     
                             const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
-                            const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
+                            const nullTypeEnWidth = nullType.view?.[view]?.en?.width ?? nullType.view?.[view]?.ja?.width;
     
                             typeScroll =
                                 typeJaWidth !== nullTypeJaWidth ||
@@ -114,7 +114,7 @@ function createTypeButtons() {
                                     nullDestination.view?.[view]?.ja?.width;
     
                                 const nullDestinationEnWidth =
-                                    nullDestination.view?.[view]?.ja?.width;
+                                    nullDestination.view?.[view]?.en?.width ?? nullDestination.view?.[view]?.ja?.width;
     
                                 destinationScroll =
                                     destinationJaWidth !== nullDestinationJaWidth ||
@@ -213,7 +213,7 @@ function createTypeButtons() {
                         const typeEnWidth = typeData.view?.[view]?.en?.width;
     
                         const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
-                        const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
+                        const nullTypeEnWidth = nullType.view?.[view]?.en?.width ?? nullType.view?.[view]?.ja?.width;
     
                         typeScroll =
                             typeJaWidth !== nullTypeJaWidth ||
@@ -255,7 +255,7 @@ function createTypeButtons() {
                                 nullDestination.view?.[view]?.ja?.width;
     
                             const nullDestinationEnWidth =
-                                nullDestination.view?.[view]?.ja?.width;
+                                nullDestination.view?.[view]?.en?.width ?? nullDestination.view?.[view]?.ja?.width;
     
                             destinationScroll =
                                 destinationJaWidth !== nullDestinationJaWidth ||
@@ -334,7 +334,7 @@ function createTypeButtons() {
                     const typeEnWidth = typeData.view?.[view]?.en?.width;
     
                     const nullTypeJaWidth = nullType.view?.[view]?.ja?.width;
-                    const nullTypeEnWidth = nullType.view?.[view]?.ja?.width;
+                    const nullTypeEnWidth = nullType.view?.[view]?.en?.width ?? nullType.view?.[view]?.ja?.width;
     
                     typeScroll =
                         typeJaWidth !== nullTypeJaWidth ||
@@ -376,6 +376,7 @@ function createTypeButtons() {
                             nullDestination.view?.[view]?.ja?.width;
     
                         const nullDestinationEnWidth =
+                            nullDestination.view?.[view]?.en?.width ??
                             nullDestination.view?.[view]?.ja?.width;
     
                         destinationScroll =
@@ -655,7 +656,8 @@ function createDestinationButtons() {
                             const nullDestinationJaWidth =
                                 nullDestination.view?.[view]?.ja?.width;
                             const nullDestinationEnWidth =
-                                nullDestination.view?.[view]?.en?.width;
+                                nullDestination.view?.[view]?.en?.width ??
+                                nullDestination.view?.[view]?.ja?.width;
     
                             destinationScroll =
                                 destinationJaWidth !== nullDestinationJaWidth ||
@@ -695,6 +697,7 @@ function createDestinationButtons() {
                                     nullType.view?.[view]?.ja?.width;
     
                                 const nullTypeEnWidth =
+                                    nullType.view?.[view]?.en?.width ??
                                     nullType.view?.[view]?.ja?.width;
     
                                 typeScroll =
@@ -798,7 +801,8 @@ function createDestinationButtons() {
                         const nullDestinationJaWidth =
                             nullDestination.view?.[view]?.ja?.width;
                         const nullDestinationEnWidth =
-                            nullDestination.view?.[view]?.en?.width;
+                            nullDestination.view?.[view]?.en?.width ??
+                            nullDestination.view?.[view]?.ja?.width;
     
                         destinationScroll =
                             destinationJaWidth !== nullDestinationJaWidth ||
@@ -838,6 +842,7 @@ function createDestinationButtons() {
                                 nullType.view?.[view]?.ja?.width;
     
                             const nullTypeEnWidth =
+                                nullType.view?.[view]?.en?.width ??
                                 nullType.view?.[view]?.ja?.width;
     
                             typeScroll =
@@ -921,7 +926,8 @@ function createDestinationButtons() {
                     const nullDestinationJaWidth =
                         nullDestination.view?.[view]?.ja?.width;
                     const nullDestinationEnWidth =
-                        nullDestination.view?.[view]?.en?.width;
+                        nullDestination.view?.[view]?.en?.width ??
+                        nullDestination.view?.[view]?.ja?.width;
     
                     destinationScroll =
                         destinationJaWidth !== nullDestinationJaWidth ||
@@ -961,6 +967,7 @@ function createDestinationButtons() {
                             nullType.view?.[view]?.ja?.width;
     
                         const nullTypeEnWidth =
+                            nullType.view?.[view]?.en?.width ??
                             nullType.view?.[view]?.ja?.width;
     
                         typeScroll =
@@ -998,7 +1005,6 @@ function createDestinationButtons() {
         });
     }
 }
-
 function createNextModeButtons() {
 
     const container = document.getElementById("nextModeButtons");
