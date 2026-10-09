@@ -699,13 +699,15 @@ function isTypeFullScreen(type) {
 
     if(!type) return false;
 
+    let hasNormal;
+    let hasFull;
     if (typeScrollId === null) {
-        const hasNormal = !!type.view.normal;
-        const hasFull = !!type.view.full;
+        hasNormal = !!type.view.normal;
+        hasFull = !!type.view.full;
     } else {
         const typeScrollData = getItem("type", typeScrollId);
-        const hasNormal = !!typeScrollData.view.normal;
-        const hasFull = !!typeScrollData.view.full;
+        hasNormal = !!typeScrollData.view.normal;
+        hasFull = !!typeScrollData.view.full;
     }
 
     if(hasFull && !hasNormal){
@@ -743,13 +745,15 @@ function isDestinationFullScreen(dest) {
 
     if(!dest) return false;
 
+    let hasNormal;
+    let hasFull;
     if (destinationScrollId === null) {
-        const hasNormal = !!dest.view.normal;
-        const hasFull = !!dest.view.full;
+        hasNormal = !!dest.view.normal;
+        hasFull = !!dest.view.full;
     } else {
         const destinationScrollData = getItem("destination", destinationScrollId);
-        const hasNormal = !!destinationScrollData.view.normal;
-        const hasFull = !!destinationScrollData.view.full;
+        hasNormal = !!destinationScrollData.view.normal;
+        hasFull = !!destinationScrollData.view.full;
     }
 
     if(hasFull && !hasNormal){
