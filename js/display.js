@@ -699,8 +699,14 @@ function isTypeFullScreen(type) {
 
     if(!type) return false;
 
-    const hasNormal = !!type.view.normal;
-    const hasFull = !!type.view.full;
+    if (typeScrollId === null) {
+        const hasNormal = !!type.view.normal;
+        const hasFull = !!type.view.full;
+    } else {
+        const typeScrollData = getItem("type", typeScrollId);
+        const hasNormal = !!typeScrollData.view.normal;
+        const hasFull = !!typeScrollData.view.full;
+    }
 
     if(hasFull && !hasNormal){
         return true;
@@ -737,8 +743,14 @@ function isDestinationFullScreen(dest) {
 
     if(!dest) return false;
 
-    const hasNormal = !!dest.view.normal;
-    const hasFull = !!dest.view.full;
+    if (destinationScrollId === null) {
+        const hasNormal = !!dest.view.normal;
+        const hasFull = !!dest.view.full;
+    } else {
+        const destinationScrollData = getItem("destination", destinationScrollId);
+        const hasNormal = !!destinationScrollData.view.normal;
+        const hasFull = !!destinationScrollData.view.full;
+    }
 
     if(hasFull && !hasNormal){
         return true;
@@ -1163,6 +1175,7 @@ function startDestinationScroll(lang) {
         state.waitingUntil = 0;
         state.active = true;
     }
+    destinationScrollId = null;
 
     updateScrollId();
     drawTypeDestinationScroll(state);
